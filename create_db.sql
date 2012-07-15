@@ -76,10 +76,49 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- 用户权限
 -- 不同的group 对应不同权限
 -- 违禁的用户,有一个单独的权限
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE IF NOT EXISTS `group` (
   `id` int(10) NOT NULL auto_increment,
   `name` varchar(20) character set utf8 NOT NULL,
   `description` varchar(2000) character set utf8 NOT NULL,
+  `create_date` datetime NOT NULL,
+  PRIMARY KEY  (`id`),
+) CHARSET=utf8;
+
+-- 爬虫的来源
+CREATE TABLE IF NOT EXISTS `crawl_source` (
+  `id` int(10) NOT NULL auto_increment,
+  `url` varchar(1024) character set utf8 NOT NULL,
+  `category_id`   int(10) NOT NULL,  -- 这个url里的东西,是那种类型的私服
+  `crawl_date` datetime default null, --上次爬取的时间
+  `create_date` datetime NOT NULL,
+  PRIMARY KEY  (`id`),
+) CHARSET=utf8;
+
+
+-- parser之后的结果
+-- 有些字段 我也不太清楚这是干嘛的
+CREATE TABLE IF NOT EXISTS `parser_result` (
+  `id` int(10) NOT NULL auto_increment,
+  `name` varchar(20) character set utf8 NOT NULL,
+  `line` varchar(20) character set utf8 NOT NULL,  -- 线路
+  `description` varchar(2000) character set utf8 NOT NULL,
+  `url` varchar(200) character set utf8 NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `banner_url` varchar(200) NOT NULL,
+  `category_id`   int(10) NOT NULL,
+  `create_date`  datetime,
+  `jieshao` varchar(18) character set utf8 NOT NULL,
+  `banben` varchar(4) character set utf8 NOT NULL,
+  `qq` varchar(10) character set utf8 NOT NULL,
+  `exp`  varchar(10) character set utf8 NOT NULL,
+  PRIMARY KEY  (`id`),
+) CHARSET=utf8;
+
+-- 爬虫的历史
+CREATE TABLE IF NOT EXISTS `crawl_history` (
+  `id` int(10) NOT NULL auto_increment,
+  `url` varchar(1024) character set utf8 NOT NULL,
+  `http_code` int(3)  NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY  (`id`),
 ) CHARSET=utf8;
