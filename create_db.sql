@@ -1,9 +1,9 @@
 -- script for build the site
 
-CREATE DATABASE IF NOT EXISTS tophey
+-- CREATE DATABASE IF NOT EXISTS tophey
 USE tophey;
 
---用户
+-- 用户
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -15,7 +15,7 @@ CREATE TABLE `user` (
   `telephone` varchar(20) DEFAULT NULL,
   `zipCode` varchar(10) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
-  `ip`     varchar(20) DEFAULT NULL,  --创建用户时的ip
+  `ip`     varchar(20) DEFAULT NULL,  -- 创建用户时的ip
   `create_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `server_info` (
   `category_id`   int(10) NOT NULL,
   `create_date` datetime NOT NULL,
   `update_date` datetime NOT NULL,
-  `is_disable`  int(1)  NOT NULL default 0, --私服是否已经被取缔
+  `is_disable`  int(1)  NOT NULL default 0, -- 私服是否已经被取缔
   `disable_date`  datetime default NULL,
   `disable_reason`  varchar(200) character set utf8,
   PRIMARY KEY  (`id`),
@@ -54,10 +54,10 @@ CREATE TABLE IF NOT EXISTS `server_sys_info` (
   `ping`     int (100) NOT NULL,      -- 计算scroe的依据
   `server_num`  int(5) DEFAULT 0,     -- 私服xx区数目
   `server_create_time` datetime not NULL,  -- 私服成立时间
-  `server_new_open_time`  datetime not NULL, --私服开新区的时间
+  `server_new_open_time`  datetime not NULL, -- 私服开新区的时间
   `vote_in`   int (10) DEFAULT 0,
   `vote_out`   int(10) DEFAULT 0,
-  `privilege`   int(5) DEFAULT 0,        --特权.类似于给钱,让他在前面这种
+  `privilege`   int(5) DEFAULT 0,        -- 特权.类似于给钱,让他在前面这种
   PRIMARY KEY  (`id`),
 ) CHARSET=utf8;
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `server_sys_info` (
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(10) NOT NULL auto_increment,
   `name` varchar(20) character set utf8 NOT NULL,
-  `image_url`  varchar(1024) character,
+  `image_url`  varchar(1024),
   `description` varchar(2000) character set utf8 NOT NULL,
   `create_date` datetime NOT NULL,
   `display_order`  int(3) NOT NULL, -- 展示的顺序
@@ -87,6 +87,9 @@ CREATE TABLE IF NOT EXISTS `group` (
   `create_date` datetime NOT NULL,
   PRIMARY KEY  (`id`),
 ) CHARSET=utf8;
+
+CREATE DATABASE crawl;
+USE crawl;
 
 -- 爬虫的来源
 CREATE TABLE IF NOT EXISTS `crawl_source` (
