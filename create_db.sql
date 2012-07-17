@@ -26,14 +26,15 @@ CREATE TABLE `user` (
 -- 用户填入的信息
 CREATE TABLE IF NOT EXISTS `server_info` (
   `id` int(10) NOT NULL auto_increment,
-  `name` varchar(20) character set utf8 NOT NULL,
-  `line` varchar(20) character set utf8 NOT NULL,  -- 线路
-  `description` varchar(2000) character set utf8 NOT NULL,
-  `url` varchar(200) character set utf8 NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `line` varchar(64)  NOT NULL,  -- 线路
+  `description` varchar(2000)  NOT NULL,
+  `url` varchar(256) character set utf8 NOT NULL,
   `title` varchar(100) NOT NULL,
   `banner_url` varchar(200) NOT NULL,
   `category_id`   int(10) NOT NULL,
   `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
   `is_disable`  int(1)  NOT NULL default 0, --私服是否已经被取缔
   `disable_date`  datetime default NULL,
   `disable_reason`  varchar(200) character set utf8,
@@ -59,6 +60,9 @@ CREATE TABLE IF NOT EXISTS `server_sys_info` (
   `privilege`   int(5) DEFAULT 0,        --特权.类似于给钱,让他在前面这种
   PRIMARY KEY  (`id`),
 ) CHARSET=utf8;
+
+
+
 
 
 -- 游戏分类
