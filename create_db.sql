@@ -1,6 +1,7 @@
 -- script for build the site
 
- CREATE DATABASE IF NOT EXISTS tophey
+DROP DATABASE IF EXISTS tophey;
+CREATE DATABASE tophey CHARACTER SET utf8 COLLATE utf8_bin;
 USE tophey;
 
 
@@ -81,7 +82,9 @@ CREATE TABLE IF NOT EXISTS `group` (
 ) CHARSET=utf8;
 
 
-create database crawl;
+DROP DATABASE IF EXISTS crawl;
+
+create database crawl CHARACTER SET utf8 COLLATE utf8_bin;
 use  crawl;
 
 DROP TABLE IF EXISTS `crawl_source`;
