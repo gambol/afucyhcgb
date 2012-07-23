@@ -2,7 +2,7 @@
 #coding=utf-8
 # @author gambol
 # @date 2012-7-18
-# 爬虫
+# 爬虫, 怕几个私服发布站
 
 import MySQLdb  
 import sys
@@ -13,11 +13,16 @@ import time
 import socket
 import re
 from BeautifulSoup import BeautifulSoup
+import copy
 
 reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 socket.setdefaulttimeout(10)
+
+endlFormatPattern = re.compile("[\n\t\r]+")
+noAsciiFormatPattern = re.compile("[\x00-\x08\x0b-\x0c\x0e-\x1f]")
+GBKPattern = re.compile(r"charset=gb", re.I);
 
 conn = MySQLdb.connect(host='127.0.0.1', user='gambol', unix_socket="/home/zhenbao.zhou/.local/share/akonadi/socket-localhost/mysql.socket", charset="utf8", db="crawl")
 cursor = conn.cursor()
@@ -32,7 +37,6 @@ commonPositionMap = {"名称|名字|私服":0,
               "版本|服务器说明" : 0,
               "IP"   : 0,
               "QQ"   : 0};
-
 
 fieldCastDict = {"名称|名字|私服":'name',
               "线路" : 'line',
@@ -72,7 +76,8 @@ def dealUrlAndCategory(l):
 def parserHtml(html, category_id):
     #print html
     soup = None
-    if (html.find("charset=gb") != -1):
+    if (GBKPattern.search(html) != None):
+#    if (html.find("charset=gb") != -1):
         soup = BeautifulSoup(html, fromEncoding='gb18030')
     else:
         soup = BeautifulSoup(html)
@@ -80,17 +85,24 @@ def parserHtml(html, category_id):
     (goodPositionMap,goodLineCounter, goodLinePartNum) = getGoodPostionMap(soup);
     print goodPositionMap
     print goodLineCounter
+    print goodLinePartNum
+    
     if (goodLineCounter < 4):
         print "fuck, it is error"
         return
 
-    trs = soup.findAll("tr");
+    trs = soup.findAll(["tr", "dl"]);
     index = 1;
     for trContent in  trs:
         contentMap = getContent(trContent, goodPositionMap,  goodLinePartNum);
         if (contentMap != None):
             insertIntoDb(contentMap, category_id, index)
             index += 1
+
+def stringEntities(str):
+    result = noAsciiFormatPattern.subn("", str)
+    result = endlFormatPattern.subn(" ", result[0])
+    return result[0]
 
 def insertIntoDb(contentMap, category_id, index):
     if (contentMap == None or not contentMap.has_key('url')):
@@ -107,31 +119,38 @@ def insertIntoDb(contentMap, category_id, index):
 
     field  = ",".join(allSqlFields)
     value = ",".join(valueFields)
-    sql = "insert into crawl.parser_result (%s) values (%s);" % (field, value)
+    value = stringEntities(value)
+    name = contentMap['名称|名字|私服']
+    url = contentMap['url']
+    
+    #sql = "insert into crawl.parser_result (%s) values (%s);" % (field, value)
+    sql = "update tophey.server_info set tophey.server_info.name = '%s' where url = '%s' and category_id = 2;" % (name, url)
     print sql
 
-    cursor.execute(sql);
-    
+    #cursor.execute(sql);
 
 # 遍历全页面，找出最合适的一个模式
 def getGoodPostionMap(soup):
     goodPositionMap = None
     goodLineCounter = 0
     goodLinePartNum = 0;
-    lineContent = soup.findAll("tr")
+    content = ""
+    lineContent = soup.findAll(["tr", "dl"])
     for partContent in lineContent:
         (positionMap, lineInfoCounter, linePartNum) = getPostionMap(partContent)
-        if (lineInfoCounter > goodLineCounter):
+        if (lineInfoCounter > goodLineCounter and linePartNum < 2 * lineInfoCounter):
             goodPositionMap = positionMap
             goodLinePartNum = linePartNum
             goodLineCounter = lineInfoCounter
+            content = partContent
+            print 'partcontent:' + str(content)
         
     return (goodPositionMap, goodLineCounter, goodLinePartNum)
 
 # 根据模式，选择出内容
 def getContent(trContent, positionMap, goodLinePartNum):
     contentMap = {}
-    tds = trContent.findAll("td")
+    tds = trContent.findAll(["td", "dd", "dt"])
     if (len(tds) != goodLinePartNum):
         return None
 
@@ -158,9 +177,9 @@ def getContent(trContent, positionMap, goodLinePartNum):
 
 # 根据tr里 td内容，得到相关信息
 def getPostionMap(trContent):
-    positionMap = commonPositionMap
+    positionMap = copy.deepcopy(commonPositionMap)
 
-    tds = trContent.findAll(['th', 'td'])
+    tds = trContent.findAll(['th', 'td', "dt", "dd"])
     index = 0;
     
     for td in tds:
@@ -168,8 +187,10 @@ def getPostionMap(trContent):
         text = td.text.encode("UTF-8")
         for key in positionMap.keys():
             #if (text.find(key) != -1):
-            if (re.search(key, text)):
+            if (len(text) < 5 * len(key) and re.search(key, text)):
                 positionMap[key] = index
+                # print "key:" + key
+                # print "text:" + text
 
     lineCounter = 0;
     for key in positionMap.keys():
@@ -194,10 +215,13 @@ if __name__ == "__main__":
     
     # for r in result:
     #     dealUrlAndCategory(r);
-    # f = open('www.8uu.com.htm').read()
-    # f = open('www.yslead.com.htm').read()
-    # f = open('www.bitiwow.com.htm').read()
-    html = fetchUrl('http://www.bitiwow.com/');
-    parserHtml(html, 2)
+    # html = open('www.8uu.com.htm').read()
+    # html = open('www.yslead.com.htm').read()
+    html = open('www.bitiwow.com.htm').read()
+    # html = fetchUrl('http://www.bitiwow.com/');
+    # html = fetchUrl('http://zhaokf.com/');
+    # html = open("sf065Game.htm").read()
+    #tml = open("wan50.html").read()
+    parserHtml(html, 2);
 
 conn.close()  
