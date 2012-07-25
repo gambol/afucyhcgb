@@ -1,70 +1,90 @@
 package com.tophey.model;
 
+import com.tophey.common.DBColumnName;
+import com.tophey.common.DBTableName;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Category {
-	private int id;
-	private String name;
-	private String imageUrl;
-	private String description;
-	private Timestamp createDate;
-	private int displayOrder;
-	private int isDisabled;
+@DBTableName(value="category")
+public class Category implements Serializable {
 
-	public int getId() {
-		return id;
-	}
+    private static final long serialVersionUID = -6613259079097692609L;
+    @DBColumnName(value="id")
+    private int id;
+    @DBColumnName(value="name")
+    private String name;
+    @DBColumnName(value="image_url")
+    private String imageUrl;
+    @DBColumnName(value="description")
+    private String description;
+    @DBColumnName("create_date")
+    private Timestamp createDate;
+    @DBColumnName("display_order")
+    private int displayOrder;
+    @DBColumnName("is_disabled")
+    private int isDisabled;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Timestamp getCreateDate() {
-		return createDate;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setCreateDate(Timestamp createDate) {
-		this.createDate = createDate;
-	}
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
 
-	public int getDisplayOrder() {
-		return displayOrder;
-	}
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
 
-	public void setDisplayOrder(int displayOrder) {
-		this.displayOrder = displayOrder;
-	}
+    public int getDisplayOrder() {
+        return displayOrder;
+    }
 
-	public int getIsDisabled() {
-		return isDisabled;
-	}
+    public void setDisplayOrder(int displayOrder) {
+        this.displayOrder = displayOrder;
+    }
 
-	public void setIsDisabled(int isDisabled) {
-		this.isDisabled = isDisabled;
-	}
+    public int getIsDisabled() {
+        return isDisabled;
+    }
 
+    public void setIsDisabled(int isDisabled) {
+        this.isDisabled = isDisabled;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+    
+    
+    
 }

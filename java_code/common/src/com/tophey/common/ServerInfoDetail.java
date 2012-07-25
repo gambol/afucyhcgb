@@ -14,13 +14,16 @@ import java.io.Serializable;
  */
 public class ServerInfoDetail implements Serializable{
 
-    private ServerInfo serverInfo;
-    private ServerSysInfo serverSysInfo;
+    private ServerInfo serverInfo = new ServerInfo();
+    private ServerSysInfo serverSysInfo = new ServerSysInfo();
 
     public ServerInfoDetail(ServerInfo si,ServerSysInfo ssi){
         this.serverInfo = si;
         this.serverSysInfo = ssi;
     }
+
+    
+    
     
     
     public ServerInfo getServerInfo() {
