@@ -13,6 +13,9 @@ import javax.swing.JFrame;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    
+    public static MainFrame mf = new MainFrame();
+    
     /**
      * Creates new form MainFrame
      */
@@ -36,6 +39,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public static void setVisable() {
+        mf.setSize(1000, 600);
+        mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mf.setVisible(true);
+        UIUtilities.centerFrame(mf);
+    }
 
     /**
      * @param args the command line arguments
@@ -74,11 +84,6 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                MainFrame mf = new MainFrame();
-                mf.setSize(1000,600);
-                mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                mf.setVisible(true);
-                UIUtilities.centerFrame(mf);
             }
         });
     }

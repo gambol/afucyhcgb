@@ -19,11 +19,11 @@ public interface  QueryServerAgentListener {
 
     
     
-    public void onStart();
+    public void onStart(String sid);
     
-    public void onSuccess(PageResult<ServerInfoDetail> allCate);
+    public void onSuccess(String sid,PageResult<ServerInfoDetail> allCate);
     
-    public void onFailed(int errCode,String errMsg);
+    public void onFailed(String sid,int errCode,String errMsg);
 
     
     

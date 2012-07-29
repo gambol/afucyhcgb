@@ -37,11 +37,23 @@ function getRank(categoryId,start,size){
                 }
                 right_sb_height += 186 +20;
                 var nowRank = parseInt(start)+parseInt(idx)+1;
+                var desc = item.serverInfo.description;
+//                alert(desc.length > 60);
+                if(desc.length > 70){
+                    desc = desc.substring(0,70);
+                    desc += "...";
+                }
+                var noClassIdx = "";
+                if(idx <3){
+                    noClassIdx = idx+1;
+                }else{
+                    noClassIdx = "other";
+                }
                 htmlContent +=
                 '<div id="rank-content" class=" shadowed">'+
                 '<div class="inner-boundary">' +
                 '<div class="inner-border ">'+
-                '<div class="rank-no-wrapper"><div class="rank-no">'+nowRank+'</div></div>'+
+                '<div class="rank-no-wrapper"><div class="rank-no rank-no-'+noClassIdx+'">'+nowRank+'</div></div>'+
 
                 '<div class="rank-content-wrapper">' +
                 '<a href="'+item.serverInfo.url+'" target="_blank">' +
@@ -50,7 +62,7 @@ function getRank(categoryId,start,size){
                 '</a>'+
 
                 '<div class ="rank-content-desc">'+
-                item.serverInfo.description+
+                desc+
                 '</div>'+
 
                 '</div>'+
@@ -93,7 +105,7 @@ function getRank(categoryId,start,size){
                 startIdx +=50;
                 end = parseInt(startIdx)+50;
             }while(startIdx < totalCount);
-            rankPpageHtmlContent += '</ul>';
+            rankPageHtmlContent += '</ul>';
             $("#rank-title-page .rank-page-dropdown").html(rankPageHtmlContent);
             
             

@@ -80,6 +80,50 @@ public class SSITableModel extends AbstractTableModel {
         }
     }
 
+    public void remove(ServerInfoDetail sid) {
+        Iterator it = serverInfoDetailList.iterator();
+        int idx = 0;
+        while (it.hasNext()) {
+            ServerInfoDetail sid1 = (ServerInfoDetail) it.next();
+            if (sid.getServerInfo().getId() == sid1.getServerInfo().getId()) {
+//                serverInfoDetailList.set(i, sid);
+                it.remove();
+                fireTableRowsDeleted(idx, idx);
+                return;
+            }
+            idx++;
+        }
+    }
+
+    public void removeList(List<ServerInfoDetail> sids) {
+//        for(ServerInfoDetail sid:sids){
+//            remove(sid);
+//        }               
+
+        Iterator it = serverInfoDetailList.iterator();
+        int idx = 0;
+        while (it.hasNext()) {
+            ServerInfoDetail sid1 = (ServerInfoDetail) it.next();
+
+            Iterator it1 = sids.iterator();
+            while (it1.hasNext()) {
+                ServerInfoDetail sid2 = (ServerInfoDetail) it1.next();
+                if (sid1.getServerInfo().getId() == sid2.getServerInfo().getId()) {
+//                serverInfoDetailList.set(i, sid);
+                    it.remove();
+                    fireTableRowsDeleted(idx, idx);
+//                    return;
+                }
+            }
+            idx++;
+        }
+
+
+
+
+
+    }
+
     public void removeAll() {
         serverInfoDetailList.clear();
         fireTableDataChanged();

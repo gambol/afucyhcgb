@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,12 +32,124 @@ public class ServerPersister {
             + DBTool.getTableName(ServerSysInfo.class) + " set "
             + " server_num=?,name=?,score=? "
             + " where id=?";
+    private static final String DELETE_SERVER_INFO_SQL = "update "
+            + DBTool.getTableName(ServerInfo.class) + " set "
+            + " deleted=1 where id=?";
+    private static final String DELETE_SERVER_SYS_INFO_SQL = "update "
+            + DBTool.getTableName(ServerSysInfo.class) + " set "
+            + " deleted=1 where id=?";
     private static final String ADD_SERVER_INFO_SQL = "insert into "
             + DBTool.getTableName(ServerInfo.class) + " values "
-            + " (NULL,?,?,?,?,?,?,?,?,?,?,?,?)";
+            + " (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String ADD_SERVER_SYS_INFO_SQL = "insert into "
             + DBTool.getTableName(ServerSysInfo.class) + " values "
-            + " (?,?,?,?,?,?,?,?,?,?,?,?)";
+            + " (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+    public void deleteServerInfoDetails(List<ServerInfoDetail> details) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+            conn.setAutoCommit(false);
+            for (ServerInfoDetail sid : details) {
+                ps = conn.prepareStatement(DELETE_SERVER_INFO_SQL);
+                ps.setInt(1, sid.getServerInfo().getId());
+                ps.executeUpdate();
+                DBTool.closeStmt(ps);
+                ps = conn.prepareStatement(DELETE_SERVER_SYS_INFO_SQL);
+                ps.setInt(1, sid.getServerSysInfo().getId());
+                ps.executeUpdate();
+                DBTool.closeStmt(ps);
+            }
+
+            conn.commit();
+        } catch (SQLException ex) {
+            DBTool.rollback(conn);
+            ex.printStackTrace();
+            Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            DBTool.rollback(conn);
+            ex.printStackTrace();
+            Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DBTool.closeAll(conn, ps, rs);
+        }
+    }
+
+    public void deleteServerInfoDetail(ServerInfoDetail sid) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+            conn.setAutoCommit(false);
+            ps = conn.prepareStatement(DELETE_SERVER_INFO_SQL);
+            ps.setInt(1, sid.getServerInfo().getId());
+            ps.executeUpdate();
+            DBTool.closeStmt(ps);
+            ps = conn.prepareStatement(DELETE_SERVER_SYS_INFO_SQL);
+            ps.setInt(1, sid.getServerSysInfo().getId());
+            ps.executeUpdate();
+
+            conn.commit();
+        } catch (SQLException ex) {
+            DBTool.rollback(conn);
+            ex.printStackTrace();
+            Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            DBTool.rollback(conn);
+            ex.printStackTrace();
+            Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DBTool.closeAll(conn, ps, rs);
+        }
+    }
+
+    public void updateServerInfoDetail(List<ServerInfoDetail> sids) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = ConnectionFactory.getInstance().getConnection();
+            conn.setAutoCommit(false);
+            for (ServerInfoDetail sid : sids) {
+                ps = conn.prepareStatement(UPDATE_SERVER_INFO_SQL);
+                ps.setString(1, sid.getServerInfo().getName());
+                ps.setString(2, sid.getServerInfo().getUrl());
+                ps.setString(3, sid.getServerInfo().getLine());
+                ps.setString(4, sid.getServerInfo().getDescription());
+                ps.setInt(5, Integer.valueOf(sid.getServerInfo().getId()));
+                ps.executeUpdate();
+                DBTool.closeStmt(ps);
+                ps = conn.prepareStatement(UPDATE_SERVER_SYS_INFO_SQL);
+                ps.setInt(1, sid.getServerSysInfo().getServerNum());
+                ps.setString(2, sid.getServerInfo().getName());
+                ps.setDouble(3, sid.getServerSysInfo().getScore());
+                ps.setInt(4, Integer.valueOf(sid.getServerInfo().getId()));
+                ps.executeUpdate();
+            }
+            conn.commit();
+        } catch (SQLException ex) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            ex.printStackTrace();
+            Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            ex.printStackTrace();
+            Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DBTool.closeAll(conn, ps, rs);
+        }
+    }
 
     public void updateServerInfoDetail(ServerInfoDetail sid) {
         Connection conn = null;
@@ -63,19 +176,11 @@ public class ServerPersister {
 
             conn.commit();
         } catch (SQLException ex) {
-            try {
-                conn.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            DBTool.rollback(conn);
             ex.printStackTrace();
             Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            try {
-                conn.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            DBTool.rollback(conn);
             ex.printStackTrace();
             Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -83,7 +188,7 @@ public class ServerPersister {
         }
     }
 
-    public void addServerInfoDetail(ServerInfoDetail sid) {
+    public ServerInfoDetail addServerInfoDetail(ServerInfoDetail sid) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -92,18 +197,19 @@ public class ServerPersister {
             conn = ConnectionFactory.getInstance().getConnection();
             conn.setAutoCommit(false);
             ps = conn.prepareStatement(ADD_SERVER_INFO_SQL);
-            ps.setString(1, sid.getServerInfo().getName()== null ?"":sid.getServerInfo().getName());
-            ps.setString(2, sid.getServerInfo().getLine()== null ?"":sid.getServerInfo().getLine());
-            ps.setString(3, sid.getServerInfo().getDescription()== null ?"":sid.getServerInfo().getDescription());
-            ps.setString(4, sid.getServerInfo().getUrl()== null ?"":sid.getServerInfo().getUrl());
-            ps.setString(5, sid.getServerInfo().getTitle() == null ?"":sid.getServerInfo().getTitle());
-            ps.setString(6, sid.getServerInfo().getBannerUrl()== null ?"":sid.getServerInfo().getBannerUrl());
+            ps.setString(1, sid.getServerInfo().getName() == null ? "" : sid.getServerInfo().getName());
+            ps.setString(2, sid.getServerInfo().getLine() == null ? "" : sid.getServerInfo().getLine());
+            ps.setString(3, sid.getServerInfo().getDescription() == null ? "" : sid.getServerInfo().getDescription());
+            ps.setString(4, sid.getServerInfo().getUrl() == null ? "" : sid.getServerInfo().getUrl());
+            ps.setString(5, sid.getServerInfo().getTitle() == null ? "" : sid.getServerInfo().getTitle());
+            ps.setString(6, sid.getServerInfo().getBannerUrl() == null ? "" : sid.getServerInfo().getBannerUrl());
             ps.setInt(7, sid.getServerInfo().getCategoryId());
-            ps.setTimestamp(8, sid.getServerInfo().getCreateDate()==null?new Timestamp(now.getTime()) :sid.getServerInfo().getCreateDate());
-            ps.setTimestamp(9, sid.getServerInfo().getUpdateDate()==null?new Timestamp(now.getTime()) :sid.getServerInfo().getUpdateDate());
+            ps.setTimestamp(8, sid.getServerInfo().getCreateDate() == null ? new Timestamp(now.getTime()) : sid.getServerInfo().getCreateDate());
+            ps.setTimestamp(9, sid.getServerInfo().getUpdateDate() == null ? new Timestamp(now.getTime()) : sid.getServerInfo().getUpdateDate());
             ps.setInt(10, sid.getServerInfo().getIsDisable());
-            ps.setTimestamp(11, sid.getServerInfo().getDisableDate()==null?new Timestamp(now.getTime()) :sid.getServerInfo().getDisableDate());
-            ps.setString(12, sid.getServerInfo().getDisableReason()==null?"":sid.getServerInfo().getDisableReason());
+            ps.setTimestamp(11, sid.getServerInfo().getDisableDate() == null ? new Timestamp(now.getTime()) : sid.getServerInfo().getDisableDate());
+            ps.setString(12, sid.getServerInfo().getDisableReason() == null ? "" : sid.getServerInfo().getDisableReason());
+            ps.setInt(13, 0);
 
             ps.executeUpdate();
 
@@ -115,43 +221,39 @@ public class ServerPersister {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
+            sid.getServerInfo().setId(id);
+            sid.getServerSysInfo().setId(id);
             DBTool.closeAll(null, ps, rs);
             ps = conn.prepareStatement(ADD_SERVER_SYS_INFO_SQL);
             ps.setInt(1, id);
 
-            ps.setString(2, sid.getServerSysInfo().getName()== null ?"":sid.getServerInfo().getName());
+            ps.setString(2, sid.getServerSysInfo().getName() == null ? "" : sid.getServerInfo().getName());
             ps.setInt(3, sid.getServerSysInfo().getCategoryId());
-            ps.setTimestamp(4, sid.getServerSysInfo().getRefreshDate()== null ?new Timestamp(now.getTime()) :sid.getServerSysInfo().getRefreshDate());
+            ps.setTimestamp(4, sid.getServerSysInfo().getRefreshDate() == null ? new Timestamp(now.getTime()) : sid.getServerSysInfo().getRefreshDate());
             ps.setDouble(5, sid.getServerSysInfo().getScore());
             ps.setInt(6, sid.getServerSysInfo().getPing());
             ps.setInt(7, sid.getServerSysInfo().getServerNum());
-            ps.setTimestamp(8, sid.getServerSysInfo().getServerCreateTime()== null ?new Timestamp(now.getTime()) :sid.getServerSysInfo().getServerCreateTime());
-            ps.setTimestamp(9, sid.getServerSysInfo().getServerNewOpenTime()== null ?new Timestamp(now.getTime()) :sid.getServerSysInfo().getServerNewOpenTime());
+            ps.setTimestamp(8, sid.getServerSysInfo().getServerCreateTime() == null ? new Timestamp(now.getTime()) : sid.getServerSysInfo().getServerCreateTime());
+            ps.setTimestamp(9, sid.getServerSysInfo().getServerNewOpenTime() == null ? new Timestamp(now.getTime()) : sid.getServerSysInfo().getServerNewOpenTime());
             ps.setInt(10, sid.getServerSysInfo().getVoteIn());
             ps.setInt(11, sid.getServerSysInfo().getVoteOut());
             ps.setInt(12, sid.getServerSysInfo().getPrivilege());
-
+            ps.setInt(13, 0);
             ps.executeUpdate();
 
             conn.commit();
+            return sid;
         } catch (SQLException ex) {
-            try {
-                conn.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            DBTool.rollback(conn);
             ex.printStackTrace();
             Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            try {
-                conn.rollback();
-            } catch (SQLException ex1) {
-                Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            DBTool.rollback(conn);
             ex.printStackTrace();
             Logger.getLogger(ServerPersister.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             DBTool.closeAll(conn, ps, rs);
         }
+        return null;
     }
 }

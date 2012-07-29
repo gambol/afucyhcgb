@@ -36,44 +36,44 @@ public class QueryServerAgent {
         listeners.clear();
     }
 
-    protected void fireOnStart() {
+    protected void fireOnStart(String sid) {
         for (QueryServerAgentListener lis : listeners) {
-            lis.onStart();
+            lis.onStart(sid);
         }
     }
 
-    protected void fireOnSucceed(PageResult<ServerInfoDetail> allCate) {
+    protected void fireOnSucceed(String sid,PageResult<ServerInfoDetail> allCate) {
         for (QueryServerAgentListener lis : listeners) {
-            lis.onSuccess(allCate);
+            lis.onSuccess(sid,allCate);
         }
     }
 
-    protected void fireOnFailed(int errCode, String errMsg) {
+    protected void fireOnFailed(String sid,int errCode, String errMsg) {
         for (QueryServerAgentListener lis : listeners) {
-            lis.onFailed(errCode, errMsg);
+            lis.onFailed(sid,errCode, errMsg);
         }
     }
 
-    public void startQuery(final String categoryId, final int start, final int size) {
+    public void startQuery(final String sid, final String categoryId, final int start, final int size) {
         new Thread(getClass().getName() + "-Thread") {
 
             @Override
             public void run() {
-                fireOnStart();
-                doQuery(categoryId, start, size);
+                fireOnStart(sid);
+                doQuery(sid, categoryId, start, size);
             }
         }.start();
     }
 
-    private void doQuery(String categoryId, int start, int size) {
+    private void doQuery(String sid, String categoryId, int start, int size) {
         try {
 
             int count = new ServerQuerier().getServerCountByCategory(categoryId);
             List<ServerInfoDetail> cl = new ServerQuerier().getServerInfoDetailPageByCategory(categoryId, start, size);
-            fireOnSucceed(new PageResult(count, (start + 1) / size, size, cl));
+            fireOnSucceed(sid, new PageResult(count, (start + 1) / size, size, cl));
         } catch (Throwable th) {
             th.printStackTrace();
-            fireOnFailed(-1, "失败");
+            fireOnFailed(sid, -1, "失败");
         }
     }
 }

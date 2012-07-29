@@ -61,6 +61,16 @@ public class DBTool {
         return o;
     }
 
+    public static void rollback(Connection conn) {
+        try {
+            if (conn != null) {
+                conn.rollback();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBTool.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public static void closeStmt(Statement stmt) {
         if (stmt != null) {
             try {

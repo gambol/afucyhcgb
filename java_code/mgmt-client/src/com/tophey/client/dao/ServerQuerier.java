@@ -26,11 +26,11 @@ public class ServerQuerier {
     private static final String QUERY_SERVER_PAGE_COUNT_BY_CATEGORY = "select count(*) from "
             + DBTool.getTableName(ServerSysInfo.class) + " sysinfo left join "
             + DBTool.getTableName(ServerInfo.class) + " info on sysinfo.id=info.id "
-            + "where info.category_id=?";
+            + "where info.category_id=? and info.deleted=0";
     private static final String QUERY_SERVER_PAGE_BY_CATEGORY = "select * from "
             + DBTool.getTableName(ServerSysInfo.class) + " sysinfo left join "
             + DBTool.getTableName(ServerInfo.class) + " info on sysinfo.id=info.id "
-            + "where info.category_id=? order by sysinfo.score desc limit ?,?";
+            + "where info.category_id=? and info.deleted=0 order by sysinfo.score desc limit ?,?";
 
     public int getServerCountByCategory(String categoryId) {
         Connection conn = null;

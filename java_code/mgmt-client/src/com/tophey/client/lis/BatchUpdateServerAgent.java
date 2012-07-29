@@ -8,25 +8,26 @@ package com.tophey.client.lis;
 
 import com.tophey.client.dao.ServerPersister;
 import com.tophey.common.ServerInfoDetail;
+import java.util.List;
 import java.util.Vector;
 
 /**
  *
  * @author fxcn
  */
-public class AddServerAgent {
+public class BatchUpdateServerAgent {
 
-    private Vector<AddServerAgentListener> listeners = new Vector<AddServerAgentListener>();
+    private Vector<BatchUpdateServerAgentListener> listeners = new Vector<BatchUpdateServerAgentListener>();
 
     protected String getThreadName() {
         return getClass().getName() + "-Thread";
     }
 
-    public void addListener(AddServerAgentListener lis) {
+    public void addListener(BatchUpdateServerAgentListener lis) {
         listeners.add(lis);
     }
 
-    public void removeListener(AddServerAgentListener lis) {
+    public void removeListener(BatchUpdateServerAgentListener lis) {
         listeners.remove(lis);
     }
 
@@ -35,39 +36,39 @@ public class AddServerAgent {
     }
 
     protected void fireOnStart() {
-        for (AddServerAgentListener lis : listeners) {
+        for (BatchUpdateServerAgentListener lis : listeners) {
             lis.onStart();
         }
     }
 
-    protected void fireOnSucceed(ServerInfoDetail allCate) {
-        for (AddServerAgentListener lis : listeners) {
-            lis.onSuccess(allCate);
+    protected void fireOnSucceed(List<ServerInfoDetail> sids) {
+        for (BatchUpdateServerAgentListener lis : listeners) {
+            lis.onSuccess(sids);
         }
     }
 
     protected void fireOnFailed(int errCode, String errMsg) {
-        for (AddServerAgentListener lis : listeners) {
+        for (BatchUpdateServerAgentListener lis : listeners) {
             lis.onFailed(errCode, errMsg);
         }
     }
 
-    public void startAdd(final ServerInfoDetail sid) {
+    public void startUpdate(final List<ServerInfoDetail> sids) {
         new Thread(getClass().getName() + "-Thread") {
 
             @Override
             public void run() {
                 fireOnStart();
-                doAdd(sid);
+                doUpdate(sids);
             }
         }.start();
     }
 
-    private void doAdd(ServerInfoDetail sid) {
+    private void doUpdate(List<ServerInfoDetail> sids) {
         try {
 
-            ServerInfoDetail sid1 = new ServerPersister().addServerInfoDetail(sid);
-            fireOnSucceed(sid1);
+            new ServerPersister().updateServerInfoDetail(sids);
+            fireOnSucceed(sids);
         } catch (Throwable th) {
             th.printStackTrace();
             fireOnFailed(-1, "失败");

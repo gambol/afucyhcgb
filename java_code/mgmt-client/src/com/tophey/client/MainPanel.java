@@ -10,23 +10,20 @@ import com.nazca.ui.model.SimpleObjectListModel;
 import com.nazca.ui.pagination.PaginationListener;
 import com.nazca.ui.pagination.TablePageSession;
 import com.nazca.ui.util.CardLayoutWrapper;
-import com.tophey.client.lis.AddServerAgent;
-import com.tophey.client.lis.AddServerAgentListener;
-import com.tophey.client.lis.QueryCategoryAgent;
-import com.tophey.client.lis.QueryCategoryAgentListener;
-import com.tophey.client.lis.QueryServerAgent;
-import com.tophey.client.lis.QueryServerAgentListener;
-import com.tophey.client.lis.UpdateServerAgent;
-import com.tophey.client.lis.UpdateServerAgentListener;
+import com.tophey.client.lis.*;
 import com.tophey.client.model.SSITableModel;
 import com.tophey.common.PageResult;
 import com.tophey.common.ServerInfoDetail;
 import com.tophey.model.Category;
 import com.tophey.model.ServerInfo;
 import com.tophey.model.ServerSysInfo;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
@@ -45,11 +42,15 @@ public class MainPanel extends javax.swing.JPanel {
     private CardLayoutWrapper cardLeft = null;
     private CardLayoutWrapper cardRight = null;
     private QueryCategoryAgent queryCateAgent = null;
+    private String curQueryServerSid = "";
     private QueryServerAgent queryServerAgent = null;
     private Category curCategory = null;
-    private ServerInfoDetail curServer = null;
+//    private ServerInfoDetail curServer = null;
+    private List<ServerInfoDetail> curSelectedServers = new ArrayList<ServerInfoDetail>();
     private UpdateServerAgent updateServerAgent = null;
     private AddServerAgent addServerAgent = null;
+    private DeleteServerAgent deleteServerAgent = null;
+    private BatchUpdateServerAgent batchUpdateAgent = null;
 
     /**
      * Creates new form NewJPanel
@@ -105,6 +106,24 @@ public class MainPanel extends javax.swing.JPanel {
         descTxp4a = new javax.swing.JTextPane();
         jLabel12 = new javax.swing.JLabel();
         score4a = new javax.swing.JTextField();
+        deleteP = new javax.swing.JPanel();
+        deletePrompt = new javax.swing.JLabel();
+        cancelDeleteBtn = new javax.swing.JButton();
+        confirmDeleteBtn = new javax.swing.JButton();
+        deleteMsgLb = new javax.swing.JLabel();
+        batchUpdateP = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        serverNum4BatchUpdate = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        lineTxf4BatchUpdate = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        scoreTxf4BatchUpdate = new javax.swing.JTextField();
+        serverNumNoModiCb = new javax.swing.JCheckBox();
+        lineCbNoModiCb = new javax.swing.JCheckBox();
+        scoreCbNoModiScore = new javax.swing.JCheckBox();
+        cancelBatchUpdateBtn = new javax.swing.JButton();
+        confirmBatchUpdateBtn = new javax.swing.JButton();
+        batchUpdateMsgLb = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jToolBar2 = new javax.swing.JToolBar();
@@ -116,8 +135,10 @@ public class MainPanel extends javax.swing.JPanel {
         failureInfoPanel1 = new com.nazca.ui.FailureInfoPanel();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
+        jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         paginationPanel1 = new com.nazca.ui.pagination.PaginationPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -320,6 +341,140 @@ public class MainPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        deletePrompt.setText("确定删除选中的x个Server Info？");
+
+        cancelDeleteBtn.setText("取消");
+        cancelDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelDeleteBtnActionPerformed(evt);
+            }
+        });
+
+        confirmDeleteBtn.setText("删除");
+        confirmDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmDeleteBtnActionPerformed(evt);
+            }
+        });
+
+        deleteMsgLb.setText("jLabel14");
+
+        javax.swing.GroupLayout deletePLayout = new javax.swing.GroupLayout(deleteP);
+        deleteP.setLayout(deletePLayout);
+        deletePLayout.setHorizontalGroup(
+            deletePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deletePLayout.createSequentialGroup()
+                .addGroup(deletePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deletePLayout.createSequentialGroup()
+                        .addContainerGap(134, Short.MAX_VALUE)
+                        .addComponent(deleteMsgLb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirmDeleteBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelDeleteBtn))
+                    .addGroup(deletePLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(deletePrompt)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        deletePLayout.setVerticalGroup(
+            deletePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deletePLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(deletePrompt)
+                .addGap(18, 18, 18)
+                .addGroup(deletePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelDeleteBtn)
+                    .addComponent(confirmDeleteBtn)
+                    .addComponent(deleteMsgLb))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel13.setText("服务器数量：");
+
+        jLabel14.setText("线路：");
+
+        jLabel15.setText("分数：");
+
+        serverNumNoModiCb.setText("不修改");
+
+        lineCbNoModiCb.setText("不修改");
+
+        scoreCbNoModiScore.setText("不修改");
+
+        cancelBatchUpdateBtn.setText("取消");
+        cancelBatchUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBatchUpdateBtnActionPerformed(evt);
+            }
+        });
+
+        confirmBatchUpdateBtn.setText("确定");
+        confirmBatchUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmBatchUpdateBtnActionPerformed(evt);
+            }
+        });
+
+        batchUpdateMsgLb.setText("jLabel16");
+
+        javax.swing.GroupLayout batchUpdatePLayout = new javax.swing.GroupLayout(batchUpdateP);
+        batchUpdateP.setLayout(batchUpdatePLayout);
+        batchUpdatePLayout.setHorizontalGroup(
+            batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(batchUpdatePLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(batchUpdatePLayout.createSequentialGroup()
+                        .addComponent(batchUpdateMsgLb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirmBatchUpdateBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelBatchUpdateBtn))
+                    .addGroup(batchUpdatePLayout.createSequentialGroup()
+                        .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel13))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(serverNum4BatchUpdate)
+                            .addComponent(lineTxf4BatchUpdate)
+                            .addComponent(scoreTxf4BatchUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(serverNumNoModiCb)
+                            .addComponent(lineCbNoModiCb)
+                            .addComponent(scoreCbNoModiScore))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        batchUpdatePLayout.setVerticalGroup(
+            batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(batchUpdatePLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(serverNum4BatchUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(serverNumNoModiCb))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(lineTxf4BatchUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lineCbNoModiCb))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(scoreTxf4BatchUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scoreCbNoModiScore))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(batchUpdatePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelBatchUpdateBtn)
+                    .addComponent(confirmBatchUpdateBtn)
+                    .addComponent(batchUpdateMsgLb))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setLayout(new java.awt.BorderLayout());
 
         jSplitPane1.setDividerLocation(300);
@@ -363,9 +518,20 @@ public class MainPanel extends javax.swing.JPanel {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tophey/client/res/refresh.png"))); // NOI18N
+        jButton5.setText("刷新");
+        jButton5.setFocusable(false);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton5);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tophey/client/res/add.png"))); // NOI18N
         jButton1.setText("增加");
         jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,9 +540,9 @@ public class MainPanel extends javax.swing.JPanel {
         });
         jToolBar1.add(jButton1);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tophey/client/res/update.png"))); // NOI18N
         jButton2.setText("修改");
         jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,10 +551,26 @@ public class MainPanel extends javax.swing.JPanel {
         });
         jToolBar1.add(jButton2);
 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tophey/client/res/batch_update.png"))); // NOI18N
+        jButton6.setText("批量修改");
+        jButton6.setFocusable(false);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton6);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tophey/client/res/delete.png"))); // NOI18N
         jButton3.setText("删除");
         jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton3);
 
         jPanel1.add(jToolBar1, java.awt.BorderLayout.NORTH);
@@ -425,10 +607,11 @@ public class MainPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (curServer == null) {
+        if (curSelectedServers.isEmpty()) {
             UIUtilities.errorDlg(this, "错误", "亲，请选择一个server");
             return;
         }
+        ServerInfoDetail curServer = curSelectedServers.get(0);
         updateMsgLb.setText("");
         nameTxf4u.setText(curServer.getServerInfo().getName());
         urlTxf4u.setText(curServer.getServerInfo().getUrl());
@@ -439,7 +622,7 @@ public class MainPanel extends javax.swing.JPanel {
         score4u.setText(ssi == null ? "" : String.valueOf(ssi.getScore()));
         descTxp4u.setText(curServer.getServerInfo().getDescription());
 
-
+        
         NInternalDiag nd = new NInternalDiag("修改", updateP);
         nd.showInternalDiag(this);
 
@@ -454,6 +637,7 @@ public class MainPanel extends javax.swing.JPanel {
 
     private void confirmUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmUpdateBtnActionPerformed
         try {
+            ServerInfoDetail curServer = curSelectedServers.get(0);
             ServerSysInfo ssi = (ServerSysInfo) BeanUtils.cloneBean(curServer.getServerSysInfo());
             ServerInfo si = (ServerInfo) BeanUtils.cloneBean(curServer.getServerInfo());
             si.setName(nameTxf4u.getText().trim());
@@ -524,16 +708,126 @@ public class MainPanel extends javax.swing.JPanel {
         descTxp4a.setText("");
 
 
+        
         NInternalDiag nd = new NInternalDiag("增加", addP);
         nd.showInternalDiag(this);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (curSelectedServers.isEmpty()) {
+            UIUtilities.errorDlg(this, "提示", "至少选择一个server");
+            return;
+        }
+        deleteMsgLb.setVisible(false);
+
+        deletePrompt.setText("确定要删除选中的" + curSelectedServers.size() + "个Server Info么？");
+        
+        NInternalDiag nd = new NInternalDiag("删除", deleteP);
+        nd.showInternalDiag(this);
+
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cancelDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelDeleteBtnActionPerformed
+        NInternalDiag nd = NInternalDiag.findNInternalDiag(deleteP);
+        if (nd != null) {
+            nd.hideDiag();
+        }
+    }//GEN-LAST:event_cancelDeleteBtnActionPerformed
+
+    private void confirmDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmDeleteBtnActionPerformed
+        deleteServerAgent.startDelete(curSelectedServers);
+    }//GEN-LAST:event_confirmDeleteBtnActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        TablePageSession ps = paginationPanel1.getPageSession();
+        if (curCategory != null) {
+            curQueryServerSid = UUID.randomUUID().toString();
+            queryServerAgent.startQuery(curQueryServerSid, String.valueOf(curCategory.getId()), (ps.getCurPageNum() - 1) * ps.getPageSize(), ps.getPageSize());
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cancelBatchUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBatchUpdateBtnActionPerformed
+        NInternalDiag nd = NInternalDiag.findNInternalDiag(batchUpdateP);
+        if (nd != null) {
+            nd.hideDiag();
+        }
+    }//GEN-LAST:event_cancelBatchUpdateBtnActionPerformed
+
+    private void confirmBatchUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBatchUpdateBtnActionPerformed
+        List<ServerInfoDetail> sids = new ArrayList<ServerInfoDetail>();
+        try {
+            for (ServerInfoDetail sid : curSelectedServers) {
+
+                ServerSysInfo ssi = (ServerSysInfo) BeanUtils.cloneBean(sid.getServerSysInfo());
+                ServerInfo si = (ServerInfo) BeanUtils.cloneBean(sid.getServerInfo());
+                if (!lineCbNoModiCb.isSelected()) {
+
+                    si.setLine(lineTxf4BatchUpdate.getText().trim());
+                }
+                if (!serverNumNoModiCb.isSelected()) {
+                    try {
+                        ssi.setServerNum(Integer.valueOf(serverNum4BatchUpdate.getText().trim()));
+                    } catch (Exception ex) {
+                        batchUpdateMsgLb.setText("服务器数格式错误");
+                        batchUpdateMsgLb.setVisible(true);
+                        return;
+                    }
+                }
+
+                if (!scoreCbNoModiScore.isSelected()) {
+                    try {
+                        ssi.setScore(Integer.valueOf(scoreTxf4BatchUpdate.getText().trim()));
+                    } catch (Exception ex) {
+                        batchUpdateMsgLb.setText("分数格式错误");
+                        batchUpdateMsgLb.setVisible(true);
+                        return;
+                    }
+                }
+                ServerInfoDetail sidNew = new ServerInfoDetail(si, ssi);
+                sids.add(sidNew);
+            }
+            batchUpdateAgent.startUpdate(sids);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }//GEN-LAST:event_confirmBatchUpdateBtnActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        NInternalDiag nd = new NInternalDiag("批量修改", batchUpdateP);
+        batchUpdateMsgLb.setVisible(false);
+        lineCbNoModiCb.setSelected(false);
+        serverNumNoModiCb.setSelected(false);
+        scoreCbNoModiScore.setSelected(false);
+        lineTxf4BatchUpdate.setText("");
+        lineTxf4BatchUpdate.setEnabled(true);
+        scoreTxf4BatchUpdate.setText("");
+        scoreTxf4BatchUpdate.setEnabled(true);
+        serverNum4BatchUpdate.setText("");
+        serverNum4BatchUpdate.setEnabled(true);
+        this.getRootPane().setDefaultButton(cancelBatchUpdateBtn);
+        nd.showInternalDiag(this);
+
+    }//GEN-LAST:event_jButton6ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addMsgLb;
     private javax.swing.JPanel addP;
+    private javax.swing.JLabel batchUpdateMsgLb;
+    private javax.swing.JPanel batchUpdateP;
     private javax.swing.JButton cancelAddBtn;
+    private javax.swing.JButton cancelBatchUpdateBtn;
+    private javax.swing.JButton cancelDeleteBtn;
     private javax.swing.JButton cancelUpdateBtn;
     private javax.swing.JButton confirmAddBtn;
+    private javax.swing.JButton confirmBatchUpdateBtn;
+    private javax.swing.JButton confirmDeleteBtn;
     private javax.swing.JButton confirmUpdateBtn;
+    private javax.swing.JLabel deleteMsgLb;
+    private javax.swing.JPanel deleteP;
+    private javax.swing.JLabel deletePrompt;
     private javax.swing.JTextPane descTxp4a;
     private javax.swing.JTextPane descTxp4u;
     private com.nazca.ui.FailureInfoPanel failureInfoPanel1;
@@ -542,10 +836,15 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -567,6 +866,8 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JCheckBox lineCbNoModiCb;
+    private javax.swing.JTextField lineTxf4BatchUpdate;
     private javax.swing.JTextField lineTxf4a;
     private javax.swing.JTextField lineTxf4u;
     private javax.swing.JTextField nameTxf4a;
@@ -574,6 +875,10 @@ public class MainPanel extends javax.swing.JPanel {
     private com.nazca.ui.pagination.PaginationPanel paginationPanel1;
     private javax.swing.JTextField score4a;
     private javax.swing.JTextField score4u;
+    private javax.swing.JCheckBox scoreCbNoModiScore;
+    private javax.swing.JTextField scoreTxf4BatchUpdate;
+    private javax.swing.JTextField serverNum4BatchUpdate;
+    private javax.swing.JCheckBox serverNumNoModiCb;
     private javax.swing.JTextField serverNumTxf4a;
     private javax.swing.JTextField serverNumTxf4u;
     private javax.swing.JLabel updateMsgLb;
@@ -610,6 +915,11 @@ public class MainPanel extends javax.swing.JPanel {
 
         addServerAgent = new AddServerAgent();
         addServerAgent.addListener(addServerAgentlis);
+        deleteServerAgent = new DeleteServerAgent();
+        deleteServerAgent.addListener(deleteServerAgentlis);
+
+        batchUpdateAgent = new BatchUpdateServerAgent();
+        batchUpdateAgent.addListener(batchUpdateServerAgentlis);
 
         paginationPanel1.addPaginationListener(new PaginationListener() {
 
@@ -617,7 +927,8 @@ public class MainPanel extends javax.swing.JPanel {
             public void onPageChanged(TablePageSession page) {
                 TablePageSession ps = paginationPanel1.getPageSession();
                 if (curCategory != null) {
-                    queryServerAgent.startQuery(String.valueOf(curCategory.getId()), (ps.getCurPageNum() - 1) * ps.getPageSize(), ps.getPageSize());
+                    curQueryServerSid = UUID.randomUUID().toString();
+                    queryServerAgent.startQuery(curQueryServerSid, String.valueOf(curCategory.getId()), (ps.getCurPageNum() - 1) * ps.getPageSize(), ps.getPageSize());
                 }
             }
         });
@@ -632,7 +943,8 @@ public class MainPanel extends javax.swing.JPanel {
 //                    curCategory = cateListModel.getSelectedItem();
                 TablePageSession ps = paginationPanel1.getPageSession();
                 if (curCategory != null) {
-                    queryServerAgent.startQuery(String.valueOf(curCategory.getId()), (ps.getCurPageNum() - 1) * ps.getPageSize(), ps.getPageSize());
+                    curQueryServerSid = UUID.randomUUID().toString();
+                    queryServerAgent.startQuery(curQueryServerSid, String.valueOf(curCategory.getId()), (ps.getCurPageNum() - 1) * ps.getPageSize(), ps.getPageSize());
                 }
 //                }
             }
@@ -645,28 +957,74 @@ public class MainPanel extends javax.swing.JPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    int idx = jTable1.getSelectedRow();
-                    if (idx >= 0) {
-                        idx = jTable1.convertRowIndexToModel(idx);
-                        curServer = ssiTableModel.getServerInfoDetail(idx);
-                    } else {
-                        curServer = null;
+                    curSelectedServers.clear();
+                    int[] idis = jTable1.getSelectedRows();
+                    for (int idx : idis) {
+                        if (idx >= 0) {
+                            idx = jTable1.convertRowIndexToModel(idx);
+                            curSelectedServers.add(ssiTableModel.getServerInfoDetail(idx));
+                        }
+//                    int idx = jTable1.getSelectedRow();
+//                    if (idx >= 0) {
+//                        idx = jTable1.convertRowIndexToModel(idx);
+//                        curServer = ssiTableModel.getServerInfoDetail(idx);
+//                    } else {
+//                        curServer = null;
+//                    }
                     }
                 }
             }
         });
 
 
-        jTable1.addMouseListener(new MouseAdapter() {
+        jTable1.addMouseListener(
+                new MouseAdapter() {
+
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (UIUtilities.isLeftDoubleClick(e)) {
+                            jButton2ActionPerformed(null);
+                        }
+                    }
+                });
+
+
+        scoreCbNoModiScore.addActionListener(new ActionListener() {
 
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (UIUtilities.isLeftDoubleClick(e)) {
-                    jButton2ActionPerformed(null);
+            public void actionPerformed(ActionEvent e) {
+                if (scoreCbNoModiScore.isSelected()) {
+                    scoreTxf4BatchUpdate.setEnabled(false);
+                } else {
+                    scoreTxf4BatchUpdate.setEnabled(true);
                 }
             }
         });
 
+
+        lineCbNoModiCb.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (lineCbNoModiCb.isSelected()) {
+                    lineTxf4BatchUpdate.setEnabled(false);
+                } else {
+                    lineTxf4BatchUpdate.setEnabled(true);
+                }
+            }
+        });
+
+        serverNumNoModiCb.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (serverNumNoModiCb.isSelected()) {
+                    serverNum4BatchUpdate.setEnabled(false);
+                } else {
+                    serverNum4BatchUpdate.setEnabled(true);
+                }
+            }
+        });
 
     }
     private QueryCategoryAgentListener queryCategoryAgentLis = new QueryCategoryAgentListener() {
@@ -736,6 +1094,48 @@ public class MainPanel extends javax.swing.JPanel {
             cancelAddBtn.setEnabled(true);
         }
     };
+    private DeleteServerAgentListener deleteServerAgentlis = new DeleteServerAgentListener() {
+
+        @Override
+        public void onStart() {
+            confirmDeleteBtn.setEnabled(false);
+            cancelDeleteBtn.setEnabled(false);
+            deleteMsgLb.setText("正在删除...");
+        }
+
+        @Override
+        public void onSuccess() {
+            deleteMsgLb.setText("删除成功");
+            ssiTableModel.removeList(curSelectedServers);
+
+            new Thread() {
+
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    SwingUtilities.invokeLater(new Runnable() {
+
+                        public void run() {
+                            confirmDeleteBtn.setEnabled(true);
+                            cancelDeleteBtn.setEnabled(true);
+                            cancelDeleteBtnActionPerformed(null);
+                        }
+                    });
+                }
+            }.start();
+        }
+
+        @Override
+        public void onFailed(int errCode, String errMsg) {
+            deleteMsgLb.setText("删除失败");
+            confirmDeleteBtn.setEnabled(true);
+            cancelDeleteBtn.setEnabled(true);
+        }
+    };
     private UpdateServerAgentListener updateServerAgentlis = new UpdateServerAgentListener() {
 
         @Override
@@ -754,6 +1154,9 @@ public class MainPanel extends javax.swing.JPanel {
 //            }
 
             ssiTableModel.update(allCate);
+//            curServer = allCate;
+            int idx = jTable1.getSelectedRow();
+            jTable1.getSelectionModel().setSelectionInterval(idx, idx);
 
             new Thread() {
 
@@ -783,23 +1186,86 @@ public class MainPanel extends javax.swing.JPanel {
             cancelUpdateBtn.setEnabled(true);
         }
     };
-    private QueryServerAgentListener queryServerAgentLis = new QueryServerAgentListener() {
+    private BatchUpdateServerAgentListener batchUpdateServerAgentlis = new BatchUpdateServerAgentListener() {
 
         @Override
         public void onStart() {
+            confirmBatchUpdateBtn.setEnabled(false);
+            cancelBatchUpdateBtn.setEnabled(false);
+            batchUpdateMsgLb.setText("正在更新...");
+        }
 
+        @Override
+        public void onSuccess(final List<ServerInfoDetail> allCate) {
+            batchUpdateMsgLb.setText("更新成功");
+//            TablePageSession ps = paginationPanel1.getPageSession();
+//            if (curCategory != null) {
+//                queryServerAgent.startQuery(String.valueOf(curCategory.getId()), (ps.getCurPageNum() - 1) * ps.getPageSize(), ps.getPageSize());
+//            }
+
+            for (ServerInfoDetail sid : allCate) {
+
+                ssiTableModel.update(sid);
+            }
+
+
+//            curServer = allCate;
+            int idx = jTable1.getSelectedRow();
+            jTable1.getSelectionModel().setSelectionInterval(idx, idx);
+
+            new Thread() {
+
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    SwingUtilities.invokeLater(new Runnable() {
+
+                        public void run() {
+                            confirmBatchUpdateBtn.setEnabled(true);
+                            cancelBatchUpdateBtn.setEnabled(true);
+                            cancelBatchUpdateBtnActionPerformed(null);
+                        }
+                    });
+                }
+            }.start();
+        }
+
+        @Override
+        public void onFailed(int errCode, String errMsg) {
+            updateMsgLb.setText("更新失败");
+            confirmUpdateBtn.setEnabled(true);
+            cancelUpdateBtn.setEnabled(true);
+        }
+    };
+    private QueryServerAgentListener queryServerAgentLis = new QueryServerAgentListener() {
+
+        @Override
+        public void onStart(String sid) {
+            if (!curQueryServerSid.equals(sid)) {
+                return;
+            }
             cardRight.show("WAIT");
         }
 
         @Override
-        public void onSuccess(PageResult<ServerInfoDetail> allCate) {
+        public void onSuccess(String sid, PageResult<ServerInfoDetail> allCate) {
+            if (!curQueryServerSid.equals(sid)) {
+                return;
+            }
             cardRight.show("CONTENT");
             ssiTableModel.setList(allCate.getPageList());
             paginationPanel1.initPageButKeepSession(allCate.getTotalCount(), allCate.getPageSize());
         }
 
         @Override
-        public void onFailed(int errCode, String errMsg) {
+        public void onFailed(String sid, int errCode, String errMsg) {
+            if (!curQueryServerSid.equals(sid)) {
+                return;
+            }
             cardLeft.show("FAIL");
             failureInfoPanel1.setFailedInfo(errMsg);
         }

@@ -98,7 +98,7 @@ nav[role=navigation] ul,.info-nav
     margin: 0 auto;
     width: 970px;
 }
-nav[role=navigation] ul li,.info-nav li
+nav[role=navigation] ul li,#rank-title-page .rank-page-dropdown
 {
     display: inline-block;
     float: left;
@@ -120,22 +120,23 @@ nav[role=navigation] ul li .dropdown,.info-nav li .dropdown
     width: 150px;
     z-index: 9999;
 }
-nav[role=navigation] ul li .dropdown ul,.info-nav li .dropdown ul
+nav[role=navigation] ul li .dropdown ul,#rank-title-page ul
 {
     list-style-type: none;
     width: 100%;
 }
-nav[role=navigation] ul li .dropdown li,.info-nav li .dropdown li
+nav[role=navigation] ul li .dropdown li
 {
-    display: block;
+    display: block;    
     float: none;
     font-size: inherit;
     line-height: 24px;
     margin: 0;
-    padding: 0;
+    padding:  0 ;
+    /*    padding: 0px 5px 0px 5px;*/
     z-index: auto;
 }
-nav[role=navigation] ul li .dropdown li a,.info-nav li .dropdown li a
+nav[role=navigation] ul li .dropdown li a
 {
     border-bottom: 0;
     color: #7e7e7e;
@@ -147,45 +148,18 @@ nav[role=navigation] ul li .dropdown li a,.info-nav li .dropdown li a
     position: static;
     text-shadow: 0 0 transparent;
 }
-nav[role=navigation] ul li .dropdown li .cross-site-category:after,.info-nav li .dropdown li .cross-site-category:after
-{
-    background: url('http://0.envato-static.com/images/header-footer/sprite-a5946e4cd2.png') 0 -201px;
-}
-nav[role=navigation] ul li .dropdown li .cross-site-category:hover:after,.info-nav li .dropdown li .cross-site-category:hover:after
-{
-    background: url('http://0.envato-static.com/images/header-footer/sprite-a5946e4cd2.png') 0 -220px;
-}
-nav[role=navigation] ul li .dropdown li:hover,.info-nav li .dropdown li:hover
+
+nav[role=navigation] ul li .dropdown li:hover,#rank-title-page .rank-page-dropdown li:hover
 {
     background: transparent;
 }
-nav[role=navigation] ul li .dropdown a:hover,.info-nav li .dropdown a:hover
+nav[role=navigation] ul li .dropdown a:hover,#rank-title-page .rank-page-dropdown a:hover
 {
     background: transparent;
     color: #232323;
     text-decoration: none;
 }
-nav[role=navigation] ul .meta-links-top,.info-nav .meta-links-top
-{
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 4px;
-    padding-bottom: 4px;
-}
-nav[role=navigation] ul .meta-links-bottom,.info-nav .meta-links-bottom
-{
-    border-top: 1px solid #ccc;
-    margin-top: 4px;
-    padding-top: 4px;
-}
-nav[role=navigation] ul .cross-site-category:after,.info-nav .cross-site-category:after
-{
-    background: url('http://0.envato-static.com/images/header-footer/sprite-a5946e4cd2.png') 0 -201px;
-    content: "";
-    display: inline-block;
-    height: 10px;
-    margin-left: 5px;
-    width: 15px;
-}
+
 nav[role=navigation] ul a,.info-nav a
 {
     border-bottom: 1px solid transparent;
@@ -211,11 +185,8 @@ nav[role=navigation] ul li:hover a,.info-nav li:hover a
     color: #fff;
     text-decoration: none;
 }
-nav[role=navigation] ul li:hover .cross-site-category:after,.info-nav li:hover .cross-site-category:after
-{
-    background: url('http://0.envato-static.com/images/header-footer/sprite-a5946e4cd2.png') 0 -239px;
-}
-nav[role=navigation] ul li:hover div,.info-nav li:hover div
+
+nav[role=navigation] ul li:hover div,#rank-title-page ul:hover .rank-page-dropdown
 {
     display: block;
 }
@@ -224,65 +195,67 @@ nav[role=navigation] ul li:hover div a,.info-nav li:hover div a
     background: transparent;
     border-bottom: 0;
 }
-nav[role=navigation] .search-container
-{
-    display: block;
-    float: right;
-    padding: 7px 0;
-    position: relative;
-    zoom: 1;
-}
-nav[role=navigation] .search-container:after
-{
-    clear: both;
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-}
-nav[role=navigation] .search-container input
-{
-    border-color: #fff;
-    float: left;
-    margin-right: 10px;
-    padding-top: 6px;
-    width: 150px;
-}
-nav[role=navigation] .search-container button[type=submit]
-{
-    background: #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, linear-gradient(#008acd,#006ab7), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -moz-linear-gradient(#008acd,#006ab7), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -o-linear-gradient(#008acd,#006ab7), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #008acd), color-stop(100%, #006ab7)), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -webkit-linear-gradient(#008acd,#006ab7), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    border: 0;
-    float: right;
-    height: 30px;
-}
-nav[role=navigation] .search-container button[type=submit]:hover,nav[role=navigation] .search-container button[type=submit]:focus
-{
-    background: #0061a7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, linear-gradient(#007dc1,#0061a7), #0061a7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -moz-linear-gradient(#007dc1,#0061a7), #0061a7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -o-linear-gradient(#007dc1,#0061a7), #0061a7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007dc1), color-stop(100%, #0061a7)), #0061a7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat, -webkit-linear-gradient(#007dc1,#0061a7), #0061a7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -697px no-repeat;
-}
-nav[role=navigation] .search-container button[type=submit]:active
-{
-    background: #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat, linear-gradient(#0061a7,#007dc1), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat, -moz-linear-gradient(#0061a7,#007dc1), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat, -o-linear-gradient(#0061a7,#007dc1), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #0061a7), color-stop(100%, #007dc1)), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat;
-    background: url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat, -webkit-linear-gradient(#0061a7,#007dc1), #006ab7 url('http://1.envato-static.com/images/buttons-8a861acb09.png') 7px -696px no-repeat;
-}
 .ie7 nav[role=navigation] .search-container
 {
     width: 205px;
 }
+
+#rank-title-page .rank-page
+{
+    color: #166AB7;
+}
+
+#rank-title-page .rank-page-dropdown
+{
+    background-color: #D3EDFC;
+    border-bottom: 1px solid rgba(35, 35, 35, 0.2);
+    box-shadow: 4px 4px 0 0 rgba(35, 35, 35, 0.1);
+    display: none;
+    left: 0;
+    /*    padding: 6px 15px;*/
+    position: relative;
+    /*    top: 39px;*/
+    top: -10px;
+    width: 560px;
+    z-index: 9999;
+}
+
+#rank-title-page .rank-page-dropdown li a
+{
+    border-bottom: 0;
+    color: #7e7e7e;
+
+    /*    display: block;*/
+    font-size: inherit;
+    line-height: 24px;
+    margin: 0;
+    padding: 0;
+    position: static;
+    text-shadow: 0 0 transparent;
+}
+
+#rank-title-page .rank-page-dropdown li
+{
+    display: inline;
+    float: none;
+    font-size: inherit;
+    line-height: 24px;
+    width: 50px;
+    margin: 0;
+    /*    padding:  0 ;*/
+    padding: 0px 5px 0px 5px;
+    z-index: auto;
+}
+
+
+#waitting-bar
+{
+    margin-top: 20px;
+    width: 750px; 
+    text-align: center;
+    display: none;
+}
+
 .clearfix:after
 {
     clear: both;
@@ -292,26 +265,7 @@ nav[role=navigation] .search-container button[type=submit]:active
     height: 0;
     visibility: hidden;
 }
-.info-nav
-{
-    float: right;
-    list-style: none;
-    margin: 17px 0 0;
-    padding: 0;
-    width: auto;
-    z-index: 3200;
-}
-.info-nav a
-{
-    color: #7E7E7E;
-    display: block;
-    margin-top: 0;
-}
-.info-nav div.dropdown
-{
-    top: 30px;
-    z-index: 7000;
-}
+
 .account-wrapper
 {
     float: right;
@@ -839,7 +793,7 @@ nav[role=navigation] .search-container button[type=submit]:active
 }
 #copyright .logo
 {
-    background: url('http://0.envato-static.com/images/header-footer/sprite-a5946e4cd2.png') 0 -170px no-repeat;
+    background: url("../../images/logo1.png") 0 -170px no-repeat;
     float: right;
     height: 21px;
     margin-top: 17px;
@@ -851,14 +805,7 @@ nav[role=navigation] .search-container button[type=submit]:active
     margin: 0 auto;
     width: 984px;
 }
-.sprite,.avatar-tooltip:before
-{
-    background: transparent url('http://1.envato-static.com/images/sprites/sprite_graphicriver.png?1340943097') no-repeat top left;
-}
-.vert_sprite
-{
-    background: transparent url('http://2.envato-static.com/images/sprites/sprite_vert_graphicriver.png?1340943097') repeat-x 0px -714px;
-}
+
 .clear
 {
     clear: both;
@@ -879,12 +826,12 @@ body
 }
 .main
 {
-    background-image: url('http://2.envato-static.com/images/common/backgrounds/burst.png?1340943097');
+/*    background-image: url('http://2.envato-static.com/images/common/backgrounds/burst.png?1340943097');*/
     background-repeat: no-repeat;
 }
 #content
 {
-    background: #d2d1d0 url('http://3.envato-static.com/images/common/backgrounds/content_bg_slice.png?1340943097') repeat-x top left;
+/*    background: #d2d1d0 url('http://3.envato-static.com/images/common/backgrounds/content_bg_slice.png?1340943097') repeat-x top left;*/
     background: linear-gradient(#e3e3e2 0%,#d2d1d0 300px);
     background: -moz-linear-gradient(#e3e3e2 0%,#d2d1d0 300px);
     background: -o-linear-gradient(#e3e3e2 0%,#d2d1d0 300px);
@@ -1067,6 +1014,7 @@ a:hover
 
 #logo
 {
+    
     margin-left: 20px;
 }
 
@@ -1102,7 +1050,7 @@ a:hover
 {
     border-width: 1px;
     border-color: #D0D0D0;
-/*    margin-top: 10px;*/
+    /*    margin-top: 10px;*/
     width: 982px;
     height: 64px;
     background: url("../../images/title-bg.png") repeat-x;
@@ -1119,7 +1067,7 @@ a:hover
 {
     float: left;
     height:24px;
-/*    width: 20px;*/
+    /*    width: 20px;*/
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 20px;
@@ -1130,7 +1078,7 @@ a:hover
 {
     float: left;
     height:19px;
-/*    width: 20px;*/
+    /*    width: 20px;*/
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 25px;
@@ -1144,10 +1092,11 @@ a:hover
     float: left;
     margin-left:35px;
     height:59px;
-/*    width: 200px;*/
+    /*    width: 200px;*/
     font-size: 24px;
     font-family: "微软雅黑";
     line-height: 59px;
+    text-shadow: #8b8b8b 1px 1px 1px;
 }
 
 
@@ -1157,7 +1106,7 @@ a:hover
     float: left;
     margin-top :7px;
     height:52px;
-/*    width: 200px;*/
+    /*    width: 200px;*/
     font-size: 19px;
     font-family: "微软雅黑";
     line-height: 52px;
@@ -1184,12 +1133,35 @@ a:hover
 
 }
 
+
+.rank-no-1
+{
+    color:#f9b549;
+    text-shadow: #5a5abc 1px 1px 1px;
+}
+.rank-no-2
+{
+    color:#d7d6d4;
+    text-shadow: #5a5abc 1px 1px 1px;
+}
+.rank-no-3
+{
+    color:#c58f26;
+    text-shadow: #5a5abc 1px 1px 1px;
+}
+.rank-no-other
+{
+    color: #b6a697;
+    text-shadow: #494949 1px 1px 1px;
+}
 #rank-content .rank-no{
 
+    
     font-size: 64px;
     font-family: "Book Antiqua";
     text-align: center;
     margin-top: 63px;
+    
 }
 
 
@@ -1207,6 +1179,8 @@ a:hover
     margin-bottom: 10px;
     margin-top:  20px;
     color: #805708;
+    font-weight: 500;
+    text-shadow: #afafaf 1px 1px 0.5px;
 }
 
 
@@ -1292,7 +1266,7 @@ a:hover
 }
 #right-side-bar .inner-border
 {
-    height: 1000px;
+    height: 600px;
     padding: 20px;
 }
 #right-side-bar .inner-border h3
