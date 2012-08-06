@@ -27,7 +27,7 @@ public class ConnectionFactory {
     private static final String DEFAULT_DB_URL =
             "jdbc:mysql://localhost/tophey?useUnicode=true&characterEncoding=utf-8&autoReconnect=true";
     private static final String KEY_DB_USERNAME = "KEY_DB_USERNAME";
-    private static final String DEFAULT_DB_USERNAME = "root";
+    private static final String DEFAULT_DB_USERNAME = "gambol";
     private static final String KEY_DB_PASSWORD = "KEY_DB_PASSWORD";
     private static final String DEFAULT_DB_PASSWORD = "";
     private static final String KEY_DB_USE_POOL = "KEY_DB_USE_POOL";
