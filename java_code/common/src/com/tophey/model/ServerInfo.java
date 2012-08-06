@@ -2,11 +2,11 @@ package com.tophey.model;
 
 import com.tophey.common.DBColumnName;
 import com.tophey.common.DBTableName;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-
-@DBTableName(value="server_info")
-public class ServerInfo {
+@DBTableName(value = "server_info")
+public class ServerInfo implements Serializable{
 
     @DBColumnName(value = "id")
     private int id;
@@ -34,6 +34,18 @@ public class ServerInfo {
     private Timestamp disableDate;
     @DBColumnName(value = "disable_reason")
     private String disableReason;
+    @DBColumnName(value = "user_id")
+    private int userId;
+    @DBColumnName(value = "add_time")
+    private Timestamp addTime;
+    // 审核结果。
+    @DBColumnName(value = "check_result")
+    private int checkResult;
+    // 审核时间
+    @DBColumnName(value = "check_time")
+    private Timestamp checkTime;
+    @DBColumnName(value = "publish_time")
+    private Timestamp publishTime;
 
     public int getId() {
         return id;
@@ -138,4 +150,54 @@ public class ServerInfo {
     public void setDisableReason(String disableReason) {
         this.disableReason = disableReason;
     }
+
+    public Timestamp getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Timestamp addTime) {
+        this.addTime = addTime;
+    }
+
+    public int getCheckResult() {
+        return checkResult;
+    }
+
+    public void setCheckResult(int checkResult) {
+        this.checkResult = checkResult;
+    }
+
+    public Timestamp getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(Timestamp checkTime) {
+        this.checkTime = checkTime;
+    }
+
+    public int getIsDisabled() {
+        return isDisabled;
+    }
+
+    public void setIsDisabled(int isDisabled) {
+        this.isDisabled = isDisabled;
+    }
+
+    public Timestamp getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(Timestamp publishTime) {
+        this.publishTime = publishTime;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+    
+    
 }

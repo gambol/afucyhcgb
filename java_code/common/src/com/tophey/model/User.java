@@ -1,8 +1,9 @@
 package com.tophey.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class User {
+public class User implements Serializable{
 
 	private int id;
 	private String email;
