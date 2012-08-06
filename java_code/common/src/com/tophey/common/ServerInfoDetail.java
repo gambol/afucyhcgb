@@ -22,10 +22,7 @@ public class ServerInfoDetail implements Serializable{
         this.serverSysInfo = ssi;
     }
 
-    
-    
-    
-    
+        
     public ServerInfo getServerInfo() {
         return serverInfo;
     }

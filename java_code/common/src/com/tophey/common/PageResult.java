@@ -6,6 +6,7 @@ package com.tophey.common;
 
 import java.io.Serializable;
 import java.util.List;
+import tophey.common.QueryResult;
 
 /**
  *
@@ -18,6 +19,11 @@ public class PageResult<T extends Serializable> implements Serializable {
     private int totalCount;
     private int pageSize;
 
+    public PageResult(int currentpage, int pagesize) {
+        this.curPage = currentpage;
+        this.pageSize = pagesize;
+    }
+    
     public PageResult(int totalCount, int curPage, int pageSize,
             List<T> pageList) {
         this.pageList = pageList;
@@ -76,5 +82,15 @@ public class PageResult<T extends Serializable> implements Serializable {
      */
     public static int getFromIndex(int curPage, int pageSize) {
         return (curPage - 1) * pageSize;
+    }
+    
+    public int getFirstResult() {
+        return PageResult.getFromIndex(this.curPage, this.pageSize);
+    }
+    
+    public void setQueryResult(QueryResult qr) {
+        this.pageList = qr.getResultlist();
+        this.totalCount = qr.getRecordtotal();
+        
     }
 }
