@@ -4,11 +4,12 @@
  */
 package com.tophey.web.dao;
 
+import com.tophey.dao.ConnectionFactory;
 import com.tophey.common.PageResult;
 import com.tophey.model.ServerInfo;
 import com.tophey.common.ServerInfoDetail;
 import com.tophey.model.ServerSysInfo;
-import com.tophey.utils.DBTool;
+import com.tophey.dao.DBTool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

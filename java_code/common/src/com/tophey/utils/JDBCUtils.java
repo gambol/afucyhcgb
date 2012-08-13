@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import tophey.common.CallBack;
-import com.tophey.utils.DBTool;
+import com.tophey.dao.DBTool;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import tophey.common.QueryResult;

@@ -21,9 +21,9 @@ public class IndexController  {
       
     }
     
-    @RequestMapping("index.htm")
+    @RequestMapping("mainPage.htm")
     public ModelAndView index(){
-        return new ModelAndView("index");
+        return new ModelAndView("mainPage");
     }
    
 }

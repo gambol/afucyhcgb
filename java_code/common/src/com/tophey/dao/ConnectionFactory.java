@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tophey.web.dao;
+package com.tophey.dao;
 
 import com.tophey.common.PathConst;
-import com.tophey.web.utils.ConfigUtils;
+import com.tophey.utils.ConfigUtils;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;

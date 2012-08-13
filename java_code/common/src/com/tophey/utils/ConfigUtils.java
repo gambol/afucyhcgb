@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tophey.web.utils;
+package com.tophey.utils;
 
 import java.io.*;
 import java.util.Properties;

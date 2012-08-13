@@ -2,16 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tophey.utils;
+package com.tophey.dao;
 
 import com.tophey.common.DBColumnName;
 import com.tophey.common.DBTableName;
-import com.tophey.web.dao.ConnectionFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.sql.*;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
