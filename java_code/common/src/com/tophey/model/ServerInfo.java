@@ -4,10 +4,22 @@ import com.tophey.common.DBColumnName;
 import com.tophey.common.DBTableName;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import tophey.utils.DateUtil;
 
 @DBTableName(value = "server_info")
 public class ServerInfo implements Serializable{
 
+    /**
+     * 增加一些默认值，免得填错
+     */
+    public ServerInfo() {
+        this.updateDate = DateUtil.getCurrentTimestamp();
+        this.publishTime = DateUtil.getCurrentTimestamp();
+        this.createDate = DateUtil.getCurrentTimestamp();
+        this.addTime = DateUtil.getCurrentTimestamp();
+        this.checkResult = 1;  // 暂时不需要人工审核
+    }
+    
     @DBColumnName(value = "id")
     private int id;
     @DBColumnName(value = "name")
@@ -47,6 +59,17 @@ public class ServerInfo implements Serializable{
     @DBColumnName(value = "publish_time")
     private Timestamp publishTime;
 
+    @DBColumnName(value = "site_from")
+    private String siteFrom;
+
+    public String getSiteFrom() {
+        return siteFrom;
+    }
+
+    public void setSiteFrom(String siteFrom) {
+        this.siteFrom = siteFrom;
+    }
+      
     public int getId() {
         return id;
     }
