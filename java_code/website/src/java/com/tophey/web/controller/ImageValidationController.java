@@ -13,28 +13,35 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/")
 public class ImageValidationController {
 
     @RequestMapping(value = "/validateImage")
-    public void ValidateCaptchaImage(HttpServletRequest request,
+    public @ResponseBody boolean validateCaptchaImage(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        Boolean isResponseCorrect = Boolean.FALSE;
+        Boolean isResponseCorrect = Boolean.TRUE;
         //remenber that we need an id to validate!       
 
         String kaptchaExpected = (String) request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
-        String kaptchaReceived = request.getParameter("kaptcha");
+        String kaptchaReceived = request.getParameter("captcha");
         if (kaptchaReceived == null || !kaptchaReceived.equalsIgnoreCase(kaptchaExpected)) {
             isResponseCorrect = false;
-        }
-
-        System.out.println(isResponseCorrect);
+        } 
+        
+        /*
         // httpServletResponse.encodeUrl("sucess.html");    
         if (isResponseCorrect.booleanValue()) {
             response.sendRedirect("success.html");
         } else {
             response.sendRedirect("failture.html");
         }
+        */
+        
+       // return String.valueOf(isResponseCorrect);
+        return isResponseCorrect;
+        
     }
 }
