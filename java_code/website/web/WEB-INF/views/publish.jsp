@@ -60,6 +60,10 @@
                             minlength: 5,
                             maxlength: 2000
                         },
+                        captcha: {
+                            required: true,
+                            remote:"validateImage.htm"
+                        },
                         terms: "required"
                     },
                     messages: {
@@ -76,6 +80,10 @@
                             required: "输入描述",
                             minlength: jQuery.format("至少需要{0} 个字符"),
                             maxlength: jQuery.format("长度不超过{0}个字符")
+                        },
+                        captcha: {
+                            required: "输入验证码",
+                            remote: "请输入正确的验证码"
                         },
                         terms: ""
                     },
@@ -195,8 +203,9 @@
                             <form:textarea path="desc" class="medium half"/>
                         </p>
 
-                        <p> <img id='captchaImg' alt="验证码" src="generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清楚?</a>   </p>
-
+                        <p> <label class="required" for="captcha">验证码:</label> <br/>
+                            <img id='captchaImg' alt="验证码" src="generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a>  <br/>                       
+                            <input type="text" name="captcha" id="captcha" class="half"/>
                         <br/>
                         <div class="contract">
                             <p>
