@@ -105,14 +105,25 @@ public class ServerQuerier {
    
        return DBTool.queryEntity(ServerInfo.class, sb.toString(), id);
    }
-    
+      
    public PageResult<ServerInfo> getServerInfo(int categoryId) {
        LinkedHashMap<String, Boolean> orderBy = new LinkedHashMap<String, Boolean>();
        orderBy.put("id", false);
        PageResult<ServerInfo> pr = JDBCUtils.getPageData(ServerInfo.class, 10, 1, orderBy, " category_id = ?", new String[]{String.valueOf(categoryId)});
-       return pr;
-       
+       return pr;       
    }
+   
+   /**
+    * 根據用戶id 選擇 serverInfo
+    * 按照创建时间逆序
+    **/
+    public PageResult<ServerInfo> getServerInfoByUserId(int userId, int currentPage) {
+       LinkedHashMap<String, Boolean> orderBy = new LinkedHashMap<String, Boolean>();
+       orderBy.put("create_date", false);
+       PageResult<ServerInfo> pr = JDBCUtils.getPageData(ServerInfo.class, 20, currentPage, orderBy, " user_id = ?", new String[]{String.valueOf(userId)});
+       return pr;       
+   }
+   
     public static void main(String[] args) {
    //    ServerInfo si = new ServerQuerier().getServerInfoById(4);
    //    System.out.println(si.getName());

@@ -5,6 +5,7 @@
 package com.tophey.web.dao;
 
 import com.tophey.model.ServerInfo;
+import java.util.List;
 import tophey.utils.DateUtil;
 import tophey.utils.JDBCUtils;
 
@@ -20,6 +21,14 @@ public class ServerDao {
     
     public static int delete(ServerInfo si) {
         return JDBCUtils.delete(si);
+    }
+    
+    public static ServerInfo getServerInfoById(int id) {
+        return new ServerQuerier().getServerInfoById(id);
+    }
+    
+    public static int update(ServerInfo si) {
+        return JDBCUtils.update(si, false);
     }
     
     public static void main(String[] args) {
