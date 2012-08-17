@@ -248,11 +248,12 @@ table.stylized {
 table.stylized th, table.stylized td {
     line-height: 18px;
     padding: 8px 12px;
+    text-align: center;
 }
 table.stylized th {
     background-color: #2A7AD2 !important;
     color: #FFFFFF;
-    text-align: left;
+    
 }
 table.stylized tr.high {
     background-color: #FFFFAA !important;
