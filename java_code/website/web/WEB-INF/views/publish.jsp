@@ -149,9 +149,20 @@
         <div id="page">
             <!-- Wrapper -->
             <div class="wrapper">
-                <!-- Login form -->
-                <section class="column width6 first">					
+                <section class="column width1 first">
+                    <div id="left-nav">
+                        <ul>
+                            <li><a href="">站点管理</a></li>
+                            <li><a href="">密码管理</a></li>
 
+                        </ul>
+                    </div>  
+                </section>
+                <!-- Login form -->
+
+                <section class="width5">					
+                    <div class="pageline">   
+                    </div>
                     <h3>站点发布</h3>
                     <div class="box box-info">带*项目必填</div>
                     <form:form id="publishform" method="post" modelAttribute="publishBean" cssClass="cleanform">
@@ -182,17 +193,17 @@
 
                         <p>
                             <form:label cssClass="required" path="network">网络:</form:label><br/>
-                            <form:radiobutton path="network" value="0" label="网通 "/>
-                            <form:radiobutton path="network" value="1" label="电信 "/>
-                            <form:radiobutton path="network" value="2" label="双线 "/>
-                            <form:radiobutton path="network" value="3" label="铁通 "/>
-                            <form:radiobutton path="network" value="4" label="联通 "/>
+                            <form:radiobutton path="network" value="网通" label="网通 "/>
+                            <form:radiobutton path="network" value="电信" label="电信 "/>
+                            <form:radiobutton path="network" value="双线" label="双线 "/>
+                            <form:radiobutton path="network" value="铁通" label="铁通 "/>
+                            <form:radiobutton path="network" value="联通" label="联通 "/>
                         </p>
 
 
                         <p>
                             <form:label cssClass="required" path="category">游戏种类:</form:label>
-                            <br>
+                                <br>
                             <form:select path="category" cssClass="half">
                                 <form:option value="1" label="传奇"/>
                                 <form:option value="2" label="魔兽世界"/>
@@ -200,34 +211,34 @@
                         </p>
                         <p>
                             <form:label cssClass="required" path="desc">描述:</form:label><br/>
-                            <form:textarea path="desc" class="medium half"/>
+                            <form:textarea path="desc" class="medium full"/>
                         </p>
 
                         <p> <label class="required" for="captcha">验证码:</label> <br/>
                             <img id='captchaImg' alt="验证码" src="generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a>  <br/>                       
                             <input type="text" name="captcha" id="captcha" class="half"/>
-                        <br/>
-                        <div class="contract">
-                            <p>
+                        </p>
+                        <c:if test="${empty publishBean['server_name']}">
+                            <div class="contract">
+                                <p>
 								　　新浪体育讯　北京时间8月12日，中国代表团伦敦奥运会总结大会在奥运主新闻中心新闻发布厅举行，中国代表团团长刘鹏、副团长段世杰、杨树安、肖天、蔡振华，秘书长蔡家东，以及主持人张海峰出席了本次中国奥运代表团发布会。
-                            </p>
-                            <p>
+                                </p>
+                                <p>
 							　　	此次伦敦奥运会上中国军团的运动员们取得了非常出色的成绩，年轻的游泳运动员叶诗文(微博)43万更是取得了用两枚金牌，而赛后曾有很多外国媒体却一直纠缠于兴奋剂的问题上，对于这个事件现场有记者对中国代表团团长刘鹏进行了提问，他是如何看待国外媒体质疑总过游泳运动员兴奋剂问题的。
-                            </p>
-                            <p>
+                                </p>
+                                <p>
 								　　新浪体育讯　北京时间8月12日，中国代表团伦敦奥运会总结大会在奥运主新闻中心新闻发布厅举行，中国代表团团长刘鹏、副团长段世杰、杨树安、肖天、蔡振华，秘书长蔡家东，以及主持人张海峰出席了本次中国奥运代表团发布会。
-                            </p>
-                            <p>
+                                </p>
+                                <p>
 							　　	此次伦敦奥运会上中国军团的运动员们取得了非常出色的成绩，年轻的游泳运动员叶诗文(微博)43万更是取得了用两枚金牌，而赛后曾有很多外国媒体却一直纠缠于兴奋剂的问题上，对于这个事件现场有记者对中国代表团团长刘鹏进行了提问，他是如何看待国外媒体质疑总过游泳运动员兴奋剂问题的。
-                            </p>
-                        </div>
-                        <input type="checkbox" id="terms" class="" value="1" name="terms" checked/>
-                        <label class="choice" for="terms">我已阅读并接受以上合同条款、补充条款及其他所有内容</label>
-
-
+                                </p>
+                            </div>
+                            <input type="checkbox" id="terms" class="" value="1" name="terms" checked/>
+                            <label class="choice" for="terms">我已阅读并接受以上合同条款、补充条款及其他所有内容</label>
+                        </c:if>
                         <br/>
                         <br/>
-
+                        <form:hidden path="id"/>
                         <div class="middle-div">
                             <input type="submit" class="btn btn-yellow big" value="    提    交    "/>
                         </div>
@@ -239,7 +250,36 @@
 
                 </section>
                 <!-- End of login form -->
+                <aside class="column width2">
+                    <div class="content-box">
+                        <header class="blue">
+                            <h3>公告区</h3>
+                        </header>
+                        <section>
+                            哈哈，你好，我是第一个页面。我是不是很无聊啊。
+                            <dl>
+                                <dt>
+                                第一条新闻
+                                </dt>
+                                <dd>
+                                    新闻简介
+                                </dd>
 
+                                <dt>
+                                第二条新闻
+                                </dt>
+                                <dd>
+                                    新闻简介
+                                </dd>
+                            </dl>
+                            <cite>w3schools.com</cite>										</section>
+                    </div>
+                    <div class="content-box">
+                        <header class="blue">
+                            <h3>SEO相关</h3>
+                        </header>
+                    </div>
+                </aside>
             </div>
             <!-- End of Wrapper -->
         </div>
