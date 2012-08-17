@@ -27,12 +27,22 @@ import org.springframework.format.annotation.NumberFormat.Style;
  */
 public class PublishBean {
 
+    private int id;
+    
     @Size(min = 1, max = 20)
     private String server_name;
      
     @Size(min = 7, max = 200)
     @URL
     private String url = "http://";
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
    
     @URL
     private String banner = "http://";
@@ -40,7 +50,7 @@ public class PublishBean {
     @Size(max = 2000)
     private String desc;
     
-    private int network;
+    private String network;
     
     private int category;
 
@@ -48,11 +58,11 @@ public class PublishBean {
         return banner;
     }
 
-    public int getNetwork() {
+    public String getNetwork() {
         return network;
     }
 
-    public void setNetwork(int network) {
+    public void setNetwork(String network) {
         this.network = network;
     }
 

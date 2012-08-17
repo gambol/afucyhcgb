@@ -30,6 +30,11 @@ public class ServerInfo implements Serializable{
     private String description;
     @DBColumnName(value = "url")
     private String url;
+    
+    /**
+     * 字段和name冲突,暂时废弃这个字段
+     * @deprecated 
+     **/
     @DBColumnName(value = "title")
     private String title;
     @DBColumnName(value = "banner_url")
