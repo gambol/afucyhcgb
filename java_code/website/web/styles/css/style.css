@@ -248,11 +248,12 @@ table.stylized {
 table.stylized th, table.stylized td {
     line-height: 18px;
     padding: 8px 12px;
+    text-align: center;
 }
 table.stylized th {
     background-color: #2A7AD2 !important;
     color: #FFFFFF;
-    text-align: left;
+    
 }
 table.stylized tr.high {
     background-color: #FFFFAA !important;
@@ -358,8 +359,8 @@ legend {
     padding: 0 6px 0 0;
 }
 label {
-    font-size: 11px;
-    font-weight: bold;
+#    font-size: 11px;
+#    font-weight: bold;
     text-transform: uppercase;
 }
 label.required:before {
@@ -594,14 +595,17 @@ fieldset small {
 .box-success a.close {
     color: #238221 !important;
 }
-.wrapper, .wrapper-login {
+.wrapper {
     margin: 0 auto;
     position: relative;
     text-align: left;
     width: 990px;
 }
+
+
 .wrapper-login {
-    width: 360px;
+    margin-top:40px;
+	height:400px;
 }
 header#top {
     background: -moz-linear-gradient(center bottom , #272622 20%, #323232 80%) repeat scroll 0 0 transparent;
@@ -738,8 +742,8 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
     outline: 0 none;
 }
 .sf-menu > li:hover, .sf-menu > li.sfHover, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .sf-menu li.current {
     background: none repeat scroll 0 0 #266DBB;
@@ -851,7 +855,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 footer#bottom {
     background: -moz-linear-gradient(center bottom , #F2F2F2 20%, #FEFEFE 80%) repeat scroll 0 0 transparent;
-    border-top: 4px solid #D9D9D9;
+  #  border-top: 4px solid #D9D9D9;
     color: #999999;
     float: left;
     font-size: 11px;
@@ -957,10 +961,19 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
     color: #FFFFFF !important;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 }
+
+.btn-yellow {
+	background-color: #F8CA1D !important;
+    border: 1px solid #F8CA1D !important;
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
 .btn-red:hover, .btn-red:focus, .btn-red:active {
     border: 1px solid #AE2B2B !important;
     box-shadow: 0 0 5px rgba(174, 43, 43, 0.9);
 }
+
+
 .btn-special {
     font-size: 110%;
     width: 210px;
@@ -1086,13 +1099,13 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 .content-box {
     background: none repeat scroll 0 0 #EEEEEE;
-/*    border: 1px solid #999999;*/
+    #border: 1px solid #999999;
     display: inline-block;
     margin: 8px 0 0;
     width: 99%;
 }
 .content-box header {
-/*    background: none repeat scroll 0 0 #999999;*/
+ #   background: none repeat scroll 0 0 #999999;
    background: none repeat scroll 0 0 #0078b6;
     width: 100%;
 }
@@ -2153,13 +2166,19 @@ button.datepick-cmd {
 #left-nav li a{
     padding: 0.73em 0.5em;
     border-bottom:0 none !important;
-/*    text-align:left;*/
+#    text-align:left;
     text-decoration: none;
     display:block;
     font: bold 16px "microsoft yahei"; 
-/*    font-size:16px;*/
+#    font-size:16px;
     
     color:#4e4b41;
+}
+
+#left-nav > li:hover, #left-nav > li.sfHover, #left-nav a:focus, #left-nav a:hover, #left-nav a:active {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    
 }
 
 .pageline {
@@ -2221,4 +2240,26 @@ button.datepick-cmd {
 
 .middle-div {
     vertical-align:middle;
+}
+
+.contract {
+	background-color: #FAFAFA;
+    border: 1px solid #E0E0E0;
+    height: 112px;
+    margin-bottom: 2px;
+    overflow-y: auto;
+    padding: 26px 48px;
+    text-align: left;
+	border-top:0px;
+}
+.contract-header{
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-top: 1px solid #CCCCCC;
+    color: #555555;
+    margin-top: 8px;
+    padding: 8px;
+}
+
+.middle-div{
+	text-align:center;
 }

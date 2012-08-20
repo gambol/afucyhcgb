@@ -18,6 +18,7 @@ public class PageResult<T extends Serializable> implements Serializable {
     private int curPage;
     private int totalCount;
     private int pageSize;
+    private int currentSize;
 
     public PageResult(int currentpage, int pagesize) {
         this.curPage = currentpage;
@@ -92,5 +93,9 @@ public class PageResult<T extends Serializable> implements Serializable {
         this.pageList = qr.getResultlist();
         this.totalCount = qr.getRecordtotal();
         
+    }
+    
+    public int getCurrentSize() {
+        return pageList.size();
     }
 }

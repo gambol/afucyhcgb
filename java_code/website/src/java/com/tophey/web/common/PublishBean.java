@@ -27,40 +27,51 @@ import org.springframework.format.annotation.NumberFormat.Style;
  */
 public class PublishBean {
 
-    @NotEmpty
-    private String name;
-    
-    @NotEmpty
-    @Size(min = 6, max = 20)
-    private String passwd;
-    
-    @Email
-    private String email;
+    private int id;
     
     @Size(min = 1, max = 20)
-    private String title;
-    
+    private String server_name;
+     
     @Size(min = 7, max = 200)
     @URL
-    private String siteUrl = "http://";
+    private String url = "http://";
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
    
-    @Size(min = 7, max = 200)
     @URL
-    private String bannerUrl = "http://";
+    private String banner = "http://";
     
-    @Size(max = 1000)
-    private String description;
+    @Size(max = 2000)
+    private String desc;
+    
+    private String network;
     
     private int category;
 
-    public String getBannerUrl() {
-        return bannerUrl;
+    public String getBanner() {
+        return banner;
     }
 
-    public void setBannerUrl(String bannerUrl) {
-        this.bannerUrl = bannerUrl;
+    public String getNetwork() {
+        return network;
     }
 
+    public void setNetwork(String network) {
+        this.network = network;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
+    }
+
+
+    
     public int getCategory() {
         return category;
     }
@@ -69,61 +80,38 @@ public class PublishBean {
         this.category = category;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-    public String getEmail() {
-        return email;
+    public String getServer_name() {
+        return server_name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setServer_name(String server_name) {
+        this.server_name = server_name;
     }
 
-    public String getName() {
-        return name;
+    public String getUrl() {
+        return url;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUrl(String url) {
+        this.url = url;
     }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
-    public String getSiteUrl() {
-        return siteUrl;
-    }
-
-    public void setSiteUrl(String siteUrl) {
-        this.siteUrl = siteUrl;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("properties name=");
-        if (name != null) {
-            sb.append("'").append(name).append("', ");
+        if (server_name != null) {
+            sb.append("'").append(server_name).append("', ");
         } else {
-            sb.append(name).append(", ");
+            sb.append(server_name).append(", ");
         }
         
         sb.append("categoryId:");

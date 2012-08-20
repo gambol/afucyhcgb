@@ -1,0 +1,131 @@
+/* 
+    Document   : publish
+    Created on : 2012-7-31, 23:07:05
+    Author     : zhenbao.zhou
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+div.info, div.success, div.warning, div.publishError {
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    margin: 10px 0;
+    padding: 15px 10px 15px 50px;
+}
+div.info {
+    background-color: #BDE5F8;
+    background-image: url("info.png");
+    color: #00529B;
+}
+div.success {
+    background-color: #DFF2BF;
+    background-image: url("success.png");
+    color: #4F8A10;
+}
+div.warning {
+    background-color: #FEEFB3;
+    background-image: url("warning.png");
+    color: #9F6000;
+}
+div.publishError {
+    background-color: #FFBABA;
+    color: #D8000C;
+}
+span {
+    margin: 5px;
+}
+span.success {
+    color: #4F8A10;
+}
+span.publishError {
+    color: #D8000C;
+}
+body {
+    font-size: 0.75em;
+    margin: 1em auto;
+}
+ul li {
+    padding: 5px;
+}
+
+.cleanform {
+    color: #1B1B1B;
+    margin: 1em auto;
+    text-align: left;
+    width: 600px;
+}
+.cleanform label, .cleanform legend {
+    margin: 0.3em 0;
+    padding: 0;
+}
+.cleanform fieldset {
+    border: 1px solid #DDDDDD;
+    margin: 0 0 0.5em;
+    padding: 0.7em;
+}
+.cleanform label {
+    font-weight: bold;
+}
+.cleanform  input {
+    line-height: 1.5em;
+    padding: 0.15em;
+    width: 70%;
+}
+.cleanform .radio input, .cleanform .checkbox input {
+    border: medium none;
+    margin: 0 1.5em 0 0;
+    width: auto;
+}
+.cleanform input, .cleanform textarea, .cleanform select {
+    border: 1px solid #BBBBBB;
+    display: block;
+    font-size: 1em;
+    margin-bottom: 1em;
+    margin-right: 1em;
+    padding: 0.15em;
+    width:70%;
+}
+.cleanform .radio label, .cleanform .radio input, .cleanform .checkbox label, .cleanform .checkbox input {
+    display: inline;
+    margin: 0 1.5em 0 0;
+}
+.cleanform .radio input, .cleanform .checkbox input {
+    margin: 0 0.3em 0 0;
+}
+.cleanform .multiple label {
+    float: left;
+    overflow: hidden;
+    padding-left: 1px;
+    width: 29%;
+}
+.cleanform .multiple input {
+    cursor: pointer;
+}
+.cleanform .formInfo {
+    border-bottom: 0.1em solid #DDDDDD;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+}
+.cleanform .formInfo h2 {
+    color: #00889E;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+.cleanform .formInfo p {
+    text-align: justify;
+}
+.cleanform .required {
+ /*   color: #FF3838; */
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+#page {
+    background-color: #FFFFFF;
+    float: left;
+    width: 100%;
+}
+
