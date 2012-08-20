@@ -144,7 +144,7 @@ $(document).ready(function(){
 	<header id="top">
 		<div class="wrapper">
 			<!-- Title/Logo - can use text instead of image -->
-			<div id="title"><img SRC="img/logo.png" alt="Administry" /><!--<span>Administry</span> demo--></div>
+			<div id="title"><img SRC="img/logo1.png" alt="阿土游戏" /><!--<span>Administry</span> demo--></div>
 			<!-- Top navigation -->
 			<div id="topnav">
 				<a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
@@ -187,12 +187,11 @@ $(document).ready(function(){
                 <section class="column width1 first">
                   <div id="left-nav">
                     <ul>
-                    <li><a href="">魔兽世界</a></li>
+                    <li><a href="/rank/rankPage.htm">魔兽世界</a></li>
                     <li><a href="">哈哈哈</a></li>
                     <li><a href="">传奇</a></li>
                     <li><a href="">DOTA</a></li>
                     <li><a href="">星际争霸2</a></li>
-
                     </ul>
                   </div>  
                 </section>
@@ -200,6 +199,13 @@ $(document).ready(function(){
                   <div class="pageline">
 			        <form action="" method="get"><input class="" type="text" id="q" name="q" /></form>
                   </div>
+                                    
+                                    
+
+                  <c:forEach var="item" items="${pageResult.pageList}">                  
+                      <div>${item.serverInfo.name}</div>
+                  </c:foreach>
+                                    
                   <!-- a server begins -->
                   <div class="box colgroup middle-div">
                     <div class="rank-column column first">1</div>
@@ -220,63 +226,7 @@ $(document).ready(function(){
                   <div class="clearfix"></div>
                   <!-- a server ends -->
 
-                  <!-- a server begins -->
-                  <div class="box colgroup middle-div">
-                    <div class="rank-column column first">1</div>
-                    <div class="desc-column column width4">
-                      <div class="font-16">
-                        <span class="server-title first"><a href="#">传奇私服</a></span>
-                        <span class="right-span">双线</span>
-                      </div>
-                      <div>
-                        赌博系统，所向无敌。你好，我是周桢堡.的权利。当地公安部门已经锁定照片上传地点：上海市，上传人还未抓到。庐江县委书记王民生表示，近期庐江县正在处理一
-                      </div>
-                    </div>
-                    <div class="like-it-column column">
-                      <span class="number">239</span>
-                      <span id="like-it">赞!</span>
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
-                  <!-- a server ends -->
-
-                  <!-- a server begins -->
-                  <div class="box colgroup middle-div">
-                    <div class="rank-column column first">1</div>
-                    <div class="desc-column column width4">
-                      <div class="font-16">
-                        <span class="server-title first"><a href="#">传奇私服</a></span>
-                        <span class="right-span">双线</span>
-                      </div>
-                      <div>
-                        赌博系统，所向无敌。你好，我是周桢堡.的权利。当地公安部门已经锁定照片上传地点：上海市，上传人还未抓到。庐江县委书记王民生表示，近期庐江县正在处理一起腐
-                      </div>
-                    </div>
-                    <div class="like-it-column column">
-                      <span class="number">239</span>
-                      <span id="like-it">赞!</span>
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
-                  <!-- a server ends -->
-
-                  <div class="box colgroup middle-div">
-                    <div class="rank-column column first">1</div>
-                    <div class="desc-column column width4">
-                      <div class="font-16">
-                        <span class="server-title first"><a href="#">传奇私服</a></span>
-                        <span class="right-span">双线</span>
-                      </div>
-                      <div>
-                        赌博系统，所向无敌。你好，我是周桢堡.的权利。当地公安部门已经锁定照片上传地点：上海市，上传人还未抓到。庐江县委书记王民生
-                      </div>
-                    </div>
-                    <div class="like-it-column column">
-                      <span class="number">239</span>
-                      <span id="like-it">赞!</span>
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
+                
 
                   <hr>
                   <div class="colgroup leading">
@@ -372,6 +322,7 @@ $(document).ready(function(){
 	<a href="#" id="totop">^ scroll to top</a>
 
 <!-- User interface javascript load -->
+
 <script type="text/javascript" SRC="js/administry.js"></script>
 </body>
 </html>

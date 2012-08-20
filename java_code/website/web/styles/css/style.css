@@ -1086,13 +1086,13 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 .content-box {
     background: none repeat scroll 0 0 #EEEEEE;
-    #border: 1px solid #999999;
+/*    border: 1px solid #999999;*/
     display: inline-block;
     margin: 8px 0 0;
     width: 99%;
 }
 .content-box header {
- #   background: none repeat scroll 0 0 #999999;
+/*    background: none repeat scroll 0 0 #999999;*/
    background: none repeat scroll 0 0 #0078b6;
     width: 100%;
 }
@@ -2153,11 +2153,11 @@ button.datepick-cmd {
 #left-nav li a{
     padding: 0.73em 0.5em;
     border-bottom:0 none !important;
-#    text-align:left;
+/*    text-align:left;*/
     text-decoration: none;
     display:block;
     font: bold 16px "microsoft yahei"; 
-#    font-size:16px;
+/*    font-size:16px;*/
     
     color:#4e4b41;
 }
