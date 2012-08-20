@@ -35,11 +35,6 @@ public class ServerQuerier {
             + DBTool.getTableName(ServerSysInfo.class) + " sysinfo left join "
             + DBTool.getTableName(ServerInfo.class) + " info on sysinfo.id=info.id "
             + "where info.category_id=? order by sysinfo.score desc limit ?,?";
-    
-    private static final String QUERY_SERVER_BY_USER_OR_ID = "select * from " 
-            + DBTool.getTableName(ServerSysInfo.class) + " sysinfo left join "
-            + DBTool.getTableName(ServerInfo.class) + " info on sysinfo.id=info.id "
-            + "where info.user_id=? and info.id = ? order by sysinfo.score desc";
 
     //  根据类别，取得私服的数目
     public int getServerCountByCategory(String categoryId) {
@@ -106,7 +101,7 @@ public class ServerQuerier {
        return DBTool.queryEntity(ServerInfo.class, sb.toString(), id);
    }
       
-   public PageResult<ServerInfo> getServerInfo(int categoryId) {
+   public PageResult<ServerInfo> getServerInfoByCategoryId(int categoryId) {
        LinkedHashMap<String, Boolean> orderBy = new LinkedHashMap<String, Boolean>();
        orderBy.put("id", false);
        PageResult<ServerInfo> pr = JDBCUtils.getPageData(ServerInfo.class, 10, 1, orderBy, " category_id = ?", new String[]{String.valueOf(categoryId)});
@@ -116,19 +111,35 @@ public class ServerQuerier {
    /**
     * 根據用戶id 選擇 serverInfo
     * 按照创建时间逆序
+    * 默认只展示正常(包括隐藏的)状态的server
     **/
     public PageResult<ServerInfo> getServerInfoByUserId(int userId, int currentPage) {
-       LinkedHashMap<String, Boolean> orderBy = new LinkedHashMap<String, Boolean>();
-       orderBy.put("create_date", false);
-       PageResult<ServerInfo> pr = JDBCUtils.getPageData(ServerInfo.class, 20, currentPage, orderBy, " user_id = ?", new String[]{String.valueOf(userId)});
-       return pr;       
+       return getServerInfoByUserId(userId, currentPage, false);
    }
    
+     /**
+    * 根據用戶id 選擇 serverInfo
+    * 按照创建时间逆序
+    * 如果showAll为true,则展示包括隐藏,删除等状态的sql
+    **/
+    public PageResult<ServerInfo> getServerInfoByUserId(int userId, int currentPage, boolean showAll) {
+       LinkedHashMap<String, Boolean> orderBy = new LinkedHashMap<String, Boolean>();
+       orderBy.put("create_date", false);
+       
+       String statusSql = "status in ('online', 'hidden') and " ;
+       if (showAll) {
+           statusSql = "";
+       }
+       
+       PageResult<ServerInfo> pr = JDBCUtils.getPageData(ServerInfo.class, 20, currentPage, orderBy, statusSql +  " user_id = ?", new String[]{String.valueOf(userId)});
+       return pr;       
+   }
+    
     public static void main(String[] args) {
    //    ServerInfo si = new ServerQuerier().getServerInfoById(4);
    //    System.out.println(si.getName());
        
-       PageResult pr = new ServerQuerier().getServerInfo(1);
+       PageResult pr = new ServerQuerier().getServerInfoByCategoryId(1);
        System.out.println(pr.getTotalCount());
        System.out.println(pr.getPageList().size());
        

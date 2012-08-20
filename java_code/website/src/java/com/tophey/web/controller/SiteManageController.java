@@ -6,6 +6,7 @@ package com.tophey.web.controller;
 
 import com.tophey.common.PageResult;
 import com.tophey.model.ServerInfo;
+import com.tophey.web.common.InterfaceReturnValue;
 import com.tophey.web.common.PublishBean;
 import com.tophey.web.dao.ServerDao;
 import com.tophey.web.dao.ServerQuerier;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import tophey.utils.JDBCUtils;
 
 /**
  *
@@ -54,4 +56,24 @@ public class SiteManageController {
         model.addAttribute("serverInfos", serverInfoResults);
         return "sitemanage";
     }
+    
+    @RequestMapping("changeStatus")
+    public @ResponseBody InterfaceReturnValue changeDisplayStatus(@RequestParam Integer id, Model model) throws ServletException, IOException {
+        int userId = 1;
+         InterfaceReturnValue returnValue = new InterfaceReturnValue();
+        try {
+//            userId = (Integer)request.getAttribute("userId");
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return returnValue;
+        }
+        
+        int updatedRows = ServerDao.changeDisplayStatus(id);
+       
+        returnValue.setRet(updatedRows == 1);
+        returnValue.setData(updatedRows);
+        return returnValue;
+    }
+    
 }
