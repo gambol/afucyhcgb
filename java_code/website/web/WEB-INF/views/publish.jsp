@@ -146,14 +146,15 @@
         <!-- End of Page title -->
 
         <!-- Page content -->
-        <div id="page">
+        <div>
             <!-- Wrapper -->
             <div class="wrapper">
-                <section class="column width1 first">
-                    <div id="left-nav">
+                   <section class="column width_116 first">
+                    <div class="site-nav">
                         <ul>
-                            <li><a href="">站点管理</a></li>
-                            <li><a href="">密码管理</a></li>
+                            <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/sitemanage.htm">发布记录</a></li>
+                            <li  <c:if test="${empty publishBean['server_name']}"> class="current" </c:if>><a href="/publish.htm">新站发布</a></li>
+                            <li><a href="#">修改密码</a></li>
 
                         </ul>
                     </div>  
@@ -218,6 +219,7 @@
                             <img id='captchaImg' alt="验证码" src="generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a>  <br/>                       
                             <input type="text" name="captcha" id="captcha" class="half"/>
                         </p>
+                        <br/>
                         <c:if test="${empty publishBean['server_name']}">
                             <div class="contract">
                                 <p>

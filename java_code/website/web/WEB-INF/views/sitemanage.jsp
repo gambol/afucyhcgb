@@ -47,6 +47,7 @@
         <!--[if lt IE 8]>
         <script src="js/IE8.js"></script>
         <![endif]-->
+        <script type="text/javascript" src="js/sitemanage.js"></script>
     </head>
     <body>
         <!-- Header -->
@@ -83,14 +84,15 @@
         <!-- End of Page title -->
 
         <!-- Page content -->
-        <div id="page">
+        <div>
             <!-- Wrapper -->
             <div class="wrapper">
-                <section class="column width1 first">
-                    <div id="left-nav">
+                <section class="column width_116 first">
+                    <div class="site-nav">
                         <ul>
-                            <li><a href="">站点管理</a></li>
-                            <li><a href="">密码管理</a></li>
+                            <li class="current"><a href="/sitemanage.htm">发布记录</a></li>
+                            <li><a href="/publish.htm">新站发布</a></li>
+                            <li><a href="#">修改密码</a></li>
 
                         </ul>
                     </div>  
@@ -100,11 +102,11 @@
                 <section class="width5">					
                     <div class="pageline">   
                     </div>
-                 
+
                     <pg:pager items="${serverInfos.totalCount}" maxPageItems="20" maxIndexPages="10" 
-                             url="/sitemanage.htm"   export="pageNumber" scope="request">
+                              url="/sitemanage.htm"   export="pageNumber" scope="request">
                         <table class="stylized full">
-                          
+
                             <thead>
                                 <tr>
                                     <th>序号</th>
@@ -122,13 +124,21 @@
                                     </td>
                                 </c:when>
                                 <c:otherwise>
-
                                     <c:forEach var="serverInfo" items="${serverInfos.pageList }">
                                         <tr>
                                             <td>${serverInfo.id}</td>
                                             <td><c:out value="${serverInfo.name}" escapeXml="true" /></td>
                                             <td><a href="${serverInfo.url}" target="_blank"> ${serverInfo.url} </a></td>
-                                            <td><a href="/publish.htm?id=${serverInfo.id}" /> 编辑 </a> &nbsp;&nbsp; <a href="#"> 删除</a> </td>
+                                            <td><a href="/publish.htm?id=${serverInfo.id}" /> 编辑 </a> &nbsp;&nbsp;
+                                                <c:choose>
+                                                    <c:when test="${serverInfo.status == 'online'}">
+                                                        <a href="#" aurl="/sitemanage/changeStatus.htm?id=${serverInfo.id}" class="changeStatus"> 隐藏 </a>
+                                                    </c:when>
+                                                    <c:when test="${serverInfo.status == 'hidden'}">
+                                                        <a href="#" aurl="/sitemanage/changeStatus.htm?id=${serverInfo.id}" class="changeStatus"> 显示</a>
+                                                    </c:when>
+                                                </c:choose>
+                                            </td>
 
                                         </tr>
                                     </c:forEach>
@@ -164,7 +174,7 @@
                         </pg:index>
                     </pg:pager>
 
-                   
+
 
                 </section>
                 <!-- End of login form -->
