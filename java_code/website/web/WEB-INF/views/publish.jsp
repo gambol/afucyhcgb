@@ -58,7 +58,7 @@
                         desc: {
                             required: true,
                             minlength: 5,
-                            maxlength: 2000
+                            maxlength: 100
                         },
                         captcha: {
                             required: true,
@@ -146,7 +146,7 @@
         <!-- End of Page title -->
 
         <!-- Page content -->
-        <div>
+        <div id="page">
             <!-- Wrapper -->
             <div class="wrapper">
                    <section class="column width_116 first">
@@ -252,7 +252,7 @@
 
                 </section>
                 <!-- End of login form -->
-                <aside class="column width2">
+                <aside class="column width2" id="asider">
                     <div class="content-box">
                         <header class="blue">
                             <h3>公告区</h3>
