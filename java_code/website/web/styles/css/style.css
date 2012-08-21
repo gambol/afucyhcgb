@@ -239,11 +239,13 @@ video {
     border-radius: 4px 4px 4px 4px;
     display: block;
 }
+
 table.stylized {
     border-collapse: collapse;
     margin-bottom: 1em;
     margin-top: 1em;
     position: relative;
+    background-color: #f6f6f3 !important;
 }
 table.stylized th, table.stylized td {
     line-height: 18px;
@@ -251,15 +253,23 @@ table.stylized th, table.stylized td {
     text-align: center;
 }
 table.stylized th {
-    background-color: #2A7AD2 !important;
-    color: #FFFFFF;
-    
+    background-color: #a9ccdd !important;
+    color: white;
 }
+
+table.stylized a {
+    color:black;
+}
+
+.width_116 {
+    width:116px;
+}
+
 table.stylized tr.high {
     background-color: #FFFFAA !important;
 }
 table.stylized tbody th, table.stylized tbody td, table.stylized tfoot th, table.stylized tfoot td {
-    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid #f6f6f3x;
 }
 table.stylized tfoot td {
     background-color: #F2F2F2 !important;
@@ -267,9 +277,13 @@ table.stylized tfoot td {
 }
 table.stylized tr:nth-child(2n) td {
 }
+
+/*
 table.stylized tbody tr:nth-child(2n+1) th, table.stylized tbody tr:nth-child(2n+1) td {
-    background: none repeat scroll 0 0 #FAFDFE;
+    background: none repeat scroll 0 0 #f6f6f3;
 }
+*/
+
 table.stylized caption {
     font-size: 11px;
     margin-bottom: 1em;
@@ -359,8 +373,8 @@ legend {
     padding: 0 6px 0 0;
 }
 label {
-#    font-size: 11px;
-#    font-weight: bold;
+    #    font-size: 11px;
+    #    font-weight: bold;
     text-transform: uppercase;
 }
 label.required:before {
@@ -532,10 +546,8 @@ fieldset small {
 }
 .box {
     background: none repeat scroll 0 0 #EEEEEE;
-    border-bottom: 1px solid #CCCCCC;
-    border-top: 1px solid #CCCCCC;
     color: #555555;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     padding: 8px;
 }
 .box-info {
@@ -602,14 +614,26 @@ fieldset small {
     width: 990px;
 }
 
-
 .wrapper-login {
     margin-top:40px;
-	height:400px;
+    height:400px;
 }
+
 header#top {
-    background: -moz-linear-gradient(center bottom , #272622 20%, #323232 80%) repeat scroll 0 0 transparent;
-    width: 100%;
+    background-color: #282828;
+    width:100%;
+    background:-webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.2, rgb(39,38,34)),
+        color-stop(0.8, rgb(50,50,50))
+        );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(39,38,34) 20%,
+        rgb(50,50,50) 80%
+        );
 }
 header#top aside {
     color: #999999;
@@ -714,7 +738,9 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
     font: 12px Arial;
 }
 .sf-menu a {
-    padding: 0.5em 1em;
+    /*    padding: 0.5em 1em;*/
+    padding-top:8px;
+    padding-bottom:5px;
     text-decoration: none;
 }
 .sf-menu ul a {
@@ -724,29 +750,29 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
     color: #EEEEEE;
 }
 .sf-menu li {
-    background: none repeat scroll 0 0 #444444;
+    background: none repeat scroll 0 0 #0078b6;
     margin-right: 10px;
 }
 .sf-menu > li {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 .sf-menu li li {
-    background: none repeat scroll 0 0 #444444;
+    background: none repeat scroll 0 0 #0078b6;
 }
 .sf-menu li li li {
-    background: none repeat scroll 0 0 #444444;
+    background: none repeat scroll 0 0 #0078b6;
 }
 .sf-menu li:hover, .sf-menu li.sfHover, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
     background: none repeat scroll 0 0 #555555;
     outline: 0 none;
 }
 .sf-menu > li:hover, .sf-menu > li.sfHover, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 .sf-menu li.current {
-    background: none repeat scroll 0 0 #266DBB;
+    background: none repeat scroll 0 0 #555555;
 }
 .sf-menu a.sf-with-ul {
     min-width: 1px;
@@ -838,6 +864,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
     float: left;
     width: 100%;
 }
+/*
 #page a {
     border-bottom: 1px solid #A1CFD4;
     color: #329ECC;
@@ -847,6 +874,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
     background-color: #E2EFFF;
     border-bottom: 1px solid #329ECC;
 }
+*/
 #page .subtitle {
     color: #93BB3A;
     font-family: Tahoma,Arial,sans-serif;
@@ -855,7 +883,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 footer#bottom {
     background: -moz-linear-gradient(center bottom , #F2F2F2 20%, #FEFEFE 80%) repeat scroll 0 0 transparent;
-  #  border-top: 4px solid #D9D9D9;
+    #  border-top: 4px solid #D9D9D9;
     color: #999999;
     float: left;
     font-size: 11px;
@@ -963,7 +991,7 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 
 .btn-yellow {
-	background-color: #F8CA1D !important;
+    background-color: #F8CA1D !important;
     border: 1px solid #F8CA1D !important;
     color: #FFFFFF !important;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
@@ -1105,8 +1133,8 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
     width: 99%;
 }
 .content-box header {
- #   background: none repeat scroll 0 0 #999999;
-   background: none repeat scroll 0 0 #0078b6;
+    #   background: none repeat scroll 0 0 #999999;
+    background: none repeat scroll 0 0 #0078b6;
     width: 100%;
 }
 .content-box header h3 {
@@ -2131,7 +2159,7 @@ button.datepick-cmd {
 
 #left-nav {
     text-align: right;
-    margin-top:38px;
+    margin-top:40px;
 }
 
 #left-nav ul{
@@ -2166,52 +2194,115 @@ button.datepick-cmd {
 #left-nav li a{
     padding: 0.73em 0.5em;
     border-bottom:0 none !important;
-#    text-align:left;
+    text-align:right;
     text-decoration: none;
     display:block;
     font: bold 16px "microsoft yahei"; 
-#    font-size:16px;
-    
     color:#4e4b41;
+}
+
+#left-nav li a.current{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background: none repeat scroll 0 0 #0078B6;
+    color:white;
 }
 
 #left-nav > li:hover, #left-nav > li.sfHover, #left-nav a:focus, #left-nav a:hover, #left-nav a:active {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    
+    background: none repeat scroll 0 0 #0078B6;
 }
 
+.site-nav li{
+    border-bottom: 0 none !important;
+    display: inline;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    white-space: nowrap; 
+    background: none repeat scroll 0 0 #fae594;
+    margin-top: 6px;
+    display:block;
+    width:90px;
+}
+
+.site-nav .current {
+    background: url("/img/tag-bg.gif") no-repeat scroll 100% 50% transparent;
+    background-color: #a9ccdd;
+    width:110px;
+}
+
+.site-nav .current a {
+
+}
+
+.site-nav {
+    text-align: center;
+    margin-top:1em;
+}
+
+.site-nav ul{
+    margin:0;
+    padding:0;
+    list-style:disc outside none;
+}
+
+.site-nav li a{
+    padding: 5px 5px;
+    border-bottom:0 none !important;
+    /*
+    text-align:left;
+    */
+    text-decoration: none;
+    display:block;
+    font: normal 16px "microsoft yahei"; 
+    /*
+    font-size:16px;
+    */
+    color:black;
+}
+
+.site-nav > li:hover, .site-nav > li.sfHover, .site-nav a:focus, .site-nav a:hover, .site-nav a:active {
+
+}
 .pageline {
     background-color:#0078b6;
     margin-top:8px;
-    margin-bottom:2px;
     width: 100%;
 }
 
 .pageline input {
-    background: url("../img/search.gif") no-repeat scroll 99% 56% #FFFFFF;
-    border: 2px solid #5D9ADF;
+    background: url("/img/search.gif") no-repeat scroll 99% 56% #FFFFFF;
+    /*  border: 2px solid #5D9ADF; */
     box-shadow: 0 0;
     color: #666666;
     float: right;
-    line-height: 18px;
+    /*    line-height: 18px; */
     padding: 4px 24px 4px 4px;
     vertical-align: middle;
     width: 202px;
+    margin:2px;
 }
+/*
 .pageline input:focus {
     border: 2px solid #266DBB;
 }
-
+*/
 .rank-column {
     width:60px;
     font:bold 36px 'Trebuchet MS',Trebuchet,Arial,sans-serif;
     text-align:center;
     color: #F8CA1D;
+    line-height: 2em;
 }
 
 .desc-column {
     float:left;
+    text-align: left;
+    color:black;
 }
 
 .like-it-column {
@@ -2222,12 +2313,17 @@ button.datepick-cmd {
     text-align:center;
 }
 
-.font-16 {
-    font-size:16px;
+.font-14 {
+    font-size:14px;
+}
+
+.font-14 a{
+    color:black;
 }
 
 .server-title {
     color:black;
+    font-weight: bold;
 }
 
 .right-span {
@@ -2238,19 +2334,26 @@ button.datepick-cmd {
     color:#0078b6;
 }
 
+.desc {
+    margin-top:10px;
+}
+
 .middle-div {
-    vertical-align:middle;
+    line-weight:2em;
+    padding-top:15px;
+    padding-bottom: 15px;
+    font-family:"宋体";
 }
 
 .contract {
-	background-color: #FAFAFA;
+    background-color: #FAFAFA;
     border: 1px solid #E0E0E0;
     height: 112px;
     margin-bottom: 2px;
     overflow-y: auto;
     padding: 26px 48px;
     text-align: left;
-	border-top:0px;
+    border-top:0px;
 }
 .contract-header{
     background: none repeat scroll 0 0 #EEEEEE;
@@ -2261,5 +2364,51 @@ button.datepick-cmd {
 }
 
 .middle-div{
-	text-align:center;
+    text-align:center;
+}
+
+#asider {
+    margin-left: 8px;
+}
+
+
+/* CSS 代码 */
+div.pager {
+    padding:3px;
+    margin: 20px 6px;
+    text-align: center;
+    font:bold 14px "microsoft yahei";
+}
+div.pager A {
+    border:0px none;
+    padding:4px 8px;
+    margin: 2px;
+    color: #6d6d6d; 
+    background-color: #d5d5d5;
+    text-decoration: none;
+   
+}
+div.pager A:hover,  div.pager A:active {
+    color: white; 
+    background-color: #4db9db;
+}
+
+div.pager A.next, div.pager A.prev {
+    border:0px none;
+    padding:4px 8px;
+    margin: 2px;
+    color: #6d6d6d; 
+    background:none;
+    text-decoration: none;
+}
+
+div.pager A.next:hover,  div.pager A.next:active, div.pager A.prev:hover,  div.pager A.prev:active{
+    color: #4db9db; 
+}
+
+div.pager SPAN.current {
+    color: white; 
+    background-color: #0e95bf;
+    padding:4px 8px;
+    margin: 2px;
 }
