@@ -84,7 +84,7 @@
         <!-- End of Page title -->
 
         <!-- Page content -->
-        <div>
+        <div id="page">
             <!-- Wrapper -->
             <div class="wrapper">
                 <section class="column width_116 first">
@@ -104,7 +104,7 @@
                     </div>
 
                     <pg:pager items="${serverInfos.totalCount}" maxPageItems="20" maxIndexPages="10" 
-                              url="/sitemanage.htm"   export="pageNumber" scope="request">
+                              url="/sitemanage.htm"   export="pageNo=pageNumber" scope="request">
                         <table class="stylized full">
 
                             <thead>
@@ -146,26 +146,27 @@
                             </c:choose>
                             </tbody>
                         </table>
-                        <pg:index>
+                        
+                          <pg:index>
                             <div class="pager">
                                 <pg:prev>
                                     <a class="prev" href="${pageUrl}">上一页</a>
                                 </pg:prev>
                                 <pg:first unless="current">
-                                    <a href="${pageUrl }">首页</a>
+                                    <a href="${pageUrl }" class="corners">首页</a>
                                 </pg:first>
                                 <pg:pages>
                                     <c:choose>
                                         <c:when test="${pageNumber == pageNo }">
-                                            <span class="current">${pageNumber } </span>
+                                            <span class="current corners">${pageNumber }</span>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="${pageUrl }">${pageNumber }</a>
+                                            <a href="${pageUrl }" class="corners">${pageNumber }</a>
                                         </c:otherwise>
                                     </c:choose>
                                 </pg:pages>
                                 <pg:last unless="current">
-                                    <a href="${pageUrl }">尾页</a>
+                                    <a href="${pageUrl }"  class="corners">尾页</a>
                                 </pg:last>
                                 <pg:next>
                                     <a class="next" href="${pageUrl}">下一页</a>
