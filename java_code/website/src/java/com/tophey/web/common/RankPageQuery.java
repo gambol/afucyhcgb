@@ -14,6 +14,12 @@ public class RankPageQuery {
     private int start;
     private int size;
 
+    public RankPageQuery() {
+        categoryId = "1";
+        start = 0;
+        size = 10;
+    }
+    
     public String getCategoryId() {
         return categoryId;
     }
