@@ -52,7 +52,7 @@ public class IndexController  {
         try {
             offset = Integer.parseInt(request.getParameter("pager.offset"));
         } catch(Exception e) {
-            e.printStackTrace();
+       //     e.printStackTrace();
         }
        
         
