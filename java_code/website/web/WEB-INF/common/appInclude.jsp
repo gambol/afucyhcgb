@@ -22,13 +22,15 @@
     <!-- Your Custom Stylesheet --> 
     <link rel="stylesheet" href="styles/css/custom.css" type="text/css" />
     <!--swfobject - needed only if you require <video> tag support for older browsers -->
-    <script type="text/javascript" SRC="js/swfobject.js"></script>
+  <!--  <script type="text/javascript" SRC="js/swfobject.js"></script> -->
     <!-- jQuery with plugins -->
     <script type="text/javascript" SRC="js/jquery-1.7.2.min.js"></script>
     <!-- Could be loaded remotely from Google CDN : <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
     <script type="text/javascript" SRC="js/jquery.ui.core.min.js"></script>
+    <!--
     <script type="text/javascript" SRC="js/jquery.ui.widget.min.js"></script>
     <script type="text/javascript" SRC="js/jquery.ui.tabs.min.js"></script>
+    -->
     <!-- jQuery tooltips -->
     <script type="text/javascript" SRC="js/jquery.tipTip.min.js"></script>
     <!-- Superfish navigation -->
@@ -37,7 +39,7 @@
     <!-- jQuery popup box -->
     <script type="text/javascript" SRC="js/jquery.nyroModal.pack.js"></script>
     <!-- jQuery form validation -->
-    <script type="text/javascript" SRC="js/jquery.validatek.js"></script>
+    <script type="text/javascript" SRC="js/jquery.validate.js"></script>
     <!-- Internet Explorer Fixes --> 
     <!--[if IE]>
     <link rel="stylesheet" type="text/css" media="all" href="css/ie.css"/>

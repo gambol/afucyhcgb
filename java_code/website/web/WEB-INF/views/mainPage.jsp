@@ -26,7 +26,14 @@
     </div>
         -->
         <!-- End of Page title -->
-        <c:set var="categoryId" value="${param.categoryId}"/>   
+        <c:choose>
+            <c:when test="${param.categoryId > 0}">
+                <c:set var="categoryId" value="${param.categoryId}"/>   
+            </c:when>
+            <c:otherwise>
+                <c:set var="categoryId" value="1"/>
+            </c:otherwise>              
+        </c:choose>
         <!-- Page content -->
         <div id="page">
             <!-- Wrapper -->
@@ -44,11 +51,15 @@
                 </section>
                 <section class="width5">					
                     <div class="pageline">
-                        <form action="" method="get"><input class="" type="text" id="q" name="q" /></form>
+                        <form action="" method="get">
+                            <input type="hidden" name="categoryId" value="${categoryId}"/>
+                            <input class="" type="text" id="keyword" name="keyword" placeholder="按标题搜索"/>
+                        </form>
                     </div>
                     <pg:pager items="${serverInfos.totalCount}" maxPageItems="10" maxIndexPages="7" 
                               url="/mainPage.htm"   export="pageNo=pageNumber" scope="request">
                         <pg:param name="categoryId" />
+                        <pg:param name="keyword"/>
                         <c:forEach var="serverInfoDetail" items="${serverInfos.pageList}" varStatus="status">
                             <div class="box colgroup middle-div">
                                 <div class="rank-column column first">${status.count + param['pager.offset']}</div>
@@ -63,7 +74,7 @@
                             </div>
                             <div class="like-it-column column">
                                 <span class="number">239</span>
-                                <span id="like-it">赞!</span>
+                                <a class="small-btn btn-yellow" href="#">赞</a>
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -104,28 +115,11 @@
 
             <!-- Right column/section -->
             <aside class="colgroup width2"  id="asider">
-                <div class="content-box">
-                    <header class="blue">
-                        <h3>公告区</h3>
-                    </header>
-                    <section>
-                        哈哈，你好，我是第一个页面。我是不是很无聊啊。
-                        <dl>
-                            <dt>
-                            第一条新闻
-                            </dt>
-                            <dd>
-                                新闻简介
-                            </dd>
-
-                            <dt>
-                            第二条新闻
-                            </dt>
-                            <dd>
-                                新闻简介
-                            </dd>
-                        </dl>
-                        <cite>w3schools.com</cite>										</section>
+                <div class="clean-content-box">                  
+                    <section class="notes-total">
+                      <img src="img/atu.png" alt="atu game"/>
+                      <a class="big-btn btn-yellow" href="#">免费发布新站</a>
+                    </section>
                 </div>
                 <div class="content-box">
                     <header class="blue">
@@ -138,7 +132,7 @@
             <!-- End of Wrapper -->
         </div>
         <!-- End of Page content -->
-
+        <a id="totop" style="display: block;">^ scroll to top</a>
         <%@include file="../common/footer.jsp" %>
 
 </body>
