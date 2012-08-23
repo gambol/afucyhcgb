@@ -55,9 +55,10 @@ public class IndexController  {
        //     e.printStackTrace();
         }
        
-        
-        int totalCount = sq.getServerCountByCategory(strCategoryId);
-        List<ServerInfoDetail> retList = sq.getServerInfoDetailPageByCategory(strCategoryId, offset, PAGE_SIZE);
+        String  keyword = request.getParameter("keyword");
+
+        int totalCount = sq.getServerCountByCategoryKeyword(strCategoryId, keyword);
+        List<ServerInfoDetail> retList = sq.getServerInfoDetailPageByCategoryKeyword(strCategoryId, offset, PAGE_SIZE, keyword);
         int curPage = offset / PAGE_SIZE + 1;
         PageResult<ServerInfoDetail> serverInfoResults = new PageResult<ServerInfoDetail>(totalCount, curPage, PAGE_SIZE, retList);
         model.addAttribute("serverInfos", serverInfoResults);
