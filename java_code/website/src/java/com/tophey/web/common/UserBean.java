@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Email;
  *
  * @author xiang.fu
  */
-public class LoginBean {
+public class UserBean {
 
     
     
@@ -19,6 +19,8 @@ public class LoginBean {
     private String userEmail;
          
     private String password;
+    
+    private String repassword;
     
     private String errMsg;
 
@@ -46,6 +48,15 @@ public class LoginBean {
         this.errMsg = errMsg;
     }
 
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
+    }
+
+    
     
 
     

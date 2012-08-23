@@ -44,17 +44,14 @@
             $(document).ready(function(){
                 var submitted = false;
                 // validate form on keyup and submit
-                var validator = $("#loginForm").validate({
+                var validator = $("#forgetForm").validate({
                     rules: {
                         userEmail: {
                             required: true,
-                            email: true
-//                            remote: "/user/check.htm"
+                            email: true,
+                            remote: "/user/checki.htm"
                         },
-                        password:{
-                            required:true
-                         
-                        },
+                       
                         captcha: {
                             required: true,
                             remote:"/validateImage.htm"
@@ -64,12 +61,10 @@
                     messages: {
                         userEmail: {
                             required: "请输入用户名",
-                            email:"用户名必须是有效邮箱"
-//                            remote: "用户名已存在"
+                            email:"用户名必须是有效邮箱",
+                            remote: "用户不存在"
                         },
-                        password:{
-                            required:"密码不能为空" 
-                        },
+                
                         captcha: {
                             required:"请输入验证码",
                             remote:"验证码错误"
@@ -123,10 +118,10 @@
         <header id="top">
             <div class="wrapper">
                 <!-- Title/Logo - can use text instead of image -->
-                <div id="title"><img SRC="img/logo.png" alt="Administry" /><!--<span>Administry</span> demo--></div>
+                <div id="title"><img SRC="/img/logo.png" alt="Administry" /><!--<span>Administry</span> demo--></div>
                 <!-- Top navigation -->
                 <div id="topnav">
-                    <a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
+                    <a href="#"><img class="avatar" SRC="/img/user_32.png" alt="" /></a>
                     Logged in as <b>Admin</b>
                     <span>|</span> <a href="#">Settings</a>
                     <span>|</span> <a href="#">Logout</a><br />
@@ -163,7 +158,7 @@
                     <div class="pageline">   
                     </div>
                     <div class="box box-info">登录</div>
-                    <form:form id="loginForm" method="post" modelAttribute="loginBean" cssClass="cleanform">
+                    <form:form id="forgetForm" method="post" modelAttribute="userBean" cssClass="cleanform">
 
                         <p>
                             <form:label cssClass="required" path="userEmail">邮箱：</form:label><br/>
@@ -188,13 +183,6 @@
                         </p>
 
 
-                        <p>
-                            <form:label cssClass="required" path="password">密码:</form:label><br/>
-                            <form:input type="password" path="password" cssClass="half" value=""/>    
-                            <img id="passwordErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
-                            <label id="passwordErrLb" style="vertical-align: middle;display: none">${errMsg}</label>
-                        </p>
-
 
 
                         <p> 
@@ -211,7 +199,6 @@
 
 
                         <div >
-                            <input type="submit" class="btn btn-yellow big" value="    登   录   "/>
                             <input type="submit" class="btn btn-yellow big" value="    找回密码   "/>
                         </div>
 

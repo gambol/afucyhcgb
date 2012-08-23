@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Atugame登录</title>
+        <title>Atugame注册</title>
         <meta name="description" content="" />
         <meta name="keywords" content="atu game" />
         <link rel="shortcut icon" type="image/png" HREF="/img/favicons/favicon.png"/>
@@ -44,16 +44,20 @@
             $(document).ready(function(){
                 var submitted = false;
                 // validate form on keyup and submit
-                var validator = $("#loginForm").validate({
+                var validator = $("#regiForm").validate({
                     rules: {
                         userEmail: {
                             required: true,
-                            email: true
-//                            remote: "/user/check.htm"
+                            email: true,
+                            remote: "/user/check.htm"
                         },
                         password:{
                             required:true
                          
+                        },
+                        repassword:{
+                            required:true,
+                            equalTo:"#password"
                         },
                         captcha: {
                             required: true,
@@ -64,11 +68,15 @@
                     messages: {
                         userEmail: {
                             required: "请输入用户名",
-                            email:"用户名必须是有效邮箱"
-//                            remote: "用户名已存在"
+                            email:"用户名必须是有效邮箱",
+                            remote: "用户名已存在"
                         },
                         password:{
                             required:"密码不能为空" 
+                        },
+                        repassword:{
+                            required:"密码不能为空",
+                            equalTo:"两次输入必须一致"
                         },
                         captcha: {
                             required:"请输入验证码",
@@ -162,8 +170,8 @@
                 <section class="width5">					
                     <div class="pageline">   
                     </div>
-                    <div class="box box-info">登录</div>
-                    <form:form id="loginForm" method="post" modelAttribute="userBean" cssClass="cleanform">
+                    <div class="box box-info">注册</div>
+                    <form:form id="regiForm" method="post" modelAttribute="userBean" cssClass="cleanform">
 
                         <p>
                             <form:label cssClass="required" path="userEmail">邮箱：</form:label><br/>
@@ -194,8 +202,13 @@
                             <img id="passwordErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
                             <label id="passwordErrLb" style="vertical-align: middle;display: none">${errMsg}</label>
                         </p>
-
-
+                        
+                        <p>
+                            <form:label cssClass="required" path="repassword">再输入一遍：</form:label><br/>
+                            <form:input type="password" path="repassword" cssClass="half" value=""/>    
+                            <img id="repasswordErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
+                            <label id="repasswordErrLb" style="vertical-align: middle;display: none">${errMsg}</label>
+                        </p>
 
                         <p> 
                             <label class="required" for="captcha">验证码:</label><br/>
@@ -211,8 +224,8 @@
 
 
                         <div >
-                            <input type="submit" class="btn btn-yellow big" value="    登   录   "/>
-                            <input type="submit" class="btn btn-yellow big" value="    找回密码   "/>
+                            <input type="submit" class="btn btn-yellow big" value="    注   册   "/>
+                            
                         </div>
 
 
