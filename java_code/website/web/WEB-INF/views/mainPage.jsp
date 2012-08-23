@@ -80,7 +80,7 @@
                 <!-- Main navigation -->
                 <nav id="menu">
                     <ul class="sf-menu">
-                        <li><a HREF="dashboard.html">首页</a></li>
+                        <li><a HREF="mainPage.htm">首页</a></li>
                         <li class="current"><a HREF="forms.html">站长发布</a></li>	
                         <li><a HREF="graphs.html">游戏介绍</a></li>	
                         <li><a HREF="graphs.html">关于我们</a></li>	

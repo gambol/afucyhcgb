@@ -338,6 +338,11 @@ textarea.large {
 input.half, select.half, textarea.half {
     width: 50%;
 }
+
+input.quarter{
+    width:25%;
+}
+
 input.full, select.full, textarea.full {
     width: 97%;
 }
