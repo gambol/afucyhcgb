@@ -545,7 +545,7 @@ fieldset small {
     border-radius: 4px 4px 4px 4px;
 }
 .box {
-    background: none repeat scroll 0 0 #EEEEEE;
+    background: none repeat scroll 0 0 #f7f8f9;
     color: #555555;
     margin-bottom: 4px;
     padding: 8px;
@@ -706,7 +706,7 @@ header#top aside a {
 .sf-menu li {
     float: left;
     position: relative;
-    width: 116px;
+    width: 126px;
     text-align:center;
 }
 .sf-menu a {
@@ -750,7 +750,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
     color: #EEEEEE;
 }
 .sf-menu li {
-    background: none repeat scroll 0 0 #0078b6;
+    background: none repeat scroll 0 0 #555555;
     margin-right: 10px;
 }
 .sf-menu > li {
@@ -758,13 +758,13 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
     border-top-right-radius: 8px;
 }
 .sf-menu li li {
-    background: none repeat scroll 0 0 #0078b6;
+    background: none repeat scroll 0 0 #555555;
 }
 .sf-menu li li li {
-    background: none repeat scroll 0 0 #0078b6;
+    background: none repeat scroll 0 0 #555555;
 }
 .sf-menu li:hover, .sf-menu li.sfHover, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-    background: none repeat scroll 0 0 #555555;
+    background: none repeat scroll 0 0 #014E76;
     outline: 0 none;
 }
 .sf-menu > li:hover, .sf-menu > li.sfHover, .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
@@ -772,7 +772,7 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
     border-top-right-radius: 8px;
 }
 .sf-menu li.current {
-    background: none repeat scroll 0 0 #555555;
+    background: none repeat scroll 0 0 #0078B6 ;
 }
 .sf-menu a.sf-with-ul {
     min-width: 1px;
@@ -942,6 +942,42 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
     color: #FFFFFF;
     text-decoration: none;
 }
+
+.small-btn {
+     border: 1px solid #CCCCCC !important;
+    border-radius: 4px 4px 4px 4px;
+    color: #777777 !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Tahoma,Arial,sans-serif;
+    font-size: 12px;
+    padding:5px;
+    position: relative;
+    text-decoration: none;
+}
+
+.big-btn {
+    background: url("../img/btn-overlay.png") repeat-x scroll 0 0 #FFFFFF !important;
+    border: 1px solid #CCCCCC !important;
+    border-radius: 4px 4px 4px 4px;
+    color: #777777 !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Tahoma,Arial,sans-serif;
+    font-size: 16px;
+    padding: 5px 10px 10px;
+    position: relative;
+    text-decoration: none;
+    width:136px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.big-btn:hover, .big-btn:focus, .big-btn:active {
+    box-shadow: 0 0 5px rgba(82, 168, 236, 0.5);
+    opacity: 0.9;
+    outline: medium none;
+}
+
 .btn {
     background: url("../img/btn-overlay.png") repeat-x scroll 0 0 #FFFFFF !important;
     border: 1px solid #CCCCCC !important;
@@ -991,14 +1027,15 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 
 .btn-yellow {
-    background-color: #F8CA1D !important;
-    border: 1px solid #F8CA1D !important;
-    color: #FFFFFF !important;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    background-color: #ffec00 !important;
+    border: 1px solid #ffec00 !important;
+    color: #6a4e25 !important;
+ /*   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); */
+    margin-top:10px;
 }
-.btn-red:hover, .btn-red:focus, .btn-red:active {
-    border: 1px solid #AE2B2B !important;
-    box-shadow: 0 0 5px rgba(174, 43, 43, 0.9);
+
+.btn-yellow:hover, .btn-yellow:focus, .btn-yellow:active {
+    box-shadow: 0 0 5px #ffec00;
 }
 
 
@@ -1125,9 +1162,19 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 .ui-tabs .ui-tabs-hide {
     display: none !important;
 }
+
+.clean-content-box {
+    display: inline-block;
+    margin: 8px 0 0;
+    width: 99%;
+}
+.notes-total {
+    text-align: center;
+    padding: 20px 28px 26px 27px;
+}
 .content-box {
     background: none repeat scroll 0 0 #EEEEEE;
-    #border: 1px solid #999999;
+    /*border: 1px solid #999999; */
     display: inline-block;
     margin: 8px 0 0;
     width: 99%;
@@ -2198,20 +2245,23 @@ button.datepick-cmd {
     text-decoration: none;
     display:block;
     font: bold 16px "microsoft yahei"; 
-    color:#4e4b41;
+    color:#6a4e25;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: #bedcec;
 }
 
 #left-nav li a.current{
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    background: none repeat scroll 0 0 #0078B6;
-    color:white;
+    background: none repeat scroll 0 0 #ffec00;
+    color:#6a4e25;
 }
 
 #left-nav > li:hover, #left-nav > li.sfHover, #left-nav a:focus, #left-nav a:hover, #left-nav a:active {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    background: none repeat scroll 0 0 #0078B6;
+    background: none repeat scroll 0 0 #23aaff;
 }
 
 .site-nav li{
@@ -2281,10 +2331,10 @@ button.datepick-cmd {
     color: #666666;
     float: right;
     /*    line-height: 18px; */
-    padding: 4px 24px 4px 4px;
+    padding: 2px 24px 2px 4px;
     vertical-align: middle;
     width: 202px;
-    margin:2px;
+    margin:4px;
 }
 /*
 .pageline input:focus {
@@ -2311,6 +2361,7 @@ button.datepick-cmd {
     font:bold 20px 'Trebuchet MS',Trebuchet,Arial,sans-serif;
     color: #F8CA1D;
     text-align:center;
+    margin-top:10px;
 }
 
 .font-14 {
