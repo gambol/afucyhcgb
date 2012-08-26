@@ -6,12 +6,14 @@ package com.tophey.web.controller;
 
 import com.tophey.model.User;
 import com.tophey.web.common.EmailSenderDriver;
+import com.tophey.web.common.SessionConst;
 import com.tophey.web.common.UserBean;
 import com.tophey.web.dao.UserDao;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import javax.validation.Valid;
 
@@ -44,7 +46,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(@Valid UserBean loginBean, BindingResult result,
+    public String login(@Valid UserBean loginBean, BindingResult result,HttpServletRequest request,HttpServletResponse response,
             Model model) {
 
         if (result.hasErrors()) {
@@ -61,7 +63,9 @@ public class UserController {
             model.addAttribute("mailErrMsg", "用户不存在");
             return "login";
         } else if (user.getUsername().equalsIgnoreCase(userEmail) && user.getPassword().equalsIgnoreCase(password)) {
-            //TODO 处理session
+            HttpSession session = request.getSession();
+            session.setAttribute(SessionConst.USERID, user.getId());
+            session.setAttribute(SessionConst.USERNAME, user.getUsername());
             return "redirect:/mainPage.htm";
         } else {
             model.addAttribute("mailErrMsg", "用户名密码不正确");
@@ -77,7 +81,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "regi", method = RequestMethod.POST)
-    public String regi(@Valid UserBean loginBean, BindingResult result,
+    public String regi(@Valid UserBean loginBean, BindingResult result,HttpServletRequest request,HttpServletResponse  response,
             Model model) {
 
         if (result.hasErrors()) {
@@ -101,7 +105,9 @@ public class UserController {
         user.setCreateDate(DateUtil.getCurrentTimestamp());
 
         userDao.addUser(user);
-        //TODO session相关
+        HttpSession session = request.getSession();
+            session.setAttribute(SessionConst.USERID, user.getId());
+            session.setAttribute(SessionConst.USERNAME, user.getUsername());
         return "redirect:/mainPage.htm";
     }
 

@@ -5,11 +5,11 @@
     <meta name="description" content="Atugame 是一个最公平的游戏排名网站,包括了游戏排名,各种游戏私服排名." />
     <meta name="keywords" content="Atugame, 私服, 私服排名, 传奇私服, 魔兽私服, 热血传奇, 游戏排名" />
     <!-- Favicons --> 
-    <link rel="shortcut icon" type="image/png" HREF="img/favicons/small-logo.png"/>
-    <link rel="icon" type="image/png" HREF="img/favicons/small-logo.png"/>
+    <link rel="shortcut icon" type="image/png" HREF="/img/favicons/small-logo.png"/>
+    <link rel="icon" type="image/png" HREF="/img/favicons/small-logo.png"/>
 
     <!-- Main Stylesheet --> 
-    <link rel="stylesheet" href="styles/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/css/style.css" type="text/css" />
     <!--<link rel="stylesheet" href="styles/css/brown.css" type="text/css"/> -->
     <!-- Colour Schemes
     Default colour scheme is blue. Uncomment prefered stylesheet to use it.
@@ -20,26 +20,26 @@
     <link rel="stylesheet" href="css/red.css" type="text/css" media="screen" />
     -->
     <!-- Your Custom Stylesheet --> 
-    <link rel="stylesheet" href="styles/css/custom.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/css/custom.css" type="text/css" />
     <!--swfobject - needed only if you require <video> tag support for older browsers -->
   <!--  <script type="text/javascript" SRC="js/swfobject.js"></script> -->
     <!-- jQuery with plugins -->
-    <script type="text/javascript" SRC="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" SRC="/js/jquery-1.7.2.min.js"></script>
     <!-- Could be loaded remotely from Google CDN : <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
-    <script type="text/javascript" SRC="js/jquery.ui.core.min.js"></script>
+    <script type="text/javascript" SRC="/js/jquery.ui.core.min.js"></script>
     <!--
     <script type="text/javascript" SRC="js/jquery.ui.widget.min.js"></script>
     <script type="text/javascript" SRC="js/jquery.ui.tabs.min.js"></script>
     -->
     <!-- jQuery tooltips -->
-    <script type="text/javascript" SRC="js/jquery.tipTip.min.js"></script>
+    <script type="text/javascript" SRC="/js/jquery.tipTip.min.js"></script>
     <!-- Superfish navigation -->
-    <script type="text/javascript" SRC="js/jquery.superfish.min.js"></script>
-    <script type="text/javascript" SRC="js/jquery.supersubs.min.js"></script>
+    <script type="text/javascript" SRC="/js/jquery.superfish.min.js"></script>
+    <script type="text/javascript" SRC="/js/jquery.supersubs.min.js"></script>
     <!-- jQuery popup box -->
-    <script type="text/javascript" SRC="js/jquery.nyroModal.pack.js"></script>
+    <script type="text/javascript" SRC="/js/jquery.nyroModal.pack.js"></script>
     <!-- jQuery form validation -->
-    <script type="text/javascript" SRC="js/jquery.validate.js"></script>
+    <script type="text/javascript" SRC="/js/jquery.validate.js"></script>
     <!-- Internet Explorer Fixes --> 
     <!--[if IE]>
     <link rel="stylesheet" type="text/css" media="all" href="css/ie.css"/>
