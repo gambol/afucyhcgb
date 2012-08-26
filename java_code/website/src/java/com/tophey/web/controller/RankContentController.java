@@ -9,6 +9,7 @@ import com.tophey.common.ServerInfoDetail;
 import com.tophey.web.common.RankPageQuery;
 import com.tophey.web.dao.ServerQuerier;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
@@ -25,13 +26,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RankContentController {
 
     @RequestMapping(value = "rankPage.htm")
-    public @ResponseBody
-    PageResult<ServerInfoDetail> getRankPage(@RequestBody RankPageQuery rpq, HttpServletRequest request, HttpServletResponse response) {                
+     public String getRankPage(Map<String,Object> model) {                
+//     public void getRankPage(@RequestBody RankPageQuery rpq, HttpServletRequest request, HttpServletResponse response) {                
         ServerQuerier sq = new ServerQuerier();
-        int totalCount = sq.getServerCountByCategory(rpq.getCategoryId());
-        List<ServerInfoDetail> retList = sq.getServerInfoDetailPageByCategory(rpq.getCategoryId(), rpq.getStart(),rpq.getSize());
-        int curPage = (rpq.getStart() +1 ) / rpq.getSize();
-        return new PageResult<ServerInfoDetail>(totalCount, curPage, rpq.getSize(), retList);
+//        int totalCount = sq.getServerCountByCategory(rpq.getCategoryId());
+        int totalCount = sq.getServerCountByCategory("1");
+//        List<ServerInfoDetail> retList = sq.getServerInfoDetailPageByCategory(rpq.getCategoryId(), rpq.getStart(),rpq.getSize());
+        List<ServerInfoDetail> retList = sq.getServerInfoDetailPageByCategory("1", 0,50);
+        int curPage = (0 +1 ) / 50;
+        PageResult pr = new PageResult<ServerInfoDetail>(totalCount, curPage,50, retList);
+        model.put("pageResult", pr);
+        return "mainPage";
+        
+        
+//        return new PageResult<ServerInfoDetail>(totalCount, curPage, rpq.getSize(), retList);
         
     }
+//    public @ResponseBody
+//    PageResult<ServerInfoDetail> getRankPage(@RequestBody RankPageQuery rpq, HttpServletRequest request, HttpServletResponse response) {                
+//        ServerQuerier sq = new ServerQuerier();
+//        int totalCount = sq.getServerCountByCategory(rpq.getCategoryId());
+//        List<ServerInfoDetail> retList = sq.getServerInfoDetailPageByCategory(rpq.getCategoryId(), rpq.getStart(),rpq.getSize());
+//        int curPage = (rpq.getStart() +1 ) / rpq.getSize();
+//        return new PageResult<ServerInfoDetail>(totalCount, curPage, rpq.getSize(), retList);
+//        
+//    }
 }
