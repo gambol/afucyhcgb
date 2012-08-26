@@ -142,7 +142,7 @@ public class UserController {
                 + "  阿土建议您再次登录后进入个人中心修改密码，以防密码泄露。<br/>"
                 + "  美好的游戏人生，阿土与您共度：）<br/>"
                 + "  阿土游戏<br/>"
-                + "  <a href=\"www.atugame.com\">www.atugame.com</a>"
+                + "  <a href=\"http://www.atugame.com\">www.atugame.com</a>"
                 + "</pre></html>";
 
         try {
