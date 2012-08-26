@@ -94,7 +94,7 @@
         <div id="page">
             <!-- Wrapper -->
             <div class="wrapper">
-                <section class="column width_116 first">
+                <section class="column width1 first">
                     <div class="site-nav">
                         <ul>
                             <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/sitemanage.htm">发布记录</a></li>
