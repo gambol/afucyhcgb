@@ -245,15 +245,17 @@ table.stylized {
     margin-bottom: 1em;
     margin-top: 1em;
     position: relative;
-    background-color: #f6f6f3 !important;
+    background-color: #f7f8f9 !important;
 }
+
 table.stylized th, table.stylized td {
     line-height: 18px;
     padding: 8px 12px;
     text-align: center;
 }
+
 table.stylized th {
-    background-color: #a9ccdd !important;
+    background-color: #0078B6 !important;
     color: white;
 }
 
@@ -261,8 +263,8 @@ table.stylized a {
     color:black;
 }
 
-.width_116 {
-    width:116px;
+.width_120 {
+    width:120px;
 }
 
 table.stylized tr.high {
@@ -373,8 +375,9 @@ legend {
     padding: 0 6px 0 0;
 }
 label {
-    #    font-size: 11px;
-    #    font-weight: bold;
+    /*   font-size: 11px;
+       font-weight: bold;
+    */
     text-transform: uppercase;
 }
 label.required:before {
@@ -649,7 +652,7 @@ header#top aside a {
 #topnav {
     color: #999999;
     font-size: 12px;
-    padding: 6px 0 6px 10px;
+    padding: 70px 0 6px 10px;
     position: absolute;
     right: 0;
     text-align: right;
@@ -691,6 +694,7 @@ header#top aside a {
 }
 .sf-menu {
     line-height: 1;
+    letter-spacing:4px;
 }
 .sf-menu ul {
     position: absolute;
@@ -883,7 +887,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 footer#bottom {
     background: -moz-linear-gradient(center bottom , #F2F2F2 20%, #FEFEFE 80%) repeat scroll 0 0 transparent;
-    #  border-top: 4px solid #D9D9D9;
+    /* border-top: 4px solid #D9D9D9; */
     color: #999999;
     float: left;
     font-size: 11px;
@@ -944,7 +948,7 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 
 .small-btn {
-    border: 1px solid #CCCCCC !important;
+     border: 1px solid #CCCCCC !important;
     border-radius: 4px 4px 4px 4px;
     color: #777777 !important;
     cursor: pointer;
@@ -1030,7 +1034,7 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
     background-color: #ffec00 !important;
     border: 1px solid #ffec00 !important;
     color: #6a4e25 !important;
-    /*   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); */
+ /*   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); */
     margin-top:10px;
 }
 
@@ -1191,19 +1195,6 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
     margin: 0;
     padding: 6px 8px;
 }
-
-.content-box header .right-href {
-    color: #E3C32B;
-    float: right;
-    font-size: 12px;
-    margin: 0;
-    padding: 6px;
-
-
-}
-
-
-
 .content-box header h3 img {
     float: left;
     margin: 1px 4px 0 0;
@@ -2286,20 +2277,20 @@ button.datepick-cmd {
     position: relative;
     top: 0;
     white-space: nowrap; 
-    background: none repeat scroll 0 0 #fae594;
+    background: none repeat scroll 0 0 #BEDCEC;
     margin-top: 6px;
     display:block;
-    width:90px;
+    width:117px;
 }
 
 .site-nav .current {
-    background: url("/img/tag-bg.gif") no-repeat scroll 100% 50% transparent;
-    background-color: #a9ccdd;
-    width:110px;
+    background: url("/img/arror.png") no-repeat scroll 0% 50% transparent;
+    /* background-color: #FFEC00; */
+    width:117px;
 }
 
-.site-nav .current a {
-
+.site-nav .current a:hover, .site-nav .current a:focus, .site-nav .current a:active {
+background: url("/img/arror.png") no-repeat scroll 0% 50% transparent;
 }
 
 .site-nav {
@@ -2329,7 +2320,7 @@ button.datepick-cmd {
 }
 
 .site-nav > li:hover, .site-nav > li.sfHover, .site-nav a:focus, .site-nav a:hover, .site-nav a:active {
-
+    background-color: #23aaff;
 }
 .pageline {
     background-color:#0078b6;
@@ -2450,7 +2441,7 @@ div.pager A {
     color: #6d6d6d; 
     background-color: #d5d5d5;
     text-decoration: none;
-
+   
 }
 div.pager A:hover,  div.pager A:active {
     color: white; 
@@ -2475,14 +2466,4 @@ div.pager SPAN.current {
     background-color: #0e95bf;
     padding:4px 8px;
     margin: 2px;
-}
-
-
-
-
-.error-img{
-    vertical-align: middle;
-}
-.error-lb{
-    vertical-align: middle;color:#DD0000
 }
