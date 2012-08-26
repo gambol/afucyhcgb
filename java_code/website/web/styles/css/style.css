@@ -199,10 +199,11 @@ q cite {
     font-size: 12px;
 }
 hr {
-    background: none repeat scroll 0 0 #DDDDDD;
-    border: medium none;
+    background: none repeat scroll 0 0 #d8eaf4;
+    border:1.6px;
     width: 100%;
 }
+
 ul, ol {
     padding-left: 1.5em;
 }
@@ -693,8 +694,9 @@ header#top aside a {
     padding: 0;
 }
 .sf-menu {
+    color:white;
     line-height: 1;
-    letter-spacing:4px;
+/*    letter-spacing:4px;  */
 }
 .sf-menu ul {
     position: absolute;
@@ -716,7 +718,8 @@ header#top aside a {
 .sf-menu a {
     display: block;
     position: relative;
-    font:bold 18px/20px "microsoft yahei";
+    font:bold 18px "microsoft yahei";
+    color:white;
 }
 .sf-menu li:hover ul, .sf-menu li.sfHover ul {
     left: 0;
@@ -744,14 +747,14 @@ ul.sf-menu li li li:hover ul, ul.sf-menu li li li.sfHover ul {
 .sf-menu a {
     /*    padding: 0.5em 1em;*/
     padding-top:8px;
-    padding-bottom:5px;
+    padding-bottom:3px;
     text-decoration: none;
 }
 .sf-menu ul a {
     border-bottom: 1px solid #333333;
 }
 .sf-menu a, .sf-menu a:visited {
-    color: #EEEEEE;
+    color:white;
 }
 .sf-menu li {
     background: none repeat scroll 0 0 #555555;
@@ -893,7 +896,9 @@ footer#bottom {
     font-size: 11px;
     padding-bottom: 2em;
     width: 100%;
+    padding-left:0px;
 }
+
 footer#bottom nav {
     float: none;
     padding-top: 20px;
@@ -967,20 +972,23 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
     color: #777777 !important;
     cursor: pointer;
     display: inline-block;
-    font-family: Tahoma,Arial,sans-serif;
+    font-family: "microsoft yahei",Arial,sans-serif;
     font-size: 16px;
-    padding: 5px 10px 10px;
+    padding: 10px;
     position: relative;
     text-decoration: none;
     width:136px;
+    font-size:bold;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
+/*
 .big-btn:hover, .big-btn:focus, .big-btn:active {
     box-shadow: 0 0 5px rgba(82, 168, 236, 0.5);
     opacity: 0.9;
     outline: medium none;
 }
+*/
 
 .btn {
     background: url("../img/btn-overlay.png") repeat-x scroll 0 0 #FFFFFF !important;
@@ -1036,12 +1044,13 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
     color: #6a4e25 !important;
  /*   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25); */
     margin-top:10px;
+ /*   padding:10px 5px 10px 5px; */
 }
-
+/*
 .btn-yellow:hover, .btn-yellow:focus, .btn-yellow:active {
     box-shadow: 0 0 5px #ffec00;
 }
-
+*/
 
 .btn-special {
     font-size: 110%;
@@ -1174,7 +1183,7 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 .notes-total {
     text-align: center;
-    padding: 20px 28px 26px 27px;
+    padding: 20px 19px 26px 19px;
 }
 .content-box {
     background: none repeat scroll 0 0 #EEEEEE;
@@ -2248,8 +2257,8 @@ button.datepick-cmd {
     text-align:right;
     text-decoration: none;
     display:block;
-    font: bold 16px "microsoft yahei"; 
-    color:#6a4e25;
+    font: bold 14px "microsoft yahei"; 
+    color:#756f6f;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     background-color: #bedcec;
@@ -2259,7 +2268,7 @@ button.datepick-cmd {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     background: none repeat scroll 0 0 #ffec00;
-    color:#6a4e25;
+    color:#756f6f;
 }
 
 #left-nav > li:hover, #left-nav > li.sfHover, #left-nav a:focus, #left-nav a:hover, #left-nav a:active {
@@ -2347,7 +2356,7 @@ background: url("/img/arror.png") no-repeat scroll 0% 50% transparent;
 */
 .rank-column {
     width:60px;
-    font:bold 36px 'Trebuchet MS',Trebuchet,Arial,sans-serif;
+    font:bold 48px 'microsoft yahei', Trebuchet,Arial,sans-serif;
     text-align:center;
     color: #F8CA1D;
     line-height: 2em;
@@ -2362,7 +2371,7 @@ background: url("/img/arror.png") no-repeat scroll 0% 50% transparent;
 .like-it-column {
     width:45px;
     float:right;
-    font:bold 20px 'Trebuchet MS',Trebuchet,Arial,sans-serif;
+    font:bold 20px "microsoft yahei",Trebuchet,Arial,sans-serif;
     color: #F8CA1D;
     text-align:center;
     margin-top:10px;
