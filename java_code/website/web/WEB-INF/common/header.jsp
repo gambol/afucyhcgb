@@ -12,10 +12,9 @@
         <!-- Top navigation -->
         <div id="topnav">
             <a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
-            Logged in as <b>Admin</b>
+            Hi <b>bibubibu</b>
             <span>|</span> <a href="#">Settings</a>
             <span>|</span> <a href="#">Logout</a><br />
-            <small>You have <a href="#" class="high"><b>1</b> new message!</a></small>
         </div>
         <!-- End of Top navigation -->
         <!-- Main navigation -->
