@@ -25,6 +25,10 @@
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>
     <filter>
+        <filter-name>userFilter</filter-name>
+        <filter-class>com.tophey.web.servlet.UserFilter</filter-class>
+    </filter>
+    <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -37,6 +41,12 @@
         </init-param>
     </filter>
 
+
+
+    <filter-mapping>
+        <filter-name>userFilter</filter-name>
+        <url-pattern>/publish.htm</url-pattern>        
+    </filter-mapping>
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
