@@ -243,17 +243,18 @@ video {
 table.stylized {
     border-collapse: collapse;
     margin-bottom: 1em;
-    margin-top: 1em;
+    margin-top: 25px;
     position: relative;
-    background-color: #f6f6f3 !important;
+    background-color: #f7f8f9 !important;
 }
+
 table.stylized th, table.stylized td {
     line-height: 18px;
     padding: 8px 12px;
     text-align: center;
 }
 table.stylized th {
-    background-color: #a9ccdd !important;
+    background-color: #0078B6 !important;
     color: white;
 }
 
@@ -272,7 +273,7 @@ table.stylized tbody th, table.stylized tbody td, table.stylized tfoot th, table
     border-bottom: 1px solid #f6f6f3x;
 }
 table.stylized tfoot td {
-    background-color: #F2F2F2 !important;
+    background-color: #f7f8f9 !important;
     border-bottom: 2px solid #DDDDDD;
 }
 table.stylized tr:nth-child(2n) td {
@@ -2273,16 +2274,14 @@ button.datepick-cmd {
     position: relative;
     top: 0;
     white-space: nowrap; 
-    background: none repeat scroll 0 0 #fae594;
+    background: none repeat scroll 0 0 #BEDCEC;
     margin-top: 6px;
     display:block;
     width:90px;
 }
 
 .site-nav .current {
-    background: url("/img/tag-bg.gif") no-repeat scroll 100% 50% transparent;
-    background-color: #a9ccdd;
-    width:110px;
+    background-color: #FFEC00;
 }
 
 .site-nav .current a {
@@ -2291,7 +2290,7 @@ button.datepick-cmd {
 
 .site-nav {
     text-align: center;
-    margin-top:1em;
+    margin-top:25px;
 }
 
 .site-nav ul{
@@ -2316,7 +2315,7 @@ button.datepick-cmd {
 }
 
 .site-nav > li:hover, .site-nav > li.sfHover, .site-nav a:focus, .site-nav a:hover, .site-nav a:active {
-
+    background-color: #23aaff;
 }
 .pageline {
     background-color:#0078b6;
