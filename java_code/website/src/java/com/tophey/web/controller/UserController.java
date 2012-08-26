@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(@Valid UserBean loginBean, BindingResult result,HttpServletRequest request,HttpServletResponse response,
+    public String login(@Valid UserBean loginBean, BindingResult result, HttpServletRequest request, HttpServletResponse response,
             Model model) {
 
         if (result.hasErrors()) {
@@ -81,7 +81,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "regi", method = RequestMethod.POST)
-    public String regi(@Valid UserBean loginBean, BindingResult result,HttpServletRequest request,HttpServletResponse  response,
+    public String regi(@Valid UserBean loginBean, BindingResult result, HttpServletRequest request, HttpServletResponse response,
             Model model) {
 
         if (result.hasErrors()) {
@@ -106,8 +106,8 @@ public class UserController {
 
         userDao.addUser(user);
         HttpSession session = request.getSession();
-            session.setAttribute(SessionConst.USERID, user.getId());
-            session.setAttribute(SessionConst.USERNAME, user.getUsername());
+        session.setAttribute(SessionConst.USERID, user.getId());
+        session.setAttribute(SessionConst.USERNAME, user.getUsername());
         return "redirect:/mainPage.htm";
     }
 
@@ -136,12 +136,22 @@ public class UserController {
             return "forget";
         }
         //先用简单的方法发送邮件
+        String tmpl = "<html>亲爱的${username}："
+                + "<br/><pre>"
+                + "  您在阿土游戏的密码为：${password}<br/>"
+                + "  阿土建议您再次登录后进入个人中心修改密码，以防密码泄露。<br/>"
+                + "  美好的游戏人生，阿土与您共度：）<br/>"
+                + "  阿土游戏<br/>"
+                + "  <a href=\"www.atugame.com\">www.atugame.com</a>"
+                + "</pre></html>";
+
         try {
             EmailSenderDriver esd = new EmailSenderDriver();
-            esd.setTo(userEmail, "fjfjfj");
-            esd.setFrom("topheytest@163.com", "测试返馈");
-            esd.setSubject("京都府");
-            esd.setBody("<html>测试正文测试正文测试正文测试正文测试正文测试正文测试正文测试正文测试正文测试正文测试正文，密码是"+user.getPassword()+"</html>");
+            esd.setTo(userEmail, userEmail);
+            esd.setFrom("topheytest@163.com", "阿土游戏");
+            esd.setSubject("密码邮件");
+            tmpl =tmpl.replace("${username}", user.getUsername()).replace("${password}", user.getPassword());            
+            esd.setBody(tmpl);
             esd.setSMTPHost("smtp.163.com", "topheytest@163.com", "winnie");
             esd.setSMTPPort(25);
             esd.setTimeout(1000 * 30);
@@ -151,7 +161,7 @@ public class UserController {
             ex.printStackTrace();
             model.addAttribute("mailErrMsg", "发送失败，请重试");
         }
-       
+
         //TODO session相关
         return "redirect:/mainPage.htm";
     }
@@ -170,8 +180,7 @@ public class UserController {
         }
 
     }
-    
-    
+
     @RequestMapping("checki")
     public @ResponseBody
     boolean checki(HttpServletRequest request,
