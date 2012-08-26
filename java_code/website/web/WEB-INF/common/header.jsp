@@ -10,7 +10,7 @@
         <!-- Title/Logo - can use text instead of image -->
         <div id="title"><img SRC="/img/logo.png" alt="Atugame" /></div>
         <!-- Top navigation -->
-
+        <div id="topnav">
             <a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
             Hi <b>bibubibu</b>
 

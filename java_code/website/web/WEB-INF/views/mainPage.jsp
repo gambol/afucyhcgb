@@ -121,11 +121,7 @@
                       <a class="big-btn btn-yellow" href="#">免费发布新站</a>
                     </section>
                 </div>
-                <div class="content-box">
-                    <header class="blue">
-                        <h3>SEO相关</h3>
-                    </header>
-                </div>
+                <hr>
             </aside>
             <!-- End of Right column/section -->
 
