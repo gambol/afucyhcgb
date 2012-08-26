@@ -21,9 +21,9 @@
         <!-- Main navigation -->
         <nav id="menu">
             <ul class="sf-menu">
-                <li id="menu-mainPage"><a HREF="dashboard.html">首页</a></li>
-                <li id="menu-userCenter"><a HREF="forms.html">个人中心</a></li>	
-                <li id="menu-aboutUS"><a HREF="graphs.html">关于我们</a></li>                
+                <li id="menu-mainPage"><a HREF="mainPage.htm">首页</a></li>
+                <li id="menu-userCenter"><a HREF="sitemanage.htm">个人中心</a></li>	
+                <li id="menu-aboutUS"><a HREF="#">关于我们</a></li>                
             </ul>
         </nav>
     </div>
