@@ -7,6 +7,7 @@ package com.tophey.web.controller;
 import com.tophey.model.ServerInfo;
 import com.tophey.model.ServerSysInfo;
 import com.tophey.web.common.PublishBean;
+import com.tophey.web.common.SessionConst;
 import com.tophey.web.dao.ServerDao;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -62,6 +63,9 @@ public class PublishController {
     public String form(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException {
         int userId = 0;
         int serverId = 0;
+        String username = (String)request.getSession().getAttribute(SessionConst.USERNAME);
+        System.out.println("username:" + username);
+        PublishBean pb = new PublishBean();
         try {
 //            userId = (Integer)request.getAttribute("userId");
             String strId = request.getParameter("id");
@@ -69,16 +73,19 @@ public class PublishController {
                 serverId = Integer.parseInt(request.getParameter("id"));
         } catch(Exception e) {
             e.printStackTrace();
+            pb.setNetwork("双线");
+            model.addAttribute("publishBean", pb);
             return "publish";
         }
         
         // 查询db
         ServerInfo si = ServerDao.getServerInfoById(serverId);
         if (si == null) {
+            pb.setNetwork("双线");
+            model.addAttribute("publishBean", pb);
             return "publish";
         }
         
-        PublishBean pb = new PublishBean();
         pb.setServer_name(si.getName());
         pb.setBanner(si.getBannerUrl());
         pb.setCategory(si.getCategoryId());
