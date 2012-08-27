@@ -63,7 +63,7 @@ hr {
     border-style: solid none none;
     border-width: 1px 0 0;
     display: block;
-    height: 1px;
+    height: 2px;
     margin: 1em 0;
     padding: 0;
 }
@@ -385,6 +385,7 @@ label.required:before {
     color: red;
     content: "*";
     font-family: "Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+    padding-right: 3px;
 }
 label.ok {
     background: url("../img/valid.gif") no-repeat scroll 0 0 transparent;
@@ -2482,4 +2483,24 @@ div.pager SPAN.current {
 }
 .error-lb{
     vertical-align: middle;color:#DD0000
+}
+
+.pagetitle {
+    background: none repeat scroll 0 0 #EEEEEE;
+    /*border: 1px solid #999999; */
+    display: inline-block;
+    margin: 1em 0 0;
+    width: 100%;
+}
+.pagetitle header {
+    #   background: none repeat scroll 0 0 #999999;
+    background: none repeat scroll 0 0 #0078b6;
+    width: 100%;
+}
+.pagetitle header h3 {
+    color: #FFFFFF;
+    float: left;
+    font-size: 14px;
+    margin: 0;
+    padding: 6px 8px;
 }
