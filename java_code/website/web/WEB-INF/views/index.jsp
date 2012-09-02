@@ -65,7 +65,7 @@
                                 <div class="rank-column column first">${status.count + param['pager.offset']}</div>
                                 <div class="desc-column column width4">
                                     <div class="font-14">
-                                        <span class="server-title first"><a href="#">${serverInfoDetail.serverInfo.name}</a></span>
+                                        <span class="server-title first"><a target="_blank" href="${serverInfoDetail.serverInfo.url}">${serverInfoDetail.serverInfo.name}</a></span>
                                         <span class="right-span">${serverInfoDetail.serverInfo.line}</span>
                                     </div>
                                     <div class="desc">

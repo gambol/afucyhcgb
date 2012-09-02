@@ -3,7 +3,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"%>
-
 <%@ page session="false" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -70,9 +69,9 @@
                     },
                     // the errorPlacement has to take the layout into account
                     errorPlacement: function(error, element) {                      
-                   //                             error.insertAfter(element.parent().find('input:first'));
+                        //                             error.insertAfter(element.parent().find('input:first'));
                    
-                           error.appendTo (element.next());
+                        error.appendTo (element.next());
                        
                     },
                     // specifying a submitHandler prevents the default submit, good for the demo
@@ -108,17 +107,16 @@
                             </ul>
                         </div>  
                     </section>
-                    <!-- Login form -->
+
 
                     <section class="width5">					
-                         <div class="pagetitle">
-                        <header class="blue">
-                            <h3>站点发布</h3>
-                        </header>
+                        <div class="pagetitle">
+                            <header class="blue">
+                                <h3>站点发布</h3>
+                            </header>
 
-                    </div>
-                     
-                        
+                        </div>
+
                     <form:form id="publishform" method="post" modelAttribute="publishBean" cssClass="cleanform">
                         <p>
                             <c:if test="${not empty message}">
@@ -166,7 +164,7 @@
                                 <form:option value="1" label="传奇"/>
                                 <form:option value="2" label="魔兽世界"/>
                             </form:select>
-                           <span/>
+                            <span/>
                         </p>
                         <p>
                             <form:label cssClass="required" path="desc">描述:</form:label><br/>

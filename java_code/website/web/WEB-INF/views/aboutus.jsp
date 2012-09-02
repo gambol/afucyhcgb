@@ -19,13 +19,16 @@
         <!-- End of Page title -->
 
         <!-- Page content -->
+        <script>
+            selectMenu("menu-aboutUs");
+        </script>
         <div id="page">
             <!-- Wrapper -->
             <div class="wrapper">
 
                 <!-- Login form -->
 
-                <section class="full" style="padding-top:10px;">					
+                <div class="full" style="padding-top:10px;">					
 
                     <div>
                       
@@ -35,7 +38,7 @@
 
                    
 
-                </section>
+                </div>
                 <!-- End of login form -->
 
             </div>

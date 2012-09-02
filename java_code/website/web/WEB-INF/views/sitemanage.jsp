@@ -12,6 +12,9 @@
         <script>
             selectMenu("menu-userCenter");
         </script>
+        <style>
+         
+        </style>
         <script type="text/javascript" src="/js/sitemanage.js"></script>
         <!-- End of Header -->
         <!-- Page title -->
@@ -26,6 +29,7 @@
             <!-- Wrapper -->
             <div class="wrapper">
                 <section class="column width1 first">
+                    
                     <div class="site-nav">
                         <ul>
                             <li class="current"><a href="/user/sitemanage.htm">发布记录</a></li>
@@ -38,12 +42,10 @@
                 <!-- Login form -->
 
                 <section class="width5">					
-                    <div class="pageline">   
-                    </div>
 
                     <pg:pager items="${serverInfos.totalCount}" maxPageItems="20" maxIndexPages="10" 
                               url="/sitemanage.htm"   export="pageNo=pageNumber" scope="request">
-                        <table class="stylized full">
+                        <table class="full stylized">
 
                             <thead>
                                 <tr>
@@ -58,7 +60,7 @@
                                 <c:choose>
                                     <c:when test="${serverInfos.currentSize == 0}">
                                     <td colspan="4">
-                                        <div class="nodata">你还没有发布站点</div>
+                                        <div class="nodata"><p>你还没有发布站点</p></div>
                                     </td>
                                 </c:when>
                                 <c:otherwise>
