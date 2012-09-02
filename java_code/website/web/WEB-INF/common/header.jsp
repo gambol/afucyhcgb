@@ -18,7 +18,9 @@
         <div id="topnav">
             <c:choose>
                 <c:when test="${not empty username}">
+                    <!--
                     <a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
+                    -->
                     Hi <b><c:out value="${username}"/></b>
                     <span>|</span> <a href="/user/logout.htm">Logout</a><br />
                 </c:when>

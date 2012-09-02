@@ -68,12 +68,12 @@
                                         <span class="server-title first"><a href="#">${serverInfoDetail.serverInfo.name}</a></span>
                                         <span class="right-span">${serverInfoDetail.serverInfo.line}</span>
                                     </div>
-                                    <div class="desc"">
+                                    <div class="desc">
                                          <c:out value="${fn:substring(serverInfoDetail.serverInfo.description, 0, 100)}" escapeXml="true"/>
                                 </div>
                             </div>
                             <div class="like-it-column column">
-                                <span class="number">239</span>
+                               <!-- <span class="number">239</span> -->
                                 <a class="small-btn btn-yellow" href="#">赞</a>
                             </div>
                         </div>
