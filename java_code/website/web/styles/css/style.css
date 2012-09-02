@@ -71,7 +71,7 @@ input, select {
     vertical-align: middle;
 }
 body {
-    background-color: #F2F2F2;
+    background-color: white;
     color: #666666;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 12px;
@@ -890,7 +890,8 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
     text-transform: uppercase;
 }
 footer#bottom {
-    background: -moz-linear-gradient(center bottom , #F2F2F2 20%, #FEFEFE 80%) repeat scroll 0 0 transparent;
+ /*   background: -moz-linear-gradient(center bottom , #F2F2F2 20%, #FEFEFE 80%) repeat scroll 0 0 transparent;*/
+     background-color: white;
     /* border-top: 4px solid #D9D9D9; */
     color: #999999;
     float: left;
@@ -2288,19 +2289,21 @@ button.datepick-cmd {
     top: 0;
     white-space: nowrap; 
     background: none repeat scroll 0 0 #BEDCEC;
-    margin-top: 6px;
+    margin-top: 7px;
     display:block;
     width:117px;
+    height:26px;
 }
 
 .site-nav .current {
-    background: url("/img/arror.png") no-repeat scroll 0% 50% transparent;
-    /* background-color: #FFEC00; */
-    width:117px;
+/*    background: url("/img/arror.png") no-repeat scroll 0% 50% transparent; */
+    background: url("/img/arrow.png") no-repeat scroll 100% 50% transparent;
+     background-color: #FFEC00;
+    width:134px;
 }
 
 .site-nav .current a:hover, .site-nav .current a:focus, .site-nav .current a:active {
-background: url("/img/arror.png") no-repeat scroll 0% 50% transparent;
+   background: url("/img/arrow.png") no-repeat scroll 100% 50% transparent;
 }
 
 .site-nav {
@@ -2315,7 +2318,7 @@ background: url("/img/arror.png") no-repeat scroll 0% 50% transparent;
 }
 
 .site-nav li a{
-    padding: 5px 5px;
+    padding: 3px;
     border-bottom:0 none !important;
     /*
     text-align:left;
