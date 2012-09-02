@@ -66,13 +66,21 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute(SessionConst.USERID, user.getId());
             session.setAttribute(SessionConst.USERNAME, user.getUsername());
-            return "redirect:/mainPage.htm";
+            return "redirect:/index.htm";
         } else {
             model.addAttribute("mailErrMsg", "用户名密码不正确");
             return "login";
         }
-
     }
+    
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.removeAttribute(SessionConst.USERID);
+        session.removeAttribute(SessionConst.USERNAME);
+        return "logout";
+    }
+    
 
     @RequestMapping(value = "regi", method = RequestMethod.GET)
     public String regiform(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException {
@@ -108,7 +116,7 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.USERID, user.getId());
         session.setAttribute(SessionConst.USERNAME, user.getUsername());
-        return "redirect:/mainPage.htm";
+        return "redirect:/index.htm";
     }
 
     @RequestMapping(value = "forget", method = RequestMethod.GET)
@@ -163,7 +171,7 @@ public class UserController {
         }
 
         //TODO session相关
-        return "redirect:/mainPage.htm";
+        return "redirect:/index.htm";
     }
 
     @RequestMapping("check")
