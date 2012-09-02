@@ -44,8 +44,8 @@
                         captcha: {
                             required: true,
                             remote:"validateImage.htm"
-                        },
-                        terms: "required"
+                        }
+                       
                     },
                     messages: {
                         server_name: {
@@ -65,8 +65,8 @@
                         captcha: {
                             required: "输入验证码",
                             remote: "请输入正确的验证码"
-                        },
-                        terms: "请同意用户协议"
+                        }
+                      
                     },
                     // the errorPlacement has to take the layout into account
                     errorPlacement: function(error, element) {                      
@@ -91,7 +91,7 @@
             
             function refreshImage(){    
         
-                $('#captchaImg').hide().attr('src',"generateImage.htm?" + Math.floor(Math.random()*100)).fadeIn();     
+                $('#captchaImg').hide().attr('src',"/generateImage.htm?" + Math.floor(Math.random()*100)).fadeIn();     
             }    
         </script>
         <!-- Page content -->
@@ -101,8 +101,8 @@
                 <section class="column width1 first">
                     <div class="site-nav">
                         <ul>
-                            <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/sitemanage.htm">发布记录</a></li>
-                            <li  <c:if test="${empty publishBean['server_name']}"> class="current" </c:if>><a href="/publish.htm">新站发布</a></li>
+                            <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/sitemanage.htm">发布记录</a></li>
+                            <li  <c:if test="${empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/publish.htm">新站发布</a></li>
                                 <li><a href="#">修改密码</a></li>
 
                             </ul>
@@ -175,11 +175,12 @@
                         </p>
 
                         <p> <label class="required" for="captcha">验证码:</label> <br/>
-                            <img id='captchaImg' alt="验证码" src="generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a>  <br/>                       
+                            <img id='captchaImg' alt="验证码" src="/generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a>  <br/>                       
                             <input type="text" name="captcha" id="captcha" class="half"/>
                             <span/>
                         </p>
                         <br/>
+                        <!--
                         <c:if test="${empty publishBean['server_name']}">
                             <div class="contract">
                                 <p>
@@ -199,6 +200,7 @@
                             <label class="choice" for="terms">我已阅读并接受以上合同条款、补充条款及其他所有内容</label>
                             <span/>
                         </c:if>
+                        -->
                         <br/>
                         <br/>
                         <form:hidden path="id"/>

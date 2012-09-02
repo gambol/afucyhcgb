@@ -43,7 +43,7 @@
                     <div id="left-nav">
                         <ul>
                             <c:forEach var="category" items="${categorys.pageList }">
-                                <li><a href="/mainPage.htm?categoryId=${category.id}" <c:if test="${categoryId == category.id}"> class="current"</c:if>>${category.name}</a></li>
+                                <li><a href="/index.htm?categoryId=${category.id}" <c:if test="${categoryId == category.id}"> class="current"</c:if>>${category.name}</a></li>
                             </c:forEach>
 
                         </ul>
@@ -57,7 +57,7 @@
                         </form>
                     </div>
                     <pg:pager items="${serverInfos.totalCount}" maxPageItems="10" maxIndexPages="7" 
-                              url="/mainPage.htm"   export="pageNo=pageNumber" scope="request">
+                              url="/index.htm"   export="pageNo=pageNumber" scope="request">
                         <pg:param name="categoryId" />
                         <pg:param name="keyword"/>
                         <c:forEach var="serverInfoDetail" items="${serverInfos.pageList}" varStatus="status">
@@ -118,7 +118,7 @@
                 <div class="clean-content-box">                  
                     <section class="notes-total">
                       <img src="img/atu.png" alt="atu game"/>
-                      <a class="big-btn btn-yellow" href="#">免费发布新站</a>
+                      <a class="big-btn btn-yellow" href="/user/publish.htm">免费发布新站</a>
                     </section>
                 </div>
                 <hr>

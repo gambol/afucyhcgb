@@ -20,12 +20,10 @@
                 <c:when test="${not empty username}">
                     <a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
                     Hi <b><c:out value="${username}"/></b>
-                    
-                    <span>|</span> <a href="#">Settings</a>
-                    <span>|</span> <a href="#">Logout</a><br />
+                    <span>|</span> <a href="/user/logout.htm">Logout</a><br />
                 </c:when>
                 <c:otherwise>
-                    <a href="login.htm"> 登录 </a>
+                    <a href="/user/login.htm"> 登录 </a>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -33,11 +31,11 @@
         <!-- Main navigation -->
         <nav id="menu">
             <ul class="sf-menu">
-                <li id="menu-mainPage"><a HREF="mainPage.htm">首页</a></li>
+                <li id="menu-mainPage"><a HREF="/index.htm">首页</a></li>
                 <c:if test="${not empty username}">
-                    <li id="menu-userCenter"><a HREF="sitemanage.htm">个人中心</a></li>
+                    <li id="menu-userCenter"><a HREF="/user/sitemanage.htm">个人中心</a></li>
                 </c:if>
-                <li id="menu-aboutUS"><a HREF="#">关于我们</a></li>                
+                <li id="menu-aboutUS"><a HREF="/aboutus.htm">关于我们</a></li>                
 
             </ul>
         </nav>

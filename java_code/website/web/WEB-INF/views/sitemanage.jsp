@@ -12,6 +12,7 @@
         <script>
             selectMenu("menu-userCenter");
         </script>
+        <script type="text/javascript" src="/js/sitemanage.js"></script>
         <!-- End of Header -->
         <!-- Page title -->
         <!--
@@ -27,8 +28,8 @@
                 <section class="column width1 first">
                     <div class="site-nav">
                         <ul>
-                            <li class="current"><a href="/sitemanage.htm">发布记录</a></li>
-                            <li><a href="/publish.htm">新站发布</a></li>
+                            <li class="current"><a href="/user/sitemanage.htm">发布记录</a></li>
+                            <li><a href="/user/publish.htm">新站发布</a></li>
                             <li><a href="#">修改密码</a></li>
 
                         </ul>
@@ -69,10 +70,10 @@
                                             <td><a href="/publish.htm?id=${serverInfo.id}" /> 编辑 </a> &nbsp;&nbsp;
                                                 <c:choose>
                                                     <c:when test="${serverInfo.status == 'online'}">
-                                                        <a href="#" aurl="/sitemanage/changeStatus.htm?id=${serverInfo.id}" class="changeStatus"> 隐藏 </a>
+                                                        <a href="#" aurl="/user/sitemanage/changeStatus.htm?id=${serverInfo.id}" class="changeStatus"> 隐藏 </a>
                                                     </c:when>
                                                     <c:when test="${serverInfo.status == 'hidden'}">
-                                                        <a href="#" aurl="/sitemanage/changeStatus.htm?id=${serverInfo.id}" class="changeStatus"> 显示</a>
+                                                        <a href="#" aurl="/user/sitemanage/changeStatus.htm?id=${serverInfo.id}" class="changeStatus"> 显示</a>
                                                     </c:when>
                                                 </c:choose>
                                             </td>
