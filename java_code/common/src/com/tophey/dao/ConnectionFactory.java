@@ -59,7 +59,7 @@ public class ConnectionFactory {
         usePool = Boolean.parseBoolean(prop.getProperty(KEY_DB_USE_POOL));
         poolname = prop.getProperty(KEY_POOL_NAME);
 
-
+        System.out.println("ur:" + url);
 
         if (usePool) {
             try {
