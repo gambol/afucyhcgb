@@ -3,7 +3,7 @@
 <!-- Page footer -->
 <footer id="bottom">
     <div class="wrapper ">
-    <div class="width1 first column" style="font-size:1px">1</div>
+    <div class="width1 first column" style="font-size:1px">&nbsp</div>
     <div class="width5 column">
         <p>Copyright &copy; 2010 <b><a HREF="http://www.atugame.com" title="www.atugame.com">www.atugame.com</a></b></p>
     </div>
