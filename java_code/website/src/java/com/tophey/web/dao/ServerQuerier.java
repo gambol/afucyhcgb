@@ -10,6 +10,7 @@ import com.tophey.model.ServerInfo;
 import com.tophey.common.ServerInfoDetail;
 import com.tophey.model.ServerSysInfo;
 import com.tophey.dao.DBTool;
+import java.awt.image.DataBufferByte;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -175,6 +176,11 @@ public class ServerQuerier {
         sb.append("select * from ").append(DBTool.getTableName(ServerInfo.class)).append(" where ").append("id").append("=?");
 
         return DBTool.queryEntity(ServerInfo.class, sb.toString(), id);
+    }
+    
+    public ServerSysInfo getServerSysInfoById(int id) {
+        String sql = "select * from " + DBTool.getTableName(ServerSysInfo.class) + " where id = ?";
+        return DBTool.queryEntity(ServerSysInfo.class, sql, id);
     }
 
     public PageResult<ServerInfo> getServerInfoByCategoryId(int categoryId) {
