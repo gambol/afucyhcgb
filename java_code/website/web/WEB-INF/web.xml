@@ -41,11 +41,13 @@
         </init-param>
     </filter>
 
-
-
     <filter-mapping>
         <filter-name>userFilter</filter-name>
-        <url-pattern>/publish.htm</url-pattern>        
+        <url-pattern>/user/publish.htm</url-pattern>  
+    </filter-mapping>
+     <filter-mapping>
+        <filter-name>userFilter</filter-name>
+        <url-pattern>/user/sitemanager.htm</url-pattern>  
     </filter-mapping>
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
