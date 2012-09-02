@@ -34,7 +34,7 @@ public class IndexController  {
       
     }
     
-    @RequestMapping("mainPage.htm")
+    @RequestMapping("index")
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response, Model model){
         ServerQuerier sq = new ServerQuerier();
         int categoryId = 1;
@@ -69,4 +69,9 @@ public class IndexController  {
         return new ModelAndView("mainPage");
     }
    
+    @RequestMapping("aboutus")
+    public String index(HttpServletRequest request, HttpServletResponse response){
+       return "aboutus";
+    }
+    
 }

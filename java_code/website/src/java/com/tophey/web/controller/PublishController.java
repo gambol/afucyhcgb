@@ -12,6 +12,8 @@ import com.tophey.web.dao.ServerDao;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,11 +33,11 @@ import tophey.utils.DateUtil;
  * @author zhenbao.zhou
  */
 @Controller
-@RequestMapping("/publish")
+@RequestMapping("/user/publish")
 @SessionAttributes("publisBean")
 public class PublishController {
+    final private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    // 需要先判断用户是否登录
     public static HashMap NETWORK_MAP = new HashMap();
     
     static {
@@ -66,8 +68,16 @@ public class PublishController {
         String username = (String)request.getSession().getAttribute(SessionConst.USERNAME);
         System.out.println("username:" + username);
         PublishBean pb = new PublishBean();
+     
         try {
-//            userId = (Integer)request.getAttribute("userId");
+            userId = (Integer)request.getSession().getAttribute(SessionConst.USERID);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return "redirect:/user/login.htm";
+        }
+        
+        try {
+            
             String strId = request.getParameter("id");
             if (strId != null)
                 serverId = Integer.parseInt(request.getParameter("id"));
@@ -101,11 +111,20 @@ public class PublishController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String processSubmit(@Valid PublishBean publishBean, BindingResult result,
+    HttpServletRequest request, HttpServletResponse response, 
             Model model) {
 
         if (result.hasErrors()) {
             System.err.println(result.toString() + "   " + (result.getAllErrors()).get(0).toString());
             return null;
+        }
+        
+        int userId = 0;
+        try {
+            userId = (Integer)request.getSession().getAttribute(SessionConst.USERID);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return "redirect:/user/login.htm";
         }
 
         ServerInfo server = new ServerInfo();
@@ -116,7 +135,7 @@ public class PublishController {
         server.setLine(publishBean.getNetwork());
         server.setName(publishBean.getServer_name());
         server.setUrl(publishBean.getUrl());
-
+        
         server.setSiteFrom("atu");
         server.setCreateDate(DateUtil.getCurrentTimestamp());
         server.setDescription(publishBean.getDesc());
@@ -131,7 +150,13 @@ public class PublishController {
         if (sid <= 0) {
             ServerDao.insert(server);            
         } else {
-            server.setId(sid);
+ //           server.setId(sid);
+            if (server.getUserId() != userId) {
+                logger.log(Level.WARNING, "server对应的userId 和 新的UserId对应不上. old userId:" + server.getUserId() + " new UserId:" + userId);
+                model.addAttribute("message", "session过期");
+                return null;
+            }
+            
             ServerDao.update(server);
         }
         
