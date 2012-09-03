@@ -37,12 +37,12 @@ public class ServerQuerier {
             + DBTool.getTableName(ServerInfo.class) + " info on sysinfo.id=info.id "
             + "where info.category_id=? order by sysinfo.score desc limit ?,?";
     private static final String QUERY_SERVER_PAGE_COUNT_BY_CATEGORY_KEYWORD = "select count(*) from "
-            + DBTool.getTableName(ServerSysInfo.class) + " sysinfo left join "
-            + DBTool.getTableName(ServerInfo.class) + " info on sysinfo.id=info.id "
+            + DBTool.getTableName(ServerInfo.class) + " info left join "
+            + DBTool.getTableName(ServerSysInfo.class) + " sysinfo on sysinfo.id=info.id "
             + "where info.category_id=? and info.name like ?";
     private static final String QUERY_SERVER_PAGE_BY_CATEGORY_KEYWORD = "select * from "
-            + DBTool.getTableName(ServerSysInfo.class) + " sysinfo left join "
-            + DBTool.getTableName(ServerInfo.class) + " info on sysinfo.id=info.id "
+            + DBTool.getTableName(ServerInfo.class) + " info left join "
+            + DBTool.getTableName(ServerSysInfo.class) + " sysinfo on sysinfo.id=info.id "
             + "where info.category_id=? and info.name like ? order by sysinfo.score desc limit ?,?";
 
     //  根据类别，取得私服的数目
@@ -151,7 +151,9 @@ public class ServerQuerier {
             ps.setString(2, keyword);
             ps.setInt(3, start);
             ps.setInt(4, size);
+                        System.out.println(ps.toString());
             rs = ps.executeQuery();
+
             List<ServerInfoDetail> retLis = new ArrayList<ServerInfoDetail>();
             while (rs.next()) {
                 ServerInfo si = (ServerInfo) DBTool.getObjectFromRS(rs, ServerInfo.class);
