@@ -42,7 +42,7 @@
                         },
                         captcha: {
                             required: true,
-                            remote:"validateImage.htm"
+                            remote:"/validateImage.htm"
                         }
                        
                     },
@@ -83,7 +83,14 @@
                     // set new class to error-labels to indicate valid fields
                     success: function(label) {
                         // set &nbsp; as text for IE
-                        //     label.html("&nbsp;").addClass("ok");
+                      
+                             label.html("&nbsp;").addClass("checked");
+                        /*
+                        var a = "label.error[for='"+label.attr("for")+"']";
+                        alert(a);
+                        $("label.error[for='"+label.attr("for")+"']").classname('');
+                        $("label.error[for='server_name']").classname('');
+                        */
                     }
                 });
             });

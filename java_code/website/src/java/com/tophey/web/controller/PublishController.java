@@ -126,6 +126,11 @@ public class PublishController {
             e.printStackTrace();
             return "redirect:/user/login.htm";
         }
+        
+        if (userId == 0) {
+            logger.log(Level.WARNING, "user not logined");
+            return "redirect:/user/login.htm";
+        }
 
         ServerInfo server = new ServerInfo();
  //       server.setTitle(publishBean.getServer_name());
@@ -139,6 +144,7 @@ public class PublishController {
         server.setSiteFrom("atu");
         server.setCreateDate(DateUtil.getCurrentTimestamp());
         server.setDescription(publishBean.getDesc());
+        server.setUserId(userId);
         
         int sid  = -1;
         try {
@@ -160,13 +166,15 @@ public class PublishController {
             ServerDao.update(server);
         }
         
+        
+        
         String message = "私服发布成功, 私服url:" + server.getUrl();
         // Success response handling
 
         // prepare model for rendering success message in this request
-        model.addAttribute("message", message);
+  //      model.addAttribute("message", message);
         // 确认这个页面之后，需要跳转到哪个页面?
-        return null;
+        return "redirect:/user/sitemanage.htm";
 
     }
 }

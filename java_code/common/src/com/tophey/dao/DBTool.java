@@ -63,8 +63,10 @@ public class DBTool {
             Object fo = null;
             if (columnName != null) {
                 fo = resutlSet.getObject(columnName);
-                f.setAccessible(true);
-                f.set(o, fo);
+                if (fo != null) {
+                    f.setAccessible(true);
+                    f.set(o, fo);
+                }
             }
         }
         return o;
