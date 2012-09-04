@@ -627,6 +627,7 @@ fieldset small {
 header#top {
     background-color: #282828;
     width:100%;
+    /*
     background:-webkit-gradient(
         linear,
         left bottom,
@@ -639,6 +640,7 @@ header#top {
         rgb(39,38,34) 20%,
         rgb(50,50,50) 80%
         );
+    */
 }
 header#top aside {
     color: #999999;
@@ -654,7 +656,7 @@ header#top aside a {
 #topnav {
     color: #999999;
     font-size: 12px;
-    padding: 70px 0 6px 10px;
+    padding: 110px 30px 6px 10px;
     position: absolute;
     right: 0;
     text-align: right;
@@ -824,13 +826,14 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
 }
 #title {
     color: #FFFFFF;
-    font: bold 2.4em/26px 'Trebuchet MS',Trebuchet,Arial,sans-serif;
+/*    font: bold 2.4em/26px 'Trebuchet MS',Trebuchet,Arial,sans-serif; */
     letter-spacing: -0.02em;
     padding: 20px 0 22px;
-    text-shadow: 1px 1px 3px #111111;
+    height:59px;
+/*    text-shadow: 1px 1px 3px #111111; */
 }
 #title span {
-    color: #FFC806;
+/*    color: #FFC806; */
 }
 #pagetitle {
     background: -moz-linear-gradient(center bottom , #5092DC 20%, #6BA3E2 80%) repeat scroll 0 0 transparent;
@@ -2506,4 +2509,12 @@ div.pager SPAN.current {
     font-size: 14px;
     margin: 0;
     padding: 6px 8px;
+}
+
+.content-box header .right-href {
+    color: #E3C32B;
+    float: right;
+    font-size: 12px;
+    margin: 0;
+    padding: 6px;
 }
