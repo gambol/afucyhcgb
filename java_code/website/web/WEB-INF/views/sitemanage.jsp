@@ -12,9 +12,6 @@
         <script>
             selectMenu("menu-userCenter");
         </script>
-        <style>
-         
-        </style>
         <script type="text/javascript" src="/js/sitemanage.js"></script>
         <!-- End of Header -->
         <!-- Page title -->
@@ -34,7 +31,7 @@
                         <ul>
                             <li class="current"><a href="/user/sitemanage.htm">发布记录</a></li>
                             <li><a href="/user/publish.htm">新站发布</a></li>
-                            <li><a href="#">修改密码</a></li>
+                            <!--<li><a href="#">修改密码</a></li> -->
 
                         </ul>
                     </div>  
@@ -42,7 +39,7 @@
                 <!-- Login form -->
 
                 <section class="width5">					
-
+                    
                     <pg:pager items="${serverInfos.totalCount}" maxPageItems="20" maxIndexPages="10" 
                               url="/sitemanage.htm"   export="pageNo=pageNumber" scope="request">
                         <table class="full stylized">
@@ -119,7 +116,8 @@
 
                 </section>
                 <!-- End of login form -->
-
+                <div class="first"></div>
+                     
             </div>
             <!-- End of Wrapper -->
         </div>

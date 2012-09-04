@@ -54,6 +54,7 @@
                         <form action="" method="get">
                             <input type="hidden" name="categoryId" value="${categoryId}"/>
                             <input class="" type="text" id="keyword" name="keyword" placeholder="按标题搜索"/>
+                            
                         </form>
                     </div>
                     <pg:pager items="${serverInfos.totalCount}" maxPageItems="10" maxIndexPages="7" 

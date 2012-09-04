@@ -109,7 +109,7 @@
                         <ul>
                             <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/sitemanage.htm">发布记录</a></li>
                             <li  <c:if test="${empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/publish.htm">新站发布</a></li>
-                                <li><a href="#">修改密码</a></li>
+                               <!-- <li><a href="#">修改密码</a></li> -->
 
                             </ul>
                         </div>  

@@ -31,9 +31,7 @@
                 <div class="full" style="padding-top:10px;">					
 
                     <div>
-                      
-                        <p>  <img src="/img/aboutUs.png"/> </p>
-                        
+                       <img src="/img/aboutUs.png" alt="aboutus">                        
                     </div>
 
                    
