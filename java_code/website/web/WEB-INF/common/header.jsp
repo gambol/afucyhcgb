@@ -9,7 +9,7 @@
 <header id="top">
     <div class="wrapper">
         <!-- Title/Logo - can use text instead of image -->
-        <div id="title"><img SRC="/img/logo.png" alt="Atugame" /></div>
+        <div id="title"><img src="/img/logo.png" alt="Atugame"></div>
         <!-- Top navigation -->
         <%
             String user = (String) request.getSession().getAttribute("username");
@@ -22,10 +22,10 @@
                     <a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
                     -->
                     Hi <b><c:out value="${username}"/></b>
-                    <span>|</span> <a href="/user/logout.htm">Logout</a><br />
+                    <span>|</span> <a href="/user/logout.htm">注销</a><br />
                 </c:when>
                 <c:otherwise>
-                    <a href="/user/login.htm"> 登录 </a>
+                   <a href="/user/regi.htm"> 注册 </a> | <a href="/user/login.htm"> 登录 </a>
                 </c:otherwise>
             </c:choose>
         </div>
