@@ -656,7 +656,7 @@ header#top aside a {
 #topnav {
     color: #999999;
     font-size: 12px;
-    padding: 110px 30px 6px 10px;
+    padding: 100px 30px 6px 10px;
     position: absolute;
     right: 0;
     text-align: right;
@@ -668,7 +668,7 @@ header#top aside a {
     color: #444444;
 }
 #topnav a {
-    color: #2A7AD2;
+    color: white;
     padding: 0;
     text-decoration: none;
 }
@@ -677,7 +677,7 @@ header#top aside a {
     text-decoration: none;
 }
 #topnav a:hover, header#top aside a:hover, #topnav a:focus, header#top aside a:focus, #topnav a:active, header#top aside a:active {
-    color: #FFFFFF;
+    color: #2A7AD2;
     text-decoration: none;
 }
 #topnav small {
@@ -828,7 +828,7 @@ a:focus > .sf-sub-indicator, a:hover > .sf-sub-indicator, a:active > .sf-sub-ind
     color: #FFFFFF;
 /*    font: bold 2.4em/26px 'Trebuchet MS',Trebuchet,Arial,sans-serif; */
     letter-spacing: -0.02em;
-    padding: 20px 0 22px;
+    padding: 20px 0 12px;
     height:59px;
 /*    text-shadow: 1px 1px 3px #111111; */
 }
@@ -971,7 +971,7 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 
 .big-btn {
-    background: url("/img/btn-overlay.png") repeat-x scroll 0 0 #FFFFFF !important;
+   
     border: 1px solid #CCCCCC !important;
     border-radius: 4px 4px 4px 4px;
     color: #777777 !important;

@@ -9,7 +9,7 @@
 <header id="top">
     <div class="wrapper">
         <!-- Title/Logo - can use text instead of image -->
-        <div id="title"><img src="/img/logo.png" alt="Atugame"></div>
+        <div id="title"><a href="/index.htm" ><img src="/img/logo.png" width="223px" height="59px" alt="阿土游戏"></a></div>
         <!-- Top navigation -->
         <%
             String user = (String) request.getSession().getAttribute("username");
