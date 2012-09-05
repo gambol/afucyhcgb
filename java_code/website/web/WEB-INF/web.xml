@@ -24,6 +24,10 @@
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list>
+    <error-page> 
+        <error-code>404</error-code> 
+        <location>/index.htm</location> 
+    </error-page> 
     <filter>
         <filter-name>userFilter</filter-name>
         <filter-class>com.tophey.web.servlet.UserFilter</filter-class>
@@ -45,7 +49,7 @@
         <filter-name>userFilter</filter-name>
         <url-pattern>/user/publish.htm</url-pattern>  
     </filter-mapping>
-     <filter-mapping>
+    <filter-mapping>
         <filter-name>userFilter</filter-name>
         <url-pattern>/user/sitemanager.htm</url-pattern>  
     </filter-mapping>
