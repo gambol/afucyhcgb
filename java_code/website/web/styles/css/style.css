@@ -971,7 +971,7 @@ footer#animated a:hover, footer#animated a:focus, footer#animated a:active {
 }
 
 .big-btn {
-    background: url("../img/btn-overlay.png") repeat-x scroll 0 0 #FFFFFF !important;
+    background: url("/img/btn-overlay.png") repeat-x scroll 0 0 #FFFFFF !important;
     border: 1px solid #CCCCCC !important;
     border-radius: 4px 4px 4px 4px;
     color: #777777 !important;
@@ -2344,9 +2344,8 @@ button.datepick-cmd {
     width: 100%;
 }
 
-.pageline input {
-    background: url("/img/search.gif") no-repeat scroll 99% 56% #FFFFFF;
-    /*  border: 2px solid #5D9ADF; */
+.pageline .search-text {
+   
     box-shadow: 0 0;
     color: #666666;
     float: right;
@@ -2355,6 +2354,22 @@ button.datepick-cmd {
     vertical-align: middle;
     width: 202px;
     margin:4px;
+    margin-right:0px;
+}
+
+.pageline .search-button {
+    background: url("/img/search.gif") no-repeat scroll 99% 56% #FFFFFF;
+    /*  border: 2px solid #5D9ADF; */
+    border:0 none;
+    color: #666666;
+    float: right;
+    cursor: pointer;
+    /*    line-height: 18px; */
+    vertical-align: middle;
+    margin:4px;
+    margin-left:0px;
+    height: 22px;
+    width:25px;
 }
 /*
 .pageline input:focus {
