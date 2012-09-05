@@ -53,7 +53,8 @@
                     <div class="pageline">
                         <form action="" method="get">
                             <input type="hidden" name="categoryId" value="${categoryId}"/>
-                            <input class="" type="text" id="keyword" name="keyword" placeholder="按标题搜索"/>
+                             <input class="search-button" type="submit" id="button" value=""  name="search"/>
+                            <input class="search-text" type="text" id="keyword" name="keyword" placeholder="按标题搜索"/>
                             
                         </form>
                     </div>
@@ -118,7 +119,7 @@
             <aside class="colgroup width2"  id="asider">
                 <div class="clean-content-box">                  
                     <section class="notes-total">
-                      <img src="img/atu.png" alt="atu game"/>
+                      <img src="/img/atu.png" alt="阿土游戏"/>
                       <a class="big-btn btn-yellow" href="/user/publish.htm">免费发布新站</a>
                     </section>
                 </div>
