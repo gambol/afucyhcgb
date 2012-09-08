@@ -43,7 +43,7 @@
                     <div id="left-nav">
                         <ul>
                             <c:forEach var="category" items="${categorys.pageList }">
-                                <li><a href="/index.htm?categoryId=${category.id}" <c:if test="${categoryId == category.id}"> class="current"</c:if>>${category.name}</a></li>
+                                <li><a href="/index_${category.id}.htm" <c:if test="${categoryId == category.id}"> class="current"</c:if>>${category.name}</a></li>
                             </c:forEach>
 
                         </ul>
@@ -58,7 +58,7 @@
                             
                         </form>
                     </div>
-                    <pg:pager items="${serverInfos.totalCount}" maxPageItems="10" maxIndexPages="7" 
+                    <pg:pager items="${serverInfos.totalCount}" maxPageItems="20" maxIndexPages="7" 
                               url="/index.htm"   export="pageNo=pageNumber" scope="request">
                         <pg:param name="categoryId" />
                         <pg:param name="keyword"/>
@@ -67,7 +67,7 @@
                                 <div class="rank-column column first">${status.count + param['pager.offset']}</div>
                                 <div class="desc-column column width4">
                                     <div class="font-14">
-                                        <span class="server-title first"><a target="_blank" href="${serverInfoDetail.serverInfo.url}">${serverInfoDetail.serverInfo.name}</a></span>
+                                        <span class="server-title first"><a target="_blank" href="/detail_${serverInfoDetail.serverInfo.id}.htm">${serverInfoDetail.serverInfo.name}</a></span>
                                         <span class="right-span">${serverInfoDetail.serverInfo.line}</span>
                                     </div>
                                     <div class="desc">
