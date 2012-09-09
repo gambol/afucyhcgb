@@ -11,7 +11,7 @@
         <div id="title"><img SRC="/img/logo.png" alt="Atugame" /></div>
         <!-- Top navigation -->
 
-            <a href="#"><img class="avatar" SRC="img/user_32.png" alt="" /></a>
+            <a href="#"><img class="avatar" SRC="/img/user_32.png" alt="" /></a>
             Hi <b>bibubibu</b>
 
             <span>|</span> <a href="#">Settings</a>
