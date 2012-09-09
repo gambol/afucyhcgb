@@ -18,12 +18,25 @@ public class UserBean {
     @Email
     private String userEmail;
          
+    private String oldPassword;
     private String password;
     
     private String repassword;
     
     private String errMsg;
+    //是否同意用户协议
+    private String tos;
 
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    
+    
     public String getPassword() {
         return password;
     }
@@ -56,9 +69,13 @@ public class UserBean {
         this.repassword = repassword;
     }
 
-    
-    
+    public String getTos() {
+        return tos;
+    }
 
-    
+    public void setTos(String tos) {
+        this.tos = tos;
+    }
+
     
 }

@@ -104,4 +104,9 @@ public class IndexController  {
        return "aboutus";
     }
     
+    @RequestMapping("tos")
+    public String agreement(HttpServletRequest request, HttpServletResponse response){
+        return "tos";
+    }
+    
 }

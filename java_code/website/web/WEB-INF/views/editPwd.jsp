@@ -1,22 +1,27 @@
-<!--<!DOCTYPE html>-->
+<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"%>
 <%@ page session="false" %>
-<%@page  language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
-    <%@include file="../common/appInclude.jsp" %>    
+    <%@include file="../common/appInclude.jsp" %>
     <body>
+        <%@include file="../common/header.jsp" %>
+        <script>
+            selectMenu("menu-userCenter");
+        </script>
+        
+        <script type="text/javascript" src="/js/sitemanage.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 var submitted = false;
                 // validate form on keyup and submit
-                var validator = $("#regiForm").validate({
+                var validator = $("#editPwdForm").validate({
                     rules: {
-                        userEmail: {
-                            required: true,
-                            email: true,
-                            remote: "/user/check.htm"
+                        oldPassword: {
+                            required: true                          
                         },
                         password:{
                             required:true
@@ -26,20 +31,12 @@
                             required:true,
                             equalTo:"#password"
                         },
-                        captcha: {
-                            required: true,
-                            remote:"/validateImage.htm"
-                        },
-                        tos:{
-                            required:true
-                        },
+                       
                         terms: "required"
                     },
                     messages: {
-                        userEmail: {
-                            required: "请输入用户名",
-                            email:"用户名必须是有效邮箱",
-                            remote: "用户名已存在"
+                         oldPassword: {
+                            required: "旧密码不能为空"                          
                         },
                         password:{
                             required:"密码不能为空" 
@@ -48,13 +45,7 @@
                             required:"密码不能为空",
                             equalTo:"两次输入必须一致"
                         },
-                        captcha: {
-                            required:"请输入验证码",
-                            remote:"验证码错误"
-                        },
-                        tos:{
-                            required:"要使用我们的服务，您必须同意接受 Atugame 的用户协议。"
-                        },
+                      
                         terms: ""
                     },
                     showErrors: function(errorMap, errorList) {  
@@ -88,11 +79,7 @@
                     }
                 });
             });
-            
-            function refreshImage(){    
-        
-                $('#captchaImg').hide().attr('src',"/generateImage.htm?" + Math.floor(Math.random()*100)).fadeIn();     
-            }    
+           
         </script>
         <style>
 
@@ -100,8 +87,6 @@
             label.error {
                 vertical-align: middle;                        
             }</style>
-        <!-- Header -->
-        <%@include file="../common/header.jsp" %>
         <!-- End of Header -->
         <!-- Page title -->
         <!--
@@ -116,45 +101,49 @@
             <div class="wrapper">
 
                 <!-- Login form -->
+                <section class="column width1 first">
 
+                    <div class="site-nav">
+                        <ul>
+                            <li ><a href="/user/sitemanage.htm">发布记录</a></li>
+                            <li><a href="/user/publish.htm">新站发布</a></li>
+                            <li class="current"><a href="/user/editPassword.htm">修改密码</a></li>
+                            <!--<li><a href="#">修改密码</a></li> -->
+
+                        </ul>
+                    </div>  
+                </section>
                 <section class="width5">					
                     <div class="pageline">   
                     </div>
 
                     <div class="content-box">
                         <header class="blue">
-                            <h3>注册</h3>
-                            <div class="right-href" ><a href="/user/login.htm">已有账号直接登陆</a></div>
+                            <h3>修改密码</h3>
+                            
                         </header>
 
                     </div>
-                    <form:form id="regiForm" method="post" modelAttribute="userBean" cssClass="cleanform">
+                    <form:form id="editPwdForm" method="post" modelAttribute="userBean" cssClass="cleanform">
 
+                        
                         <p>
-                            <form:label cssClass="required" path="userEmail">邮箱：</form:label><br/>
-                            <!--                            <div style="width: 280px;float: right">-->
-                            <form:input type="text" path="userEmail" cssClass="half " value=""/>
-
-
+                            <form:label cssClass="required" path="oldPassword">旧密码:</form:label><br/>
+                            <form:input type="password" path="oldPassword" cssClass="half" value=""/>    
                             <c:choose>
-                                <c:when test="${not empty mailErrMsg}">
-                                    <img id="userEmailErrImg" src="/img/alert.png" style="vertical-align: middle"/>
-                                    <label id="userEmailErrLb" style="vertical-align: middle;color:#DD0000">${mailErrMsg}</label>
+                                <c:when test="${not empty oldPwdErrMsg}">
+                                    <img id="oldPasswordErrImg" src="/img/alert.png" style="vertical-align: middle" />
+                                    <label id="oldPasswordErrLb" style="vertical-align: middle">${oldPwdErrMsg}</label>
                                 </c:when>
-                                <c:when test="${empty mailErrMsg}">
-                                    <img id="userEmailErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
-                                    <label id="userEmailErrLb" style="vertical-align: middle;display: none;color:#DD0000">${mailErrMsg}</label>
+                                <c:when test="${empty oldPwdErrMsg}">
+                                    <img id="oldPasswordErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
+                                    <label id="oldPasswordErrLb" style="vertical-align: middle;display: none">${oldPwdErrMsg}</label>
                                 </c:when>
                             </c:choose>
-
-
-                            <!--                            %>-->
-
                         </p>
 
-
                         <p>
-                            <form:label cssClass="required" path="password">密码:</form:label><br/>
+                            <form:label cssClass="required" path="password">新密码:</form:label><br/>
                             <form:input type="password" path="password" cssClass="half" value=""/>    
                             <img id="passwordErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
                             <label id="passwordErrLb" style="vertical-align: middle;display: none">${errMsg}</label>
@@ -163,44 +152,16 @@
                         <p>
                             <form:label cssClass="required" path="repassword">再输入一遍：</form:label><br/>
                             <form:input type="password" path="repassword" cssClass="half" value=""/>    
+                            
                             <img id="repasswordErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
                             <label id="repasswordErrLb" style="vertical-align: middle;display: none">${errMsg}</label>
                         </p>
 
-                        <p> 
-                            <label class="required" for="captcha">验证码:</label><br/>
-
-                            <input type="text" name="captcha" id="captcha"  style="vertical-align: middle;width: 27%"/>                            
-                            <img id='captchaImg' alt="验证码" src="/generateImage.htm" style="height: 25px;vertical-align: middle"/> 
-                            <span  style="vertical-align: bottom"><a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a></span>
-                            <img id="captchaErrImg" src="/img/alert.png" style="vertical-align: middle;display: none" />
-
-
-                        </p>
-                        <p>
-
-                            <label>
-                                <input id="tos" type="checkbox" name="tos" value="yes">
-                                <span id="terms-of-service-label">
-                                    <strong>
-                                        我已阅读并同意接受  Atugame
-                                        <a id="TosLink" href="/tos.htm" target="_blank">用户协议</a>                                        。
-                                    </strong>
-                                </span>
-                            </label>
-                            <br/>
-                            <img id="tosErrImg" src="/img/alert.png" style="vertical-align: middle;display: none"/>
-
-                            <c:if test="${not empty tosErrMsg}">                                    
-                                <label id="tosErrLb" style="vertical-align: middle;color:#DD0000">${tosErrMsg}</label>
-                            </c:if>
-
-
-                        </p>
+                        
 
 
                         <div >
-                            <input type="submit" class="btn btn-yellow big" value="    注   册   "/>
+                            <input type="submit" class="btn btn-yellow big" value="    修   改   "/>
 
                         </div>
 
@@ -217,14 +178,8 @@
             <!-- End of Wrapper -->
         </div>
         <!-- End of Page content -->
-
-        <!-- Page footer -->
         <%@include file="../common/footer.jsp" %>
-        <!-- End of Animated footer -->
 
-        <!-- Scroll to top link -->
-        <a href="#" id="totop">^ scroll to top</a>
-
-        <!-- User interface javascript load -->
     </body>
 </html>
+

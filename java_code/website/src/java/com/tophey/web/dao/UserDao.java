@@ -24,5 +24,9 @@ public class UserDao {
         JDBCUtils.insert(user);
     }
     
+    public void udpateUser(User user){
+        JDBCUtils.update(user, true);
+    }
+    
     
 }

@@ -97,7 +97,12 @@ public class UserController {
             System.err.println(result.toString() + "   " + (result.getAllErrors()).get(0).toString());
             return null;
         }
-
+        String tos = loginBean.getTos();
+        if(!"yes".equals(tos)){
+            model.addAttribute("tosErrMsg", "要使用我们的服务，您必须同意接受 Atugame 的用户协议。");
+            return "regi";
+        }
+        
         String userEmail = loginBean.getUserEmail();
         String password = loginBean.getPassword();
         UserDao userDao = new UserDao();
@@ -174,6 +179,43 @@ public class UserController {
         return "redirect:/index.htm";
     }
 
+    @RequestMapping(value = "editPwdSuc", method = RequestMethod.GET)
+    public String editPwdSuc(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException {
+
+        return "editPwdSuc";
+    }
+    
+    @RequestMapping(value = "editPassword", method = RequestMethod.GET)
+    public String editPwdGet(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException {
+
+        return "editPwd";
+    }
+
+    @RequestMapping(value = "editPassword", method = RequestMethod.POST)
+    public String editPwd(@Valid UserBean loginBean, BindingResult result,HttpServletRequest request, HttpServletResponse response,
+            Model model) {
+
+        
+        String username = (String) request.getSession().getAttribute(SessionConst.USERNAME);
+        if(username == null){
+            return "redirect:/user/login.htm";
+        }
+        
+
+        UserDao userDao = new UserDao();
+        User user = userDao.getUserByEmail(username);
+        if(!user.getPassword().equals(loginBean.getOldPassword())){
+            model.addAttribute("oldPwdErrMsg", "旧密码错误");
+            return "editPwd";
+        }
+        user.setPassword(loginBean.getPassword());
+        userDao.udpateUser(user);
+        
+        return "redirect:/user/editPwdSuc.htm";
+    }
+    
+    
+    
     @RequestMapping("check")
     public @ResponseBody
     boolean check(HttpServletRequest request,

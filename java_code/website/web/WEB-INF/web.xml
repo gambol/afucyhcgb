@@ -47,12 +47,11 @@
 
     <filter-mapping>
         <filter-name>userFilter</filter-name>
-        <url-pattern>/user/publish.htm</url-pattern>  
+        <url-pattern>/user/publish.htm</url-pattern>
+        <url-pattern>/user/sitemanager.htm</url-pattern>
+        <url-pattern>/user/editPassword.htm</url-pattern>
     </filter-mapping>
-    <filter-mapping>
-        <filter-name>userFilter</filter-name>
-        <url-pattern>/user/sitemanager.htm</url-pattern>  
-    </filter-mapping>
+    
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>

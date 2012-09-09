@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -31,6 +31,7 @@
                         <ul>
                             <li class="current"><a href="/user/sitemanage.htm">发布记录</a></li>
                             <li><a href="/user/publish.htm">新站发布</a></li>
+                            <li><a href="/user/editPassword.htm">修改密码</a></li>
                             <!--<li><a href="#">修改密码</a></li> -->
 
                         </ul>

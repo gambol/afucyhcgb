@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -109,6 +109,7 @@
                         <ul>
                             <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/sitemanage.htm">发布记录</a></li>
                             <li  <c:if test="${empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/publish.htm">新站发布</a></li>
+                            <li><a href="/user/editPassword.htm">修改密码</a></li>
                                <!-- <li><a href="#">修改密码</a></li> -->
 
                             </ul>
@@ -128,12 +129,12 @@
                         <p>
                             <c:if test="${not empty message}">
                             <div id="message" class="success">${message}</div>	
-                        </c:if>
-                        <s:bind path="*">
-                            <c:if test="${status.error}">
-                                <div id="message" class="box-error">请正确输入</div>
                             </c:if>
-                        </s:bind>
+                            <s:bind path="*">
+                                <c:if test="${status.error}">
+                                    <div id="message" class="box-error">请正确输入</div>
+                                </c:if>
+                            </s:bind>
                         </p>
                         <p>
                             <form:label cssClass="required" path="server_name">站点名称:</form:label><br/>
