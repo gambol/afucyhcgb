@@ -7,10 +7,13 @@ package com.tophey.web.controller;
 import com.tophey.model.ServerInfo;
 import com.tophey.model.ServerSysInfo;
 import com.tophey.web.common.PublishBean;
+import com.tophey.web.common.SessionConst;
 import com.tophey.web.dao.ServerDao;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,11 +33,11 @@ import tophey.utils.DateUtil;
  * @author zhenbao.zhou
  */
 @Controller
-@RequestMapping("/publish")
+@RequestMapping("/user/publish")
 @SessionAttributes("publisBean")
 public class PublishController {
+    final private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    // 需要先判断用户是否登录
     public static HashMap NETWORK_MAP = new HashMap();
     
     static {
@@ -62,23 +65,37 @@ public class PublishController {
     public String form(HttpServletRequest request, HttpServletResponse response, Model model) throws ServletException, IOException {
         int userId = 0;
         int serverId = 0;
+        String username = (String)request.getSession().getAttribute(SessionConst.USERNAME);
+        System.out.println("username:" + username);
+        PublishBean pb = new PublishBean();
+     
         try {
-//            userId = (Integer)request.getAttribute("userId");
+            userId = (Integer)request.getSession().getAttribute(SessionConst.USERID);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return "redirect:/user/login.htm";
+        }
+        
+        try {
+            
             String strId = request.getParameter("id");
             if (strId != null)
                 serverId = Integer.parseInt(request.getParameter("id"));
         } catch(Exception e) {
             e.printStackTrace();
+            pb.setNetwork("双线");
+            model.addAttribute("publishBean", pb);
             return "publish";
         }
         
         // 查询db
         ServerInfo si = ServerDao.getServerInfoById(serverId);
         if (si == null) {
+            pb.setNetwork("双线");
+            model.addAttribute("publishBean", pb);
             return "publish";
         }
         
-        PublishBean pb = new PublishBean();
         pb.setServer_name(si.getName());
         pb.setBanner(si.getBannerUrl());
         pb.setCategory(si.getCategoryId());
@@ -94,11 +111,25 @@ public class PublishController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String processSubmit(@Valid PublishBean publishBean, BindingResult result,
+    HttpServletRequest request, HttpServletResponse response, 
             Model model) {
 
         if (result.hasErrors()) {
             System.err.println(result.toString() + "   " + (result.getAllErrors()).get(0).toString());
             return null;
+        }
+        
+        int userId = 0;
+        try {
+            userId = (Integer)request.getSession().getAttribute(SessionConst.USERID);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return "redirect:/user/login.htm";
+        }
+        
+        if (userId == 0) {
+            logger.log(Level.WARNING, "user not logined");
+            return "redirect:/user/login.htm";
         }
 
         ServerInfo server = new ServerInfo();
@@ -109,10 +140,11 @@ public class PublishController {
         server.setLine(publishBean.getNetwork());
         server.setName(publishBean.getServer_name());
         server.setUrl(publishBean.getUrl());
-
+        
         server.setSiteFrom("atu");
         server.setCreateDate(DateUtil.getCurrentTimestamp());
         server.setDescription(publishBean.getDesc());
+        server.setUserId(userId);
         
         int sid  = -1;
         try {
@@ -124,17 +156,25 @@ public class PublishController {
         if (sid <= 0) {
             ServerDao.insert(server);            
         } else {
-            server.setId(sid);
+ //           server.setId(sid);
+            if (server.getUserId() != userId) {
+                logger.log(Level.WARNING, "server对应的userId 和 新的UserId对应不上. old userId:" + server.getUserId() + " new UserId:" + userId);
+                model.addAttribute("message", "session过期");
+                return null;
+            }
+            
             ServerDao.update(server);
         }
+        
+        
         
         String message = "私服发布成功, 私服url:" + server.getUrl();
         // Success response handling
 
         // prepare model for rendering success message in this request
-        model.addAttribute("message", message);
+  //      model.addAttribute("message", message);
         // 确认这个页面之后，需要跳转到哪个页面?
-        return null;
+        return "redirect:/user/sitemanage.htm";
 
     }
 }

@@ -7,6 +7,8 @@ package com.tophey.web.controller;
 import com.tophey.common.PageResult;
 import com.tophey.common.ServerInfoDetail;
 import com.tophey.model.Category;
+import com.tophey.model.ServerInfo;
+import com.tophey.model.ServerSysInfo;
 import com.tophey.web.common.RankPageQuery;
 import com.tophey.web.dao.CategoryDao;
 import com.tophey.web.dao.ServerQuerier;
@@ -28,13 +30,13 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 @RequestMapping("/")
 public class IndexController  {
 
-    public final static int PAGE_SIZE = 10;
+    public final static int PAGE_SIZE = 20;
     
     public IndexController() {
       
     }
     
-    @RequestMapping("mainPage.htm")
+    @RequestMapping("index")
     public ModelAndView index(HttpServletRequest request, HttpServletResponse response, Model model){
         ServerQuerier sq = new ServerQuerier();
         int categoryId = 1;
@@ -68,5 +70,38 @@ public class IndexController  {
         
         return new ModelAndView("mainPage");
     }
+    
+     @RequestMapping("detail")
+    public ModelAndView detail(HttpServletRequest request, HttpServletResponse response, Model model){
+        ServerQuerier sq = new ServerQuerier();
+        int serverId = -1;
+        String strServerId = request.getParameter("serverId");
+        try {
+            serverId = Integer.parseInt(strServerId);
+        } catch (Exception e) {  }
+        
+        
+        ServerInfo server = sq.getServerInfoById(serverId);
+        ServerSysInfo serverSys = sq.getServerSysInfoById(serverId);
+        //TODO
+        // add 异常处理
+        
+        model.addAttribute("serverInfo", server);
+        if (serverSys == null)
+            serverSys = new ServerSysInfo();
+        
+        model.addAttribute("serverSysInfo", serverSys);
+        
+        PageResult<Category> categoryResults = CategoryDao.getAllCategory();
+        model.addAttribute("categorys", categoryResults);
+        
+        return new ModelAndView("detail");
+    }
+    
    
+    @RequestMapping("aboutus")
+    public String index(HttpServletRequest request, HttpServletResponse response){
+       return "aboutus";
+    }
+    
 }

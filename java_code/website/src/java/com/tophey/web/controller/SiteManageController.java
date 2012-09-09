@@ -8,9 +8,11 @@ import com.tophey.common.PageResult;
 import com.tophey.model.ServerInfo;
 import com.tophey.web.common.InterfaceReturnValue;
 import com.tophey.web.common.PublishBean;
+import com.tophey.web.common.SessionConst;
 import com.tophey.web.dao.ServerDao;
 import com.tophey.web.dao.ServerQuerier;
 import java.io.IOException;
+import java.net.Inet4Address;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,19 +27,18 @@ import tophey.utils.JDBCUtils;
  */
 
 @Controller
-@RequestMapping("/sitemanage")
+@RequestMapping("/user/")
 public class SiteManageController {
     
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="sitemanage", method = RequestMethod.GET)
     public String form(HttpServletRequest request, HttpServletResponse response, 
     Model model) throws ServletException, IOException {
-        int userId = 1;
+        int userId = 0;
         try {
-//            userId = (Integer)request.getAttribute("userId");
-
+            userId = (Integer)request.getSession().getAttribute(SessionConst.USERID);
         } catch(Exception e) {
             e.printStackTrace();
-            return "publish";
+            return "redirect:/user/login.htm";
         }
         
        // int currentPage = offset/20 + 1;
@@ -57,23 +58,24 @@ public class SiteManageController {
         return "sitemanage";
     }
     
-    @RequestMapping("changeStatus")
-    public @ResponseBody InterfaceReturnValue changeDisplayStatus(@RequestParam Integer id, Model model) throws ServletException, IOException {
-        int userId = 1;
-         InterfaceReturnValue returnValue = new InterfaceReturnValue();
+    @RequestMapping("/sitemanage/changeStatus")
+    public @ResponseBody InterfaceReturnValue changeDisplayStatus(HttpServletRequest request, HttpServletResponse response,
+    Model model) throws ServletException, IOException {
+        int userId = 0;
+        int serverId = 0;
+        InterfaceReturnValue returnValue = new InterfaceReturnValue();
         try {
-//            userId = (Integer)request.getAttribute("userId");
-
+             userId = (Integer)request.getSession().getAttribute(SessionConst.USERID);
+            serverId = Integer.parseInt((String)request.getParameter("id"));
         } catch(Exception e) {
             e.printStackTrace();
             return returnValue;
         }
         
-        int updatedRows = ServerDao.changeDisplayStatus(id);
+        int updatedRows = ServerDao.changeDisplayStatus(serverId, userId);
        
         returnValue.setRet(updatedRows == 1);
         returnValue.setData(updatedRows);
         return returnValue;
     }
-    
 }

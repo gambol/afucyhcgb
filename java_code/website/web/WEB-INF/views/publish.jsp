@@ -3,11 +3,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://jsptags.com/tags/navigation/pager" prefix="pg"%>
-
 <%@ page session="false" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <%@include file="../common/appInclude.jsp" %>
+    <link rel="stylesheet" href="/styles/css/publish.css" type="text/css" />
     <body>
         <%@include file="../common/header.jsp" %>
         <script>
@@ -42,9 +42,9 @@
                         },
                         captcha: {
                             required: true,
-                            remote:"validateImage.htm"
-                        },
-                        terms: "required"
+                            remote:"/validateImage.htm"
+                        }
+                       
                     },
                     messages: {
                         server_name: {
@@ -64,12 +64,15 @@
                         captcha: {
                             required: "输入验证码",
                             remote: "请输入正确的验证码"
-                        },
-                        terms: ""
+                        }
+                      
                     },
                     // the errorPlacement has to take the layout into account
-                    errorPlacement: function(error, element) {
-                        error.insertAfter(element.parent().find('label:first'));
+                    errorPlacement: function(error, element) {                      
+                        //                             error.insertAfter(element.parent().find('input:first'));
+                   
+                        error.appendTo (element.next());
+                       
                     },
                     // specifying a submitHandler prevents the default submit, good for the demo
                     /*
@@ -80,37 +83,47 @@
                     // set new class to error-labels to indicate valid fields
                     success: function(label) {
                         // set &nbsp; as text for IE
-                        //     label.html("&nbsp;").addClass("ok");
+                      
+                             label.html("&nbsp;").addClass("checked");
+                        /*
+                        var a = "label.error[for='"+label.attr("for")+"']";
+                        alert(a);
+                        $("label.error[for='"+label.attr("for")+"']").classname('');
+                        $("label.error[for='server_name']").classname('');
+                        */
                     }
                 });
             });
             
             function refreshImage(){    
         
-                $('#captchaImg').hide().attr('src',"generateImage.htm?" + Math.floor(Math.random()*100)).fadeIn();     
+                $('#captchaImg').hide().attr('src',"/generateImage.htm?" + Math.floor(Math.random()*100)).fadeIn();     
             }    
         </script>
         <!-- Page content -->
         <div id="page">
             <!-- Wrapper -->
             <div class="wrapper">
-                <section class="column width_116 first">
+                <section class="column width1 first">
                     <div class="site-nav">
                         <ul>
-                            <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/sitemanage.htm">发布记录</a></li>
-                            <li  <c:if test="${empty publishBean['server_name']}"> class="current" </c:if>><a href="/publish.htm">新站发布</a></li>
-                            <li><a href="#">修改密码</a></li>
+                            <li  <c:if test="${not empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/sitemanage.htm">发布记录</a></li>
+                            <li  <c:if test="${empty publishBean['server_name']}"> class="current" </c:if>><a href="/user/publish.htm">新站发布</a></li>
+                               <!-- <li><a href="#">修改密码</a></li> -->
 
-                        </ul>
-                    </div>  
-                </section>
-                <!-- Login form -->
+                            </ul>
+                        </div>  
+                    </section>
 
-                <section class="width5">					
-                    <div class="pageline">   
-                    </div>
-                    <h3>站点发布</h3>
-                    <div class="box box-info">带*项目必填</div>
+
+                    <section class="width5">					
+                        <div class="pagetitle">
+                            <header class="blue">
+                                <h3>站点发布</h3>
+                            </header>
+
+                        </div>
+
                     <form:form id="publishform" method="post" modelAttribute="publishBean" cssClass="cleanform">
                         <p>
                             <c:if test="${not empty message}">
@@ -125,16 +138,19 @@
                         <p>
                             <form:label cssClass="required" path="server_name">站点名称:</form:label><br/>
                             <form:input type="text" path="server_name" cssClass="half" value=""/>
+                            <span/>
                         </p>
 
                         <p>
                             <form:label cssClass="required" path="url">链接:</form:label><br/>
-                            <form:input type="text" path="url" cssClass="half" value=""/>      
+                            <form:input type="text" path="url" cssClass="half" value=""/>  
+                            <span/>
                         </p>
 
                         <p>
-                            <form:label cssClass="required" path="banner">图片:</form:label><br/>
+                            <form:label  path="banner">图片:</form:label><br/>
                             <form:input type="file" path="banner" cssClass="half" value=""/>   
+                            <span/>
                         </p>
 
                         <p>
@@ -144,27 +160,32 @@
                             <form:radiobutton path="network" value="双线" label="双线 "/>
                             <form:radiobutton path="network" value="铁通" label="铁通 "/>
                             <form:radiobutton path="network" value="联通" label="联通 "/>
+                            <span/>
                         </p>
 
 
                         <p>
                             <form:label cssClass="required" path="category">游戏种类:</form:label>
-                            <br>
+                                <br>
                             <form:select path="category" cssClass="half">
                                 <form:option value="1" label="传奇"/>
                                 <form:option value="2" label="魔兽世界"/>
                             </form:select>
+                            <span/>
                         </p>
                         <p>
                             <form:label cssClass="required" path="desc">描述:</form:label><br/>
-                            <form:textarea path="desc" class="medium full"/>
+                            <form:textarea path="desc" class="medium half"/>
+                            <span/>
                         </p>
 
                         <p> <label class="required" for="captcha">验证码:</label> <br/>
-                            <img id='captchaImg' alt="验证码" src="generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a>  <br/>                       
+                            <img id='captchaImg' alt="验证码" src="/generateImage.htm"> <a href="javascript:void(0)" onclick="refreshImage()">看不清?换一张</a>  <br/>                       
                             <input type="text" name="captcha" id="captcha" class="half"/>
+                            <span/>
                         </p>
                         <br/>
+                        <!--
                         <c:if test="${empty publishBean['server_name']}">
                             <div class="contract">
                                 <p>
@@ -182,7 +203,9 @@
                             </div>
                             <input type="checkbox" id="terms" class="" value="1" name="terms" checked/>
                             <label class="choice" for="terms">我已阅读并接受以上合同条款、补充条款及其他所有内容</label>
+                            <span/>
                         </c:if>
+                        -->
                         <br/>
                         <br/>
                         <form:hidden path="id"/>
@@ -197,36 +220,7 @@
 
                 </section>
                 <!-- End of login form -->
-                <aside class="column width2" id="asider">
-                    <div class="content-box">
-                        <header class="blue">
-                            <h3>公告区</h3>
-                        </header>
-                        <section>
-                            哈哈，你好，我是第一个页面。我是不是很无聊啊。
-                            <dl>
-                                <dt>
-                                第一条新闻
-                                </dt>
-                                <dd>
-                                    新闻简介
-                                </dd>
 
-                                <dt>
-                                第二条新闻
-                                </dt>
-                                <dd>
-                                    新闻简介
-                                </dd>
-                            </dl>
-                            <cite>w3schools.com</cite>										</section>
-                    </div>
-                    <div class="content-box">
-                        <header class="blue">
-                            <h3>SEO相关</h3>
-                        </header>
-                    </div>
-                </aside>
             </div>
             <!-- End of Wrapper -->
         </div>

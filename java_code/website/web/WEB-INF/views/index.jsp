@@ -43,7 +43,7 @@
                     <div id="left-nav">
                         <ul>
                             <c:forEach var="category" items="${categorys.pageList }">
-                                <li><a href="/mainPage.htm?categoryId=${category.id}" <c:if test="${categoryId == category.id}"> class="current"</c:if>>${category.name}</a></li>
+                                <li><a href="/index_${category.id}.htm" <c:if test="${categoryId == category.id}"> class="current"</c:if>>${category.name}</a></li>
                             </c:forEach>
 
                         </ul>
@@ -53,11 +53,13 @@
                     <div class="pageline">
                         <form action="" method="get">
                             <input type="hidden" name="categoryId" value="${categoryId}"/>
-                            <input class="" type="text" id="keyword" name="keyword" placeholder="按标题搜索"/>
+                             <input class="search-button" type="submit" id="button" value=""  name="search"/>
+                            <input class="search-text" type="text" id="keyword" name="keyword" placeholder="按标题搜索"/>
+                            
                         </form>
                     </div>
-                    <pg:pager items="${serverInfos.totalCount}" maxPageItems="10" maxIndexPages="7" 
-                              url="/mainPage.htm"   export="pageNo=pageNumber" scope="request">
+                    <pg:pager items="${serverInfos.totalCount}" maxPageItems="20" maxIndexPages="7" 
+                              url="/index.htm"   export="pageNo=pageNumber" scope="request">
                         <pg:param name="categoryId" />
                         <pg:param name="keyword"/>
                         <c:forEach var="serverInfoDetail" items="${serverInfos.pageList}" varStatus="status">
@@ -65,15 +67,15 @@
                                 <div class="rank-column column first">${status.count + param['pager.offset']}</div>
                                 <div class="desc-column column width4">
                                     <div class="font-14">
-                                        <span class="server-title first"><a href="#">${serverInfoDetail.serverInfo.name}</a></span>
+                                        <span class="server-title first"><a target="_blank" href="/detail_${serverInfoDetail.serverInfo.id}.htm">${serverInfoDetail.serverInfo.name}</a></span>
                                         <span class="right-span">${serverInfoDetail.serverInfo.line}</span>
                                     </div>
-                                    <div class="desc"">
+                                    <div class="desc">
                                          <c:out value="${fn:substring(serverInfoDetail.serverInfo.description, 0, 100)}" escapeXml="true"/>
                                 </div>
                             </div>
                             <div class="like-it-column column">
-                                <span class="number">239</span>
+                               <!-- <span class="number">239</span> -->
                                 <a class="small-btn btn-yellow" href="#">赞</a>
                             </div>
                         </div>
@@ -117,15 +119,11 @@
             <aside class="colgroup width2"  id="asider">
                 <div class="clean-content-box">                  
                     <section class="notes-total">
-                      <img src="img/atu.png" alt="atu game"/>
-                      <a class="big-btn btn-yellow" href="#">免费发布新站</a>
+                        <img src="/img/atu.png" width="166px" height="42px" alt="阿土游戏"/>
+                      <a class="big-btn btn-yellow" href="/user/publish.htm">免费发布新站</a>
                     </section>
                 </div>
-                <div class="content-box">
-                    <header class="blue">
-                        <h3>SEO相关</h3>
-                    </header>
-                </div>
+                <hr>
             </aside>
             <!-- End of Right column/section -->
 

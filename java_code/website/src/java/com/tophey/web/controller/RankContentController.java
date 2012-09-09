@@ -36,7 +36,7 @@ public class RankContentController {
         int curPage = (0 +1 ) / 50;
         PageResult pr = new PageResult<ServerInfoDetail>(totalCount, curPage,50, retList);
         model.put("pageResult", pr);
-        return "mainPage";
+        return "index";
         
         
 //        return new PageResult<ServerInfoDetail>(totalCount, curPage, rpq.getSize(), retList);
